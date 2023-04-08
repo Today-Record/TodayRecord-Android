@@ -1,4 +1,4 @@
-package com.todayrecord.todayrecord
+package com.todayrecord.todayrecord.screen
 
 import android.os.Bundle
 import android.view.LayoutInflater

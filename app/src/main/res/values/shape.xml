@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="ShapeAppearance.TodayRecord.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+
+    <style name="ShapeAppearance.TodayRecord.LargeComponent" parent="ShapeAppearance.MaterialComponents.LargeComponent">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">6dp</item>
+        <item name="cornerSize">50%</item>
     </style>
 
     <style name="ShapeAppearance.TodayRecord.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
@@ -10,8 +11,12 @@
         <item name="cornerSize">12dp</item>
     </style>
 
-    <style name="ShapeAppearance.TodayRecord.LargeComponent" parent="ShapeAppearance.MaterialComponents.LargeComponent">
+    <style name="ShapeAppearance.TodayRecord.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">50%</item>
+        <item name="cornerSize">6dp</item>
+    </style>
+
+    <style name="ShapeAppearance.TodayRecord.SmallComponent.Tint">
+        <item name="cornerSize">2dp</item>
     </style>
 </resources>

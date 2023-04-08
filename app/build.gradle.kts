@@ -52,6 +52,13 @@ dependencies {
     // AndroidX Navigation
     implementation(Libraries.AndroidX.Navigation.ui)
     implementation(Libraries.AndroidX.Navigation.fragment)
+    // AndroidX Room
+    implementation(Libraries.AndroidX.Room.runtime)
+    implementation(Libraries.AndroidX.Room.coroutine)
+    implementation(Libraries.AndroidX.Room.paging)
+    kapt(Libraries.AndroidX.Room.compiler)
+    // AndroidX DataStore
+    implementation(Libraries.AndroidX.dataStore)
 
     // Kotlin
     implementation(Libraries.Kotlin.kotlin)
@@ -72,6 +79,10 @@ dependencies {
     api(Libraries.timber)
     // image compressor
     api(Libraries.compressor)
+
+    // Moshi
+    implementation(Libraries.Moshi.core)
+    kapt(Libraries.Moshi.codegen)
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")

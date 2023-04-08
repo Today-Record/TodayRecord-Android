@@ -3,7 +3,6 @@ object Libraries {
     object GradlePlugin {
         const val android = "com.android.tools.build:gradle:${Versions.GradlePlugin.android}"
         const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.Kotlin.kotlin}"
-        const val kotlinSerializable ="org.jetbrains.kotlin:kotlin-serialization:${Versions.Kotlin.kotlin}"
         const val daggerHilt = "com.google.dagger:hilt-android-gradle-plugin:${Versions.Dagger2.hilt}"
         const val safeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.AndroidX.navigation}"
     }
@@ -22,6 +21,7 @@ object Libraries {
         const val activity = "androidx.activity:activity-ktx:${Versions.AndroidX.activity}"
         const val fragment = "androidx.fragment:fragment-ktx:${Versions.AndroidX.fragment}"
         const val startUp = "androidx.startup:startup-runtime:${Versions.AndroidX.startUp}"
+        const val dataStore = "androidx.datastore:datastore-preferences:${Versions.AndroidX.dataStore}"
 
         object Lifecycle {
             const val runtime = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.AndroidX.lifecycle}"
@@ -62,6 +62,10 @@ object Libraries {
 
         const val androidHilt = "com.google.dagger:hilt-android:${Versions.Dagger2.hilt}"
         const val androidHiltCompiler = "com.google.dagger:hilt-android-compiler:${Versions.Dagger2.hilt}" // For Kotlin use kapt instead of annotationProcessor
+    }
+    object Moshi {
+        const val core = "com.squareup.moshi:moshi-kotlin:${Versions.moshi}"
+        const val codegen = "com.squareup.moshi:moshi-kotlin-codegen:${Versions.moshi}" // For Kotlin use kapt instead of annotationProcessor
     }
 
     object Glide {
