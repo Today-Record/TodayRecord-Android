@@ -124,3 +124,4 @@ vcs.xml
 /buildSrc/build/libs/buildSrc.jar
 /buildSrc/build/reports/plugin-development/validation-report.txt
 /buildSrc/build/tmp/jar/MANIFEST.MF
+/buildSrc/build/pluginUnderTestMetadata/plugin-under-test-metadata.properties
