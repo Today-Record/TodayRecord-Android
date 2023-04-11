@@ -63,6 +63,7 @@ dependencies {
     // Kotlin
     implementation(Libraries.Kotlin.kotlin)
     implementation(Libraries.Kotlin.coroutine)
+    implementation(Libraries.Kotlin.playerService)
 
     // Dagger2 ( DI )
     implementation(Libraries.Dagger.androidHilt)
@@ -79,10 +80,18 @@ dependencies {
     api(Libraries.timber)
     // image compressor
     api(Libraries.compressor)
+    // Image loading library
+    implementation(Libraries.Glide.core)
+    kapt(Libraries.Glide.compiler)
 
     // Moshi
     implementation(Libraries.Moshi.core)
     kapt(Libraries.Moshi.codegen)
+
+    // Firebase
+    implementation(platform(Libraries.Firebase.bom))
+    implementation(Libraries.Firebase.analytics)
+    implementation(Libraries.Firebase.storage)
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
