@@ -7,7 +7,6 @@ object Versions {
     object Kotlin {
         const val kotlin = "1.8.10"
         const val coroutine = "1.6.4"
-        const val kotlinSerializable = "1.4.1"
     }
 
     object AndroidX {
@@ -30,6 +29,10 @@ object Versions {
 
     object Dagger2 {
         const val hilt = "2.44.2"
+    }
+
+    object Firebase {
+        const val bom = "31.4.0"
     }
 
     const val retrofit2 = "2.9.0"

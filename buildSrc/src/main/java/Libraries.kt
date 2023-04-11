@@ -9,8 +9,8 @@ object Libraries {
 
     object Kotlin {
         const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.Kotlin.kotlin}"
-        const val kotlinSerializable = "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.Kotlin.kotlinSerializable}"
         const val coroutine = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.Kotlin.coroutine}"
+        const val playerService = "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:${Versions.Kotlin.coroutine}"
     }
 
     object AndroidX {
@@ -71,6 +71,12 @@ object Libraries {
     object Glide {
         const val core = "com.github.bumptech.glide:glide:${Versions.glide}"
         const val compiler = "com.github.bumptech.glide:compiler:${Versions.glide}"  // For Kotlin use kapt instead of annotationProcessor
+    }
+
+    object Firebase {
+        const val bom = "com.google.firebase:firebase-bom:${Versions.Firebase.bom}"
+        const val analytics = "com.google.firebase:firebase-analytics-ktx"
+        const val storage = "com.google.firebase:firebase-storage-ktx"
     }
 
     const val desugar = "com.android.tools:desugar_jdk_libs:${Versions.desugar}" // coreLibraryDesugaring
