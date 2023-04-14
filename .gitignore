@@ -7,6 +7,7 @@
 /.idea/workspace.xml
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
+/buildSrc/build/
 
 .DS_Store
 /build
@@ -46,12 +47,3 @@ proguard/
 
 # Version control
 vcs.xml
-/buildSrc/build/kotlin/compileKotlin
-/buildSrc/build/classes/kotlin/main/META-INF/buildSrc.kotlin_module
-/buildSrc/build/kotlin/compileKotlin/cacheable/last-build.bin
-/buildSrc/build/kotlin/compileKotlin/localstate/build-history.bin
-/buildSrc/build/kotlin/buildSrcjar-classes.txt
-/buildSrc/build/libs/buildSrc.jar
-/buildSrc/build/reports/plugin-development/validation-report.txt
-/buildSrc/build/tmp/jar/MANIFEST.MF
-/buildSrc/build/pluginUnderTestMetadata/
