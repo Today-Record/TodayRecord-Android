@@ -1,8 +1,11 @@
 plugins {
     id("com.android.application")
+    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
     kotlin("android")
     kotlin("kapt")
     id("dagger.hilt.android.plugin")
+    id("androidx.navigation.safeargs.kotlin")
 }
 android {
 
@@ -92,6 +95,7 @@ dependencies {
     implementation(platform(Libraries.Firebase.bom))
     implementation(Libraries.Firebase.analytics)
     implementation(Libraries.Firebase.storage)
+    implementation(Libraries.Firebase.crashReport)
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")

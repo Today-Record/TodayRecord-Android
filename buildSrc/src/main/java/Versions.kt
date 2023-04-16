@@ -1,7 +1,7 @@
 object Versions {
 
     object GradlePlugin {
-        const val android ="7.2.2"
+        const val android ="7.4.2"
     }
 
     object Kotlin {
@@ -33,11 +33,10 @@ object Versions {
 
     object Firebase {
         const val bom = "31.4.0"
+        const val crashReportGradle = "2.9.4"
     }
 
-    const val retrofit2 = "2.9.0"
-    const val retrofitConverter = "0.8.0"
-    const val okHttp = "4.9.3"
+    const val googleService = "4.3.15"
     const val moshi = "1.14.0"
     const val glide = "4.13.2"
     const val timber = "5.0.1"
