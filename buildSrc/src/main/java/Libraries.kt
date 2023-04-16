@@ -5,6 +5,8 @@ object Libraries {
         const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.Kotlin.kotlin}"
         const val daggerHilt = "com.google.dagger:hilt-android-gradle-plugin:${Versions.Dagger2.hilt}"
         const val safeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.AndroidX.navigation}"
+        const val googleService = "com.google.gms:google-services:${Versions.googleService}"
+        const val crashReport ="com.google.firebase:firebase-crashlytics-gradle:${Versions.Firebase.crashReportGradle}"
     }
 
     object Kotlin {
@@ -77,6 +79,7 @@ object Libraries {
         const val bom = "com.google.firebase:firebase-bom:${Versions.Firebase.bom}"
         const val analytics = "com.google.firebase:firebase-analytics-ktx"
         const val storage = "com.google.firebase:firebase-storage-ktx"
+        const val crashReport = "com.google.firebase:firebase-crashlytics-ktx"
     }
 
     const val desugar = "com.android.tools:desugar_jdk_libs:${Versions.desugar}" // coreLibraryDesugaring
