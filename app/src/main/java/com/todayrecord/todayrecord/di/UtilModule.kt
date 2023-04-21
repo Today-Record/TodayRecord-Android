@@ -2,6 +2,7 @@ package com.todayrecord.todayrecord.di
 
 import android.content.Context
 import com.todayrecord.todayrecord.util.CompressorUtil
+import com.todayrecord.todayrecord.util.FileUtil
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,4 +19,10 @@ object UtilModule {
     fun provideCompressorUtil(
         @ApplicationContext context: Context
     ): CompressorUtil = CompressorUtil(context)
+
+    @Singleton
+    @Provides
+    fun provideFileUtil(
+        @ApplicationContext context: Context
+    ): FileUtil = FileUtil(context)
 }

@@ -1,8 +1,10 @@
 package com.todayrecord.todayrecord.model.record
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.parcelize.Parcelize
 
 /*
 {
@@ -15,6 +17,7 @@ import androidx.room.PrimaryKey
 	“updateAt”:  “2023-03-01T00:00:00”,
 }
  */
+@Parcelize
 @Entity(tableName = "record")
 data class Record(
     @PrimaryKey
@@ -31,4 +34,4 @@ data class Record(
     val createdAt: String,
     @ColumnInfo(name = "updatedAt")
     val updatedAt: String
-)
+) : Parcelable

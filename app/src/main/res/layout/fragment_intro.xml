@@ -24,11 +24,10 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="56dp"
                 android:layout_height="56dp"
-                android:src="@drawable/icon_quill"
-                app:tint="@android:color/white" />
+                android:src="@drawable/icon_quill" />
 
             <TextView
-                style="@style/TextAppearance.TodayRecord.Title"
+                style="@style/Widget.TodayRecord.TextView.Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
