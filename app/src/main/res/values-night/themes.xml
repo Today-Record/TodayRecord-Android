@@ -18,6 +18,10 @@
 
         <!-- bottomSheet -->
         <item name="bottomSheetDialogTheme">@style/TodayRecordBottomSheetDialogTheme</item>
+
+        <!-- Menu Style -->
+        <item name="actionMenuTextAppearance">@style/TextAppearance.TodayRecord.Body3</item>
+        <item name="actionMenuTextColor">@color/color_474a54</item>
     </style>
 
     <!-- BottomSheetDialog Theme -->

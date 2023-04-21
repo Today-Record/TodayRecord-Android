@@ -4,6 +4,7 @@ plugins {
     id("com.google.firebase.crashlytics")
     kotlin("android")
     kotlin("kapt")
+    id("kotlin-parcelize")
     id("dagger.hilt.android.plugin")
     id("androidx.navigation.safeargs.kotlin")
 }
@@ -81,11 +82,16 @@ dependencies {
     coreLibraryDesugaring(Libraries.desugar)
     // log tracker
     api(Libraries.timber)
+
     // image compressor
     api(Libraries.compressor)
+
     // Image loading library
     implementation(Libraries.Glide.core)
     kapt(Libraries.Glide.compiler)
+
+    // Easy Permission
+    implementation(Libraries.permission)
 
     // Moshi
     implementation(Libraries.Moshi.core)
