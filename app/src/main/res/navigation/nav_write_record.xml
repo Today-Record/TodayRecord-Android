@@ -37,5 +37,11 @@
     <fragment
         android:id="@+id/mediaPickerFragment"
         android:name="com.todayrecord.todayrecord.screen.mediapicker.MediaPickerFragment"
-        tools:layout="@layout/fragment_media_picker" />
+        tools:layout="@layout/fragment_media_picker">
+
+        <argument
+            android:name="media_max_count"
+            android:defaultValue="3"
+            app:argType="integer" />
+    </fragment>
 </navigation>
