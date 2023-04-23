@@ -1,5 +1,7 @@
 package com.todayrecord.todayrecord.di
 
+import com.todayrecord.todayrecord.data.repository.media.MediaRepository
+import com.todayrecord.todayrecord.data.repository.media.MediaRepositoryImpl
 import com.todayrecord.todayrecord.data.repository.record.RecordLocalRepository
 import com.todayrecord.todayrecord.data.repository.record.RecordRemoteRepository
 import com.todayrecord.todayrecord.data.repository.record.RecordRepository
@@ -27,4 +29,8 @@ abstract class DataModule {
     @Singleton
     @Binds
     abstract fun bindRecordRepository(recordRepositoryImpl: RecordRepositoryImpl) : RecordRepository
+
+    @Singleton
+    @Binds
+    abstract fun bindMediaRepository(mediaRepositoryImpl: MediaRepositoryImpl): MediaRepository
 }

@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,13 +15,14 @@ import com.todayrecord.todayrecord.R
 import com.todayrecord.todayrecord.adapter.write.WriteRecordImageAdapter
 import com.todayrecord.todayrecord.databinding.FragmentWriteRecordBinding
 import com.todayrecord.todayrecord.screen.DataBindingFragment
+import com.todayrecord.todayrecord.util.Const.KEY_SELECTED_MEDIA_PATHS
 import com.todayrecord.todayrecord.util.DebounceEditTextListener
 import com.todayrecord.todayrecord.util.hideKeyboard
 import com.todayrecord.todayrecord.util.launchAndRepeatWithViewLifecycle
 import com.todayrecord.todayrecord.util.safeNavigate
+import com.todayrecord.todayrecord.util.showKeyboard
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import java.time.Instant
 
 @AndroidEntryPoint
@@ -85,12 +88,14 @@ class WriteRecordFragment : DataBindingFragment<FragmentWriteRecordBinding>(R.la
         initView()
         initListener()
         initObserver()
+        initNavBackstackObserve()
     }
 
     private fun initView() {
         dataBinding.rvSelectedMedia.apply {
             adapter = writeRecordImageAdapter
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            setHasFixedSize(true)
         }
     }
 
@@ -154,7 +159,11 @@ class WriteRecordFragment : DataBindingFragment<FragmentWriteRecordBinding>(R.la
 
             launch {
                 writeRecordViewModel.navigateToMediaPicker.collect {
-                    findNavController().safeNavigate(WriteRecordFragmentDirections.actionWriteRecordFragmentToMediaPickerFragment())
+                    if (it == 0) {
+                        showErrorToast(requireContext().getString(R.string.write_record_image_count_error))
+                    } else {
+                        findNavController().safeNavigate(WriteRecordFragmentDirections.actionWriteRecordFragmentToMediaPickerFragment(it))
+                    }
                 }
             }
 
@@ -181,6 +190,28 @@ class WriteRecordFragment : DataBindingFragment<FragmentWriteRecordBinding>(R.la
                 }
             }
         }
+    }
+
+    private fun initNavBackstackObserve() {
+        val navBackStackEntry = findNavController().getBackStackEntry(R.id.writeRecordFragment)
+        val resultObserver = LifecycleEventObserver { _, event ->
+            if (event == Lifecycle.Event.ON_RESUME) {
+                if (!navBackStackEntry.savedStateHandle.contains(KEY_SELECTED_MEDIA_PATHS)) return@LifecycleEventObserver
+                val selectedImages: List<String> = navBackStackEntry.savedStateHandle[KEY_SELECTED_MEDIA_PATHS] ?: emptyList()
+                writeRecordViewModel.setRecordImages(selectedImages)
+                dataBinding.etWriteRecord.showKeyboard(true)
+
+                navBackStackEntry.savedStateHandle.remove<List<String>?>(KEY_SELECTED_MEDIA_PATHS)
+            }
+        }
+
+        navBackStackEntry.lifecycle.addObserver(resultObserver)
+
+        viewLifecycleOwner.lifecycle.addObserver(LifecycleEventObserver { _, event ->
+            if (event == Lifecycle.Event.ON_DESTROY) {
+                navBackStackEntry.lifecycle.removeObserver(resultObserver)
+            }
+        })
     }
 
     override fun onRecordImageDeletedListener(image: String) {

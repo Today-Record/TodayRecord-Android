@@ -90,7 +90,7 @@
                         app:layout_constraintTop_toBottomOf="@id/et_write_record"
                         tools:itemCount="3"
                         tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        tools:listitem="@layout/item_write_record_image"
+                        tools:listitem="@layout/item_selected_image"
                         tools:orientation="horizontal" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.core.widget.NestedScrollView>

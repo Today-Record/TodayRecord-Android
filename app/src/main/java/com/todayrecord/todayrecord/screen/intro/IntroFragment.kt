@@ -34,8 +34,14 @@ class IntroFragment : DataBindingFragment<FragmentIntroBinding>(R.layout.fragmen
 
     private lateinit var requestPermissionLauncher: ActivityResultLauncher<String>
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        requestPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { introViewModel.navigateToRecords() }
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        requestPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) {
+            introViewModel.navigateToRecords()
+        }
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
