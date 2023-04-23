@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.todayrecord.todayrecord.util.TimeUtil" />
+
+        <variable
+            name="viewModel"
+            type="com.todayrecord.todayrecord.screen.write.WriteRecordViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".screen.write.WriteRecordFragment">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/tl_write_record"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@android:color/white"
+                app:menu="@menu/menu_save"
+                app:navigationIcon="@drawable/icon_back"
+                app:title="">
+
+                <TextView
+                    style="@style/Widget.TodayRecord.TextView.Body2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@{viewModel.record == null ? @string/write_record_create_title : @string/write_record_update_title}"
+                    android:textColor="@color/color_474a54"
+                    tools:text="@string/write_record_create_title" />
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/nsv_write_record"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:fillViewport="true"
+                app:layout_constraintBottom_toTopOf="@id/view_line"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:animateLayoutChanges="true"
+                    android:padding="18dp">
+
+                    <com.todayrecord.todayrecord.util.AutoFocusEditText
+                        android:id="@+id/et_write_record"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:background="@android:color/transparent"
+                        android:gravity="top"
+                        android:hint="@string/write_record_hint"
+                        android:inputType="textMultiLine"
+                        android:scrollbars="vertical"
+                        android:text="@{viewModel.recordText}"
+                        android:textAppearance="@style/TextAppearance.TodayRecord.Body2"
+                        app:layout_constraintBottom_toTopOf="@id/rv_selected_media"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_selected_media"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp"
+                        app:isGone="@{viewModel.recordImages.size() == 0}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/et_write_record"
+                        tools:itemCount="3"
+                        tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:listitem="@layout/item_write_record_image"
+                        tools:orientation="horizontal" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.core.widget.NestedScrollView>
+
+            <View
+                android:id="@+id/view_line"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/color_d9d9d9"
+                app:layout_constraintBottom_toTopOf="@id/btn_write_record_date"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/nsv_write_record"
+                app:layout_constraintVertical_bias="1" />
+
+            <LinearLayout
+                android:id="@+id/ll_selected_image"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:background="?selectableItemBackground"
+                android:orientation="horizontal"
+                android:paddingStart="16dp"
+                android:paddingEnd="8dp"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/btn_write_record_date"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/view_line"
+                app:onSingleClick="@{()-> viewModel.navigateToMediaPicker()}">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_media"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/icon_media"
+                    app:tint="@color/color_474a54" />
+
+                <TextView
+                    android:id="@+id/tv_media_count"
+                    style="@style/Widget.TodayRecord.TextView.Body3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@{@string/write_record_image_count(viewModel.recordImages.size)}"
+                    android:textColor="@color/color_474a54"
+                    tools:text="(0/3)" />
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_write_record_date"
+                style="@style/Widget.TodayRecord.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:text="@{TimeUtil.getDateTimeFormatString(viewModel.recordDate, @string/time_regex_year_month_day)}"
+                android:textColor="@color/color_474a54"
+                app:layout_constraintBottom_toBottomOf="@id/btn_write_record_time"
+                app:layout_constraintEnd_toStartOf="@id/btn_write_record_time"
+                app:layout_constraintTop_toTopOf="@id/btn_write_record_time"
+                app:onSingleClick="@{()-> viewModel.navigateToDatePicker()}"
+                app:strokeColor="@color/color_474a54"
+                app:strokeWidth="1dp"
+                tools:text="2023년 4월 19일" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_write_record_time"
+                style="@style/Widget.TodayRecord.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:text="@{TimeUtil.getDateTimeFormatString(viewModel.recordDate, @string/time_regex_half_time)}"
+                android:textColor="@color/color_474a54"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/view_line"
+                app:onSingleClick="@{()-> viewModel.navigateToTimePicker()}"
+                app:strokeColor="@color/color_474a54"
+                app:strokeWidth="1dp"
+                tools:text="오후 04:07" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

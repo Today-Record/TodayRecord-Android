@@ -24,5 +24,22 @@
     <fragment
         android:id="@+id/recordsFragment"
         android:name="com.todayrecord.todayrecord.screen.record.RecordsFragment"
-        tools:layout="@layout/fragment_records" />
+        tools:layout="@layout/fragment_records">
+
+        <action
+            android:id="@+id/action_recordsFragment_to_nav_write_record"
+            app:destination="@id/nav_write_record"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim">
+
+            <argument
+                android:name="record"
+                app:argType="com.todayrecord.todayrecord.model.record.Record"
+                app:nullable="true" />
+        </action>
+    </fragment>
+
+    <include app:graph="@navigation/nav_write_record" />
 </navigation>

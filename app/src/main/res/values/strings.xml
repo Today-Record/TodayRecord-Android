@@ -5,5 +5,31 @@
     <string name="all_cancel">취소</string>
     <string name="all_edit">편집</string>
     <string name="all_save">저장</string>
+    <string name="all_delete">삭제</string>
+    <string name="all_setting">설정</string>
 
+    <!-- date regex pattern -->
+    <string name="time_regex_year_month_day">yyyy년 MM월 dd일</string>
+    <string name="time_regex_year_month_day_half_time">yyyy년 MM월 dd일 a h시 mm분</string>
+    <string name="time_regex_half_time">a h시 mm분</string>
+
+    <!-- records -->
+    <string name="record_title">기록들</string>
+    <string name="record_list_empty">아직 기록이 없어요!\n첫 기록을 작성해보세요</string>
+
+    <!-- write -->
+    <string name="write_record_create_title">기록 작성</string>
+    <string name="write_record_update_title">기록 수정</string>
+    <string name="write_record_hint">오늘 하루를 기록해보세요</string>
+    <string name="write_record_text_length_error">한 글자 이상 기록을 입력해주세요</string>
+    <string name="write_record_image_count">(%d/3)</string>
+
+    <!-- write exit -->
+    <string name="write_record_exit_title"><b>작성 중단</b></string>
+    <string name="write_record_exit_description">현재 화면을 벗어나면\n<font color="#c14d4d">작성 중이신 기록이 모두 사라집니다</font></string>
+    <string name="write_record_exit">나가기</string>
+
+    <!-- media picker -->
+    <string name="media_picker_title">이미지 선택</string>
+    <string name="media_picker_max_count_error">최대 3장까지 선택할 수 있습니다.</string>
 </resources>
