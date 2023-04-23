@@ -10,6 +10,10 @@ import timber.log.Timber
 @HiltAndroidApp
 open class TodayRecordApp : Application() {
 
+    init {
+        println("TEST PR")
+    }
+
     override fun onCreate() {
         super.onCreate()
         initFirebase(this)
