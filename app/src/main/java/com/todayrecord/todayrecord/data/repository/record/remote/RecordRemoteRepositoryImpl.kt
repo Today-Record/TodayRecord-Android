@@ -1,15 +1,31 @@
 package com.todayrecord.todayrecord.data.repository.record.remote
 
 import com.todayrecord.todayrecord.data.repository.record.RecordRemoteRepository
+import com.todayrecord.todayrecord.util.CompressorUtil
 import com.todayrecord.todayrecord.util.FileUtil
+import com.todayrecord.todayrecord.util.FirebaseStorageUtil
+import kotlinx.coroutines.withTimeout
 import javax.inject.Inject
 
 class RecordRemoteRepositoryImpl @Inject constructor(
-    private val fileUtil: FileUtil
+    private val fileUtil: FileUtil,
+    private val compressorUtil: CompressorUtil,
+    private val firebaseStorageUtil: FirebaseStorageUtil
 ) : RecordRemoteRepository {
 
     override suspend fun imageUpload(images: List<String>): List<String> {
-        // TODO("이미지 주소를 파일로 변경하여 스토리지에 업로드")
-        return emptyList()
+        return try {
+            withTimeout(10_000L) {
+                images.map {
+                    fileUtil.from(it).let { uploadFile ->
+                        compressorUtil.compressFile(uploadFile).let { compressorFile ->
+                            firebaseStorageUtil.uploadImageToFirebase(compressorFile)
+                        }
+                    }
+                }
+            }
+        } catch (exception: Exception) {
+            emptyList()
+        }
     }
 }
