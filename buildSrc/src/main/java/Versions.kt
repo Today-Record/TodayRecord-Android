@@ -43,5 +43,5 @@ object Versions {
     const val desugar = "1.1.5"
     const val permission = "3.0.0"
     const val compressor = "3.0.1"
-    const val toasty = "1.5.2"
+    const val lottie ="5.2.0"
 }

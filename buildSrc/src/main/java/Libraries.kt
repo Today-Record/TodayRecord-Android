@@ -6,13 +6,12 @@ object Libraries {
         const val daggerHilt = "com.google.dagger:hilt-android-gradle-plugin:${Versions.Dagger2.hilt}"
         const val safeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.AndroidX.navigation}"
         const val googleService = "com.google.gms:google-services:${Versions.googleService}"
-        const val crashReport ="com.google.firebase:firebase-crashlytics-gradle:${Versions.Firebase.crashReportGradle}"
+        const val crashReport = "com.google.firebase:firebase-crashlytics-gradle:${Versions.Firebase.crashReportGradle}"
     }
 
     object Kotlin {
         const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.Kotlin.kotlin}"
         const val coroutine = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.Kotlin.coroutine}"
-        const val playerService = "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:${Versions.Kotlin.coroutine}"
     }
 
     object AndroidX {
@@ -65,6 +64,7 @@ object Libraries {
         const val androidHilt = "com.google.dagger:hilt-android:${Versions.Dagger2.hilt}"
         const val androidHiltCompiler = "com.google.dagger:hilt-android-compiler:${Versions.Dagger2.hilt}" // For Kotlin use kapt instead of annotationProcessor
     }
+
     object Moshi {
         const val core = "com.squareup.moshi:moshi-kotlin:${Versions.moshi}"
         const val codegen = "com.squareup.moshi:moshi-kotlin-codegen:${Versions.moshi}" // For Kotlin use kapt instead of annotationProcessor
@@ -83,8 +83,8 @@ object Libraries {
     }
 
     const val desugar = "com.android.tools:desugar_jdk_libs:${Versions.desugar}" // coreLibraryDesugaring
-    const val toasty = "com.github.GrenderG:Toasty:${Versions.toasty}"
     const val permission = "pub.devrel:easypermissions:${Versions.permission}"
     const val compressor = "id.zelory:compressor:${Versions.compressor}"
     const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
+    const val lottie = "com.airbnb.android:lottie:${Versions.lottie}"
 }

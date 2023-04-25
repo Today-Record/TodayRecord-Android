@@ -21,11 +21,17 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
+        debug {
+            manifestPlaceholders["crashlyticsCollectionEnabled"] = false
+        }
+
         release {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"))
             proguardFile("proguard-rules.pro")
+            manifestPlaceholders["crashlyticsCollectionEnabled"] = true
         }
     }
     compileOptions {
@@ -67,7 +73,6 @@ dependencies {
     // Kotlin
     implementation(Libraries.Kotlin.kotlin)
     implementation(Libraries.Kotlin.coroutine)
-    implementation(Libraries.Kotlin.playerService)
 
     // Dagger2 ( DI )
     implementation(Libraries.Dagger.androidHilt)
@@ -77,6 +82,12 @@ dependencies {
     implementation(Libraries.AndroidX.Hilt.navigation)
     kapt(Libraries.AndroidX.Hilt.compiler)
 
+    // Firebase
+    implementation(platform(Libraries.Firebase.bom))
+    implementation(Libraries.Firebase.analytics)
+    implementation(Libraries.Firebase.storage)
+    implementation(Libraries.Firebase.crashReport)
+
     /** etc */
     // CoreLibrary Desugar
     coreLibraryDesugaring(Libraries.desugar)
@@ -85,6 +96,9 @@ dependencies {
 
     // image compressor
     api(Libraries.compressor)
+
+    // lottie
+    api(Libraries.lottie)
 
     // Image loading library
     implementation(Libraries.Glide.core)
@@ -96,12 +110,6 @@ dependencies {
     // Moshi
     implementation(Libraries.Moshi.core)
     kapt(Libraries.Moshi.codegen)
-
-    // Firebase
-    implementation(platform(Libraries.Firebase.bom))
-    implementation(Libraries.Firebase.analytics)
-    implementation(Libraries.Firebase.storage)
-    implementation(Libraries.Firebase.crashReport)
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
