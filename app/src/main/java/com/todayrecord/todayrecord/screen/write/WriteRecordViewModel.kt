@@ -32,8 +32,8 @@ class WriteRecordViewModel @Inject constructor(
     private val _isRecordSaveEnable = MutableStateFlow<Boolean>(false)
     val isRecordSaveEnable: StateFlow<Boolean> = _isRecordSaveEnable
 
-    private val _navigateToMediaPicker = MutableEventFlow<Unit>()
-    val navigateToMediaPicker: EventFlow<Unit> = _navigateToMediaPicker
+    private val _navigateToMediaPicker = MutableEventFlow<Int>()
+    val navigateToMediaPicker: EventFlow<Int> = _navigateToMediaPicker
 
     private val _navigateToDatePicker = MutableEventFlow<ZonedDateTime>()
     val navigateToDatePicker: EventFlow<ZonedDateTime> = _navigateToDatePicker
@@ -58,7 +58,12 @@ class WriteRecordViewModel @Inject constructor(
     }
 
     fun setRecordImages(images: List<String>) {
-        savedStateHandle.set(KEY_RECORD_IMAGES, images)
+        savedStateHandle.set(
+            KEY_RECORD_IMAGES,
+            recordImages.value
+                .toMutableList()
+                .apply { addAll(images) }
+        )
     }
 
     fun deleteRecordImages(image: String) {
@@ -71,41 +76,27 @@ class WriteRecordViewModel @Inject constructor(
         )
     }
 
-    fun saveRecord() = if (record == null) createRecord() else updateRecord()
-
-    private fun createRecord() {
+    fun saveRecord() {
         viewModelScope.launch {
+            val saveDate = ZonedDateTime.now().withZoneSameInstant(ZoneId.systemDefault()).toString()
+
             recordRepository.setRecord(
-                Record(
-                    id = UUID.randomUUID().toString(),
+                record?.copy(
                     date = recordDate.value,
                     content = recordText.value,
                     images = recordImages.value,
-                    isDeleted = false,
-                    createdAt = ZonedDateTime.now().toString(),
-                    updatedAt = ZonedDateTime.now().toString()
-                )
-            ).onEach {
-                setLoading(it is Result.Loading)
-            }.collect {
-                when (it) {
-                    is Result.Loading -> return@collect
-                    is Result.Success -> navigateToBack()
-                    is Result.Error -> setErrorMessage("기록 저장에 실패했습니다.\n 잠시 후 다시 시도해주세요.")
+                    updatedAt = saveDate
+                ) ?: run {
+                    Record(
+                        id = UUID.randomUUID().toString(),
+                        date = recordDate.value,
+                        content = recordText.value,
+                        images = recordImages.value,
+                        isDeleted = false,
+                        createdAt = saveDate,
+                        updatedAt = saveDate
+                    )
                 }
-            }
-        }
-    }
-
-    private fun updateRecord() {
-        viewModelScope.launch {
-            recordRepository.setRecord(
-                record!!.copy(
-                    date = recordDate.value,
-                    content = recordText.value,
-                    images = recordImages.value,
-                    updatedAt = ZonedDateTime.now().toString()
-                )
             ).onEach {
                 setLoading(it is Result.Loading)
             }.collect {
@@ -126,7 +117,7 @@ class WriteRecordViewModel @Inject constructor(
 
     fun navigateToMediaPicker() {
         viewModelScope.launch {
-            _navigateToMediaPicker.emit(Unit)
+            _navigateToMediaPicker.emit(IMAGE_MAX_COUNT - recordImages.value.size)
         }
     }
 
@@ -147,5 +138,7 @@ class WriteRecordViewModel @Inject constructor(
         private const val KEY_RECORD_TEXT = "record_text"
         private const val KEY_RECORD_DATE = "record_date"
         private const val KEY_RECORD_IMAGES = "record_images"
+
+        private const val IMAGE_MAX_COUNT = 3
     }
 }

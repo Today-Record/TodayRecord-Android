@@ -22,6 +22,9 @@
         <!-- Menu Style -->
         <item name="actionMenuTextAppearance">@style/TextAppearance.TodayRecord.Body3</item>
         <item name="actionMenuTextColor">@color/color_474a54</item>
+
+        <!-- Alert Dialog -->
+        <item name="materialAlertDialogTheme">@style/TodayRecordAlertDialogTheme</item>
     </style>
 
     <!-- BottomSheetDialog Theme -->
@@ -30,5 +33,17 @@
         <item name="bottomSheetStyle">@style/Widget.TodayRecord.BottomSheet</item>
         <item name="android:windowIsFloating">false</item>
         <item name="android:windowSoftInputMode">adjustResize</item>
+    </style>
+
+    <!-- Alert Dialog -->
+    <style name="TodayRecordAlertDialogTheme" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="colorBackgroundFloating">@android:color/white</item>
+        <item name="materialAlertDialogTitleTextStyle">@style/TextAppearance.TodayRecord.Dialog.Alert.Title</item>
+        <item name="materialAlertDialogBodyTextStyle">@style/TextAppearance.TodayRecord.Dialog.Alert.Body</item>
+        <item name="buttonBarPositiveButtonStyle">@style/Widget.TodayRecord.Dialog.Alert.Button.TextButton.Positive</item>
+        <item name="android:buttonBarPositiveButtonStyle">@style/Widget.TodayRecord.Dialog.Alert.Button.TextButton.Positive</item>
+        <item name="buttonBarNegativeButtonStyle">@style/Widget.TodayRecord.Dialog.Alert.Button.TextButton.Negative</item>
+        <item name="android:buttonBarNegativeButtonStyle">@style/Widget.TodayRecord.Dialog.Alert.Button.TextButton.Negative</item>
+        <item name="dialogCornerRadius">12dp</item>
     </style>
 </resources>

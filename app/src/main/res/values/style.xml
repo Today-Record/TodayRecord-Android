@@ -102,4 +102,36 @@
         <item name="behavior_skipCollapsed">true</item>
         <item name="shapeAppearance">?shapeAppearanceSmallComponent</item>
     </style>
+
+    <!-- Alert Dialog -->
+    <style name="TextAppearance.TodayRecord.Dialog.Alert.Title" parent="MaterialAlertDialog.MaterialComponents.Title.Text">
+        <item name="android:fontFamily">@font/font_regular</item>
+        <item name="fontFamily">@font/font_regular</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="TextAppearance.TodayRecord.Dialog.Alert.Body" parent="MaterialAlertDialog.MaterialComponents.Body.Text">
+        <item name="android:fontFamily">@font/font_regular</item>
+        <item name="fontFamily">@font/font_regular</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:textColor">@color/color_474a54</item>
+    </style>
+
+    <style name="Widget.TodayRecord.Dialog.Alert.Button.TextButton" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:fontFamily">@font/font_regular</item>
+        <item name="fontFamily">@font/font_regular</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+    </style>
+
+    <style name="Widget.TodayRecord.Dialog.Alert.Button.TextButton.Positive">
+        <item name="android:textColor">@color/color_c14d4d</item>
+    </style>
+
+    <style name="Widget.TodayRecord.Dialog.Alert.Button.TextButton.Negative">
+        <item name="android:textColor">@color/color_474a54</item>
+    </style>
 </resources>
