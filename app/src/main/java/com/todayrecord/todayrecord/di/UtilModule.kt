@@ -1,8 +1,10 @@
 package com.todayrecord.todayrecord.di
 
 import android.content.Context
+import com.google.firebase.storage.FirebaseStorage
 import com.todayrecord.todayrecord.util.CompressorUtil
 import com.todayrecord.todayrecord.util.FileUtil
+import com.todayrecord.todayrecord.util.FirebaseStorageUtil
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -25,4 +27,9 @@ object UtilModule {
     fun provideFileUtil(
         @ApplicationContext context: Context
     ): FileUtil = FileUtil(context)
+
+    @Singleton
+    @Provides
+    fun provideFirebaseStorageUtil(
+    ): FirebaseStorageUtil = FirebaseStorageUtil(FirebaseStorage.getInstance())
 }

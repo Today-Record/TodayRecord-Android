@@ -103,7 +103,7 @@ class WriteRecordViewModel @Inject constructor(
                 when (it) {
                     is Result.Loading -> return@collect
                     is Result.Success -> navigateToBack()
-                    is Result.Error -> setErrorMessage("기록 저장에 실패했습니다.\n 잠시 후 다시 시도해주세요.")
+                    is Result.Error -> setErrorMessage("기록 저장에 실패했습니다\n잠시 후 다시 시도해주세요")
                 }
             }
         }
