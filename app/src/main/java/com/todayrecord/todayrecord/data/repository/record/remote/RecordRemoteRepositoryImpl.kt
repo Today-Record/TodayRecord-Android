@@ -15,7 +15,7 @@ class RecordRemoteRepositoryImpl @Inject constructor(
 
     override suspend fun imageUpload(images: List<String>): List<String> {
         return try {
-            withTimeout(10_000L) {
+            withTimeout(15_000L) {
                 images.map {
                     fileUtil.from(it).let { uploadFile ->
                         compressorUtil.compressFile(uploadFile).let { compressorFile ->

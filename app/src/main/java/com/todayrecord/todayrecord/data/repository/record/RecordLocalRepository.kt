@@ -12,5 +12,9 @@ interface RecordLocalRepository {
 
     suspend fun setRecord(record: Record)
 
+    suspend fun setRecordDelete(recordId: String, isDeleted: Boolean)
+
     suspend fun deleteRecord(recordId: String)
+
+    suspend fun clearRecords()
 }

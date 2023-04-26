@@ -35,6 +35,12 @@ class RecordsFragment : DataBindingFragment<FragmentRecordsBinding>(R.layout.fra
                     findNavController().safeNavigate(RecordsFragmentDirections.actionRecordsFragmentToNavWriteRecord(null))
                 }
             }
+
+            launch {
+                recordsViewModel.navigateToDetailRecord.collect {
+                    findNavController().safeNavigate(RecordsFragmentDirections.actionRecordsFragmentToNavRecordDetail(it))
+                }
+            }
         }
     }
 }
