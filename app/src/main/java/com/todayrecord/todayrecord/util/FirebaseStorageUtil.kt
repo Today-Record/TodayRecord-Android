@@ -13,11 +13,15 @@ class FirebaseStorageUtil @Inject constructor(
 
     suspend fun uploadImageToFirebase(imageFile: File): String = suspendCancellableCoroutine { cancelCoroutine ->
         val storage = firebaseStorage.reference
-        val imagePath = storage.child(imageFile.path)
+        val imagePath = storage.child(imageFile.absolutePath)
 
         imagePath.putFile(Uri.fromFile(imageFile))
             .addOnSuccessListener {
-                cancelCoroutine.resume(it.storage.downloadUrl.toString())
+                it.storage.downloadUrl.addOnSuccessListener { uri ->
+                    cancelCoroutine.resume(uri.toString())
+                }.addOnFailureListener { exception ->
+                    cancelCoroutine.cancel(exception)
+                }
             }
             .addOnFailureListener {
                 cancelCoroutine.cancel(it)

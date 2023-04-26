@@ -39,7 +39,23 @@
                 app:argType="com.todayrecord.todayrecord.model.record.Record"
                 app:nullable="true" />
         </action>
+
+        <action
+            android:id="@+id/action_recordsFragment_to_nav_record_detail"
+            app:destination="@id/nav_record_detail"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim">
+
+            <argument
+                android:name="record_id"
+                app:argType="string"
+                app:nullable="false" />
+        </action>
     </fragment>
 
     <include app:graph="@navigation/nav_write_record" />
+
+    <include app:graph="@navigation/nav_record_detail" />
 </navigation>

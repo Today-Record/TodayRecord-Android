@@ -22,12 +22,20 @@ class RecordLocalRepositoryImpl @Inject constructor(
         return recordDatabase.record().getRecord(recordId)
     }
 
+    override suspend fun setRecordDelete(recordId: String, isDeleted: Boolean) {
+        recordDatabase.record().setRecordDeleted(recordId, isDeleted)
+    }
+
     override suspend fun setRecord(record: Record) {
         recordDatabase.record().insertRecord(record)
     }
 
     override suspend fun deleteRecord(recordId: String) {
         recordDatabase.record().deleteRecord(recordId)
+    }
+
+    override suspend fun clearRecords() {
+        recordDatabase.record().clearRecords()
     }
 
     companion object {

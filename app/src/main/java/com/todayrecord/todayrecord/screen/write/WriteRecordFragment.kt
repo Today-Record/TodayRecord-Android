@@ -8,6 +8,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,6 +23,7 @@ import com.todayrecord.todayrecord.util.launchAndRepeatWithViewLifecycle
 import com.todayrecord.todayrecord.util.safeNavigate
 import com.todayrecord.todayrecord.util.showKeyboard
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.time.Instant
 
@@ -115,7 +117,11 @@ class WriteRecordFragment : DataBindingFragment<FragmentWriteRecordBinding>(R.la
                             if (!writeRecordViewModel.isRecordSaveEnable.value) {
                                 showErrorToast(R.string.write_record_text_length_error)
                             } else {
-                                writeRecordViewModel.saveRecord()
+                                lifecycleScope.launch {
+                                    hideKeyboard()
+                                    delay(200)
+                                    writeRecordViewModel.saveRecord()
+                                }
                             }
                             true
                         }
