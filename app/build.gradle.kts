@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
+    id("com.google.devtools.ksp") version "1.8.0-1.0.9"
     kotlin("android")
     kotlin("kapt")
     id("kotlin-parcelize")
@@ -66,7 +67,7 @@ dependencies {
     implementation(Libraries.AndroidX.Room.runtime)
     implementation(Libraries.AndroidX.Room.coroutine)
     implementation(Libraries.AndroidX.Room.paging)
-    kapt(Libraries.AndroidX.Room.compiler)
+    ksp(Libraries.AndroidX.Room.compiler)
     // AndroidX DataStore
     implementation(Libraries.AndroidX.dataStore)
 
@@ -91,25 +92,24 @@ dependencies {
     /** etc */
     // CoreLibrary Desugar
     coreLibraryDesugaring(Libraries.desugar)
-    // log tracker
-    api(Libraries.timber)
-
-    // image compressor
-    api(Libraries.compressor)
-
-    // lottie
-    api(Libraries.lottie)
 
     // Image loading library
     implementation(Libraries.Glide.core)
-    kapt(Libraries.Glide.compiler)
+    ksp(Libraries.Glide.compiler)
 
     // Easy Permission
     implementation(Libraries.permission)
 
     // Moshi
     implementation(Libraries.Moshi.core)
-    kapt(Libraries.Moshi.codegen)
+    ksp(Libraries.Moshi.codegen)
+
+    // log tracker
+    api(Libraries.timber)
+    // image compressor
+    api(Libraries.compressor)
+    // lottie
+    api(Libraries.lottie)
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")

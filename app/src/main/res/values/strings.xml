@@ -48,4 +48,14 @@
     <string name="media_picker_permission_setting_storage_title">권한 설정</string>
     <string name="media_picker_permission_setting_storage_description">저장공간 접근 권한이 필요합니다. 휴대폰 설정 > 앱 > 저장공간 권한을 허용으로 변경해주세요.</string>
     <string name="media_picker_permission_setting_camera_description">카메라 접근 권한이 필요합니다. 휴대폰 설정 > 앱 > 카메라 권한을 허용으로 변경해주세요.</string>
+
+    <!-- setting -->
+    <string name="setting_title">설정</string>
+    <string name="setting_alarm">알람 설정</string>
+    <string name="setting_bin">휴지통</string>
+    <string name="setting_record_clear">모든 기록 지우기</string>
+    <string name="setting_record_clear_warning_description">확인을 누르시면\n모든 기록이 영구적으로 삭제됩니다.</string>
+    <string name="setting_app_version">앱 버전</string>
+    <string name="setting_app_version_unit">ver.%s</string>
+
 </resources>

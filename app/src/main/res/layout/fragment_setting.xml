@@ -1,9 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.todayrecord.todayrecord.screen.setting.SettingViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".screen.setting.SettingFragment">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/tl_setting"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@android:color/white"
+                app:navigationIcon="@drawable/icon_back"
+                app:title="">
+
+                <TextView
+                    style="@style/Widget.TodayRecord.TextView.Body2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/setting_title"
+                    android:textColor="@color/color_474a54" />
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="@drawable/divider_line"
+                android:orientation="vertical"
+                android:showDividers="middle|end">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_setting_alarm"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/setting_height"
+                    android:background="?selectableItemBackground"
+                    android:paddingStart="24dp"
+                    android:paddingEnd="14dp"
+                    app:onSingleClick="@{()-> viewModel.navigateToAlarmSetting()}">
+
+                    <TextView
+                        android:id="@+id/tv_alarm_title"
+                        style="@style/Widget.TodayRecord.TextView.Body2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/setting_alarm"
+                        android:textColor="@color/color_474a54"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:rotation="180"
+                        android:src="@drawable/icon_back"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_alarm_title"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_alarm_title" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_setting_bin"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/setting_height"
+                    android:background="?selectableItemBackground"
+                    android:paddingStart="24dp"
+                    android:paddingEnd="14dp"
+                    app:onSingleClick="@{()-> viewModel.navigateToBinRecords()}">
+
+                    <TextView
+                        android:id="@+id/tv_bin_title"
+                        style="@style/Widget.TodayRecord.TextView.Body2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/setting_bin"
+                        android:textColor="@color/color_474a54"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:rotation="180"
+                        android:src="@drawable/icon_back"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_bin_title"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_bin_title" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_setting_clear"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/setting_height"
+                    android:background="?selectableItemBackground"
+                    android:paddingStart="24dp"
+                    android:paddingEnd="14dp"
+                    app:onSingleClick="@{()-> viewModel.navigateToRecordsClearPopup()}">
+
+                    <TextView
+                        android:id="@+id/tv_clear_title"
+                        style="@style/Widget.TodayRecord.TextView.Body2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/setting_record_clear"
+                        android:textColor="@color/color_474a54"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_setting_app_version"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/setting_height"
+                    android:background="?selectableItemBackground"
+                    android:paddingStart="24dp"
+                    android:paddingEnd="14dp">
+
+                    <TextView
+                        android:id="@+id/tv_app_version_title"
+                        style="@style/Widget.TodayRecord.TextView.Body2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/setting_app_version"
+                        android:textColor="@color/color_474a54"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_app_version"
+                        style="@style/Widget.TodayRecord.TextView.Body2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{@string/setting_app_version_unit(viewModel.appVersion)}"
+                        android:textColor="@color/color_474a54"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_app_version_title"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_app_version_title"
+                        tools:text="ver.1.0.0" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

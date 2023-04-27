@@ -72,7 +72,7 @@ object Libraries {
 
     object Glide {
         const val core = "com.github.bumptech.glide:glide:${Versions.glide}"
-        const val compiler = "com.github.bumptech.glide:compiler:${Versions.glide}"  // For Kotlin use kapt instead of annotationProcessor
+        const val compiler = "com.github.bumptech.glide:ksp:${Versions.glide}"  // For Kotlin use kapt instead of annotationProcessor
     }
 
     object Firebase {

@@ -38,7 +38,7 @@ object Versions {
 
     const val googleService = "4.3.15"
     const val moshi = "1.14.0"
-    const val glide = "4.13.2"
+    const val glide = "4.14.2"
     const val timber = "5.0.1"
     const val desugar = "1.1.5"
     const val permission = "3.0.0"

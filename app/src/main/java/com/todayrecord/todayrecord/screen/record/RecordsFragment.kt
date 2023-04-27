@@ -25,7 +25,25 @@ class RecordsFragment : DataBindingFragment<FragmentRecordsBinding>(R.layout.fra
             lifecycleOwner = viewLifecycleOwner
         }
 
+        initListener()
         initObserver()
+    }
+
+    private fun initListener() {
+        with(dataBinding) {
+            tlRecord.apply {
+                setOnMenuItemClickListener {
+                    when (it.itemId) {
+                        R.id.menu_setting -> {
+                            recordsViewModel.navigateToSetting()
+                            true
+                        }
+
+                        else -> false
+                    }
+                }
+            }
+        }
     }
 
     private fun initObserver() {
@@ -39,6 +57,12 @@ class RecordsFragment : DataBindingFragment<FragmentRecordsBinding>(R.layout.fra
             launch {
                 recordsViewModel.navigateToDetailRecord.collect {
                     findNavController().safeNavigate(RecordsFragmentDirections.actionRecordsFragmentToNavRecordDetail(it))
+                }
+            }
+
+            launch {
+                recordsViewModel.navigateToSetting.collect {
+                    findNavController().safeNavigate(RecordsFragmentDirections.actionRecordsFragmentToNavSetting())
                 }
             }
         }
