@@ -17,9 +17,18 @@ class RecordsViewModel @Inject constructor(
     private val _navigateToWriteRecord = MutableEventFlow<Unit>()
     val navigateToWriteRecord: EventFlow<Unit> = _navigateToWriteRecord
 
+    private val _navigateToDetailRecord = MutableEventFlow<String>()
+    val navigateToDetailRecord: EventFlow<String> = _navigateToDetailRecord
+
     fun navigateToWriteRecord() {
         viewModelScope.launch {
             _navigateToWriteRecord.emit(Unit)
+        }
+    }
+
+    fun navigateToDetailRecord(recordId: String) {
+        viewModelScope.launch {
+            _navigateToDetailRecord.emit(recordId)
         }
     }
 }

@@ -17,6 +17,16 @@
     <string name="record_title">기록들</string>
     <string name="record_list_empty">아직 기록이 없어요!\n첫 기록을 작성해보세요</string>
 
+    <!-- record detail edit -->
+    <string name="record_detail_edit_title">기록 편집</string>
+    <string name="record_detail_edit_description">편집을 통해 날짜/내용을 수정할 수 있어요\n기록을 삭제하시면 <font color="#c14d4d">휴지통</font>으로 이동해요</string>
+
+    <!-- record detail bin edit -->
+    <string name="record_detail_bin_edit_title">기록 삭제</string>
+    <string name="record_detail_bin_edit_description">복원을 누르면 기록 목록으로 이동해요\n영구 삭제 시 <font color="#c14d4d">기록이 완전히 지워집니다</font></string>
+    <string name="record_detail_bin_edit_restore">복원</string>
+    <string name="record_detail_bin_deleted">영구 삭제</string>
+
     <!-- write -->
     <string name="write_record_create_title">기록 작성</string>
     <string name="write_record_update_title">기록 수정</string>

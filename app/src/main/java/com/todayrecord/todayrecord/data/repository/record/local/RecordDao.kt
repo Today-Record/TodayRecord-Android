@@ -20,7 +20,7 @@ interface RecordDao {
     suspend fun insertRecord(record: Record)
 
     @Query("UPDATE RECORD SET isDeleted = :isDeleted WHERE id = :recordId")
-    suspend fun setRecordDeleted(recordId: String, isDeleted: String)
+    suspend fun setRecordDeleted(recordId: String, isDeleted: Boolean)
 
     @Query("DELETE FROM RECORD WHERE id is NULL OR id = :recordId")
     suspend fun deleteRecord(recordId: String)

@@ -7,11 +7,15 @@ import kotlinx.coroutines.flow.Flow
 
 interface RecordRepository {
 
-    fun getRecords() : Flow<PagingData<Record>>
+    fun getRecords(): Flow<PagingData<Record>>
 
-    suspend fun getRecord(recordId: String): Record?
+    fun getRecord(recordId: String): Flow<Result<Record?>>
 
-    fun setRecord(record: Record) : Flow<Result<Unit>>
+    fun setRecord(record: Record): Flow<Result<Unit>>
+
+    suspend fun setRecordDelete(recordId: String, isDeleted: Boolean)
 
     suspend fun deleteRecord(recordId: String)
+
+    suspend fun clearRecords()
 }
