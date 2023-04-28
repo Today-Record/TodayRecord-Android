@@ -1,4 +1,4 @@
-package com.todayrecord.todayrecord.util
+package com.todayrecord.todayrecord.util.type
 
 sealed class Result<out R> {
     object Loading : Result<Nothing>()

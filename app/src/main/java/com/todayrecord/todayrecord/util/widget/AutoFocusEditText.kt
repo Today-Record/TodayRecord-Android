@@ -1,4 +1,4 @@
-package com.todayrecord.todayrecord.util
+package com.todayrecord.todayrecord.util.widget
 
 import android.content.Context
 import android.util.AttributeSet

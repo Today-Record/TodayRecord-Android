@@ -8,7 +8,7 @@ import com.todayrecord.todayrecord.R
 import com.todayrecord.todayrecord.databinding.ItemSelectedImageBinding
 import com.todayrecord.todayrecord.screen.write.WriteRecordClickListener
 import com.todayrecord.todayrecord.util.executeAfter
-import com.todayrecord.todayrecord.util.setOnSingleClickListener
+import com.todayrecord.todayrecord.util.listener.setOnSingleClickListener
 
 class WriteRecordImageAdapter(
     private val writeRecordClickListener: WriteRecordClickListener

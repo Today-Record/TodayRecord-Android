@@ -17,7 +17,7 @@ import com.todayrecord.todayrecord.adapter.write.WriteRecordImageAdapter
 import com.todayrecord.todayrecord.databinding.FragmentWriteRecordBinding
 import com.todayrecord.todayrecord.screen.DataBindingFragment
 import com.todayrecord.todayrecord.util.Const.KEY_SELECTED_MEDIA_PATHS
-import com.todayrecord.todayrecord.util.DebounceEditTextListener
+import com.todayrecord.todayrecord.util.listener.DebounceEditTextListener
 import com.todayrecord.todayrecord.util.hideKeyboard
 import com.todayrecord.todayrecord.util.launchAndRepeatWithViewLifecycle
 import com.todayrecord.todayrecord.util.safeNavigate

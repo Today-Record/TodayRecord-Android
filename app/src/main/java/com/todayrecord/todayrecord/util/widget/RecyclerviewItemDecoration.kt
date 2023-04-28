@@ -1,8 +1,9 @@
-package com.todayrecord.todayrecord.util
+package com.todayrecord.todayrecord.util.widget
 
 import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import com.todayrecord.todayrecord.util.toPx
 
 class RecyclerviewItemDecoration(
     private val top: Int,

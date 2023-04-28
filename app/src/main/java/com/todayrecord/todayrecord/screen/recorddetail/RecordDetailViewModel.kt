@@ -5,10 +5,10 @@ import androidx.lifecycle.viewModelScope
 import com.todayrecord.todayrecord.data.repository.record.RecordRepository
 import com.todayrecord.todayrecord.model.record.Record
 import com.todayrecord.todayrecord.screen.BaseViewModel
-import com.todayrecord.todayrecord.util.EventFlow
-import com.todayrecord.todayrecord.util.MutableEventFlow
-import com.todayrecord.todayrecord.util.data
-import com.todayrecord.todayrecord.util.succeeded
+import com.todayrecord.todayrecord.util.type.EventFlow
+import com.todayrecord.todayrecord.util.type.MutableEventFlow
+import com.todayrecord.todayrecord.util.type.data
+import com.todayrecord.todayrecord.util.type.succeeded
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.filterNotNull

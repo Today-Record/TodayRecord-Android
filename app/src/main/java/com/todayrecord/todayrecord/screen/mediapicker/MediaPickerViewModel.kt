@@ -8,8 +8,8 @@ import androidx.paging.map
 import com.todayrecord.todayrecord.data.repository.media.MediaRepository
 import com.todayrecord.todayrecord.model.media.Media
 import com.todayrecord.todayrecord.screen.BaseViewModel
-import com.todayrecord.todayrecord.util.EventFlow
-import com.todayrecord.todayrecord.util.MutableEventFlow
+import com.todayrecord.todayrecord.util.type.EventFlow
+import com.todayrecord.todayrecord.util.type.MutableEventFlow
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

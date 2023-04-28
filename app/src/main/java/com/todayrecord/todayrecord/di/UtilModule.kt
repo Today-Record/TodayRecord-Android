@@ -2,9 +2,9 @@ package com.todayrecord.todayrecord.di
 
 import android.content.Context
 import com.google.firebase.storage.FirebaseStorage
-import com.todayrecord.todayrecord.util.CompressorUtil
-import com.todayrecord.todayrecord.util.FileUtil
-import com.todayrecord.todayrecord.util.FirebaseStorageUtil
+import com.todayrecord.todayrecord.util.file.CompressorUtil
+import com.todayrecord.todayrecord.util.file.FileUtil
+import com.todayrecord.todayrecord.util.file.FirebaseStorageUtil
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
