@@ -1,4 +1,4 @@
-package com.todayrecord.todayrecord.util
+package com.todayrecord.todayrecord.util.type
 
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.Flow

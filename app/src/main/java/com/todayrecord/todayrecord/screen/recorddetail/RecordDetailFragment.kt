@@ -9,7 +9,7 @@ import com.todayrecord.todayrecord.R
 import com.todayrecord.todayrecord.adapter.record.RecordDetailAdapter
 import com.todayrecord.todayrecord.databinding.FragmentRecordDetailBinding
 import com.todayrecord.todayrecord.screen.DataBindingFragment
-import com.todayrecord.todayrecord.util.RecyclerviewItemDecoration
+import com.todayrecord.todayrecord.util.widget.RecyclerviewItemDecoration
 import com.todayrecord.todayrecord.util.launchAndRepeatWithViewLifecycle
 import com.todayrecord.todayrecord.util.safeNavigate
 import dagger.hilt.android.AndroidEntryPoint

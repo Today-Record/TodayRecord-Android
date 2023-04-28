@@ -6,7 +6,7 @@ import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import com.todayrecord.todayrecord.R
 import com.todayrecord.todayrecord.databinding.DialogWriteRecordExitBinding
 import com.todayrecord.todayrecord.screen.DataBindingBottomSheetDialogFragment
-import com.todayrecord.todayrecord.util.setOnSingleClickListener
+import com.todayrecord.todayrecord.util.listener.setOnSingleClickListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

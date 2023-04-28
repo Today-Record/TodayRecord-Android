@@ -1,7 +1,8 @@
-package com.todayrecord.todayrecord.util
+package com.todayrecord.todayrecord.util.listener
 
 import android.text.Editable
 import android.text.TextWatcher
+import com.todayrecord.todayrecord.util.cancelIfActive
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay

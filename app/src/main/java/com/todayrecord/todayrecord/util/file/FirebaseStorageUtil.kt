@@ -1,4 +1,4 @@
-package com.todayrecord.todayrecord.util
+package com.todayrecord.todayrecord.util.file
 
 import android.net.Uri
 import com.google.firebase.storage.FirebaseStorage

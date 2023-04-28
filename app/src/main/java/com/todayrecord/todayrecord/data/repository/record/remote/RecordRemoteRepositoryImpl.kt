@@ -1,9 +1,9 @@
 package com.todayrecord.todayrecord.data.repository.record.remote
 
 import com.todayrecord.todayrecord.data.repository.record.RecordRemoteRepository
-import com.todayrecord.todayrecord.util.CompressorUtil
-import com.todayrecord.todayrecord.util.FileUtil
-import com.todayrecord.todayrecord.util.FirebaseStorageUtil
+import com.todayrecord.todayrecord.util.file.CompressorUtil
+import com.todayrecord.todayrecord.util.file.FileUtil
+import com.todayrecord.todayrecord.util.file.FirebaseStorageUtil
 import kotlinx.coroutines.withTimeout
 import javax.inject.Inject
 

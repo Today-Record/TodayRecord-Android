@@ -4,8 +4,8 @@ import androidx.lifecycle.viewModelScope
 import com.todayrecord.todayrecord.BuildConfig
 import com.todayrecord.todayrecord.data.repository.record.RecordRepository
 import com.todayrecord.todayrecord.screen.BaseViewModel
-import com.todayrecord.todayrecord.util.EventFlow
-import com.todayrecord.todayrecord.util.MutableEventFlow
+import com.todayrecord.todayrecord.util.type.EventFlow
+import com.todayrecord.todayrecord.util.type.MutableEventFlow
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

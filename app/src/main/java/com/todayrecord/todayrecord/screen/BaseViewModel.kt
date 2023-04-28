@@ -2,8 +2,8 @@ package com.todayrecord.todayrecord.screen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.todayrecord.todayrecord.util.EventFlow
-import com.todayrecord.todayrecord.util.MutableEventFlow
+import com.todayrecord.todayrecord.util.type.EventFlow
+import com.todayrecord.todayrecord.util.type.MutableEventFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch

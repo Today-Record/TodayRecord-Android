@@ -5,9 +5,9 @@ import androidx.lifecycle.viewModelScope
 import com.todayrecord.todayrecord.data.repository.record.RecordRepository
 import com.todayrecord.todayrecord.model.record.Record
 import com.todayrecord.todayrecord.screen.BaseViewModel
-import com.todayrecord.todayrecord.util.EventFlow
-import com.todayrecord.todayrecord.util.MutableEventFlow
-import com.todayrecord.todayrecord.util.Result
+import com.todayrecord.todayrecord.util.type.EventFlow
+import com.todayrecord.todayrecord.util.type.MutableEventFlow
+import com.todayrecord.todayrecord.util.type.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

@@ -10,7 +10,7 @@ import com.todayrecord.todayrecord.databinding.ItemMediaBinding
 import com.todayrecord.todayrecord.model.media.Media
 import com.todayrecord.todayrecord.screen.mediapicker.MediaPickerClickListener
 import com.todayrecord.todayrecord.util.executeAfter
-import com.todayrecord.todayrecord.util.setOnSingleClickListener
+import com.todayrecord.todayrecord.util.listener.setOnSingleClickListener
 
 class MediaPickerAdapter(
     private val mediaPickerClickListener: MediaPickerClickListener

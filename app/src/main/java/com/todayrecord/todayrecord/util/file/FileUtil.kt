@@ -1,7 +1,6 @@
-package com.todayrecord.todayrecord.util
+package com.todayrecord.todayrecord.util.file
 
 import android.content.ContentResolver
-import android.content.ContentValues
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas

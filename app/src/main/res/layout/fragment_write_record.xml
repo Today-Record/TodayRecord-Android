@@ -62,7 +62,7 @@
                     android:animateLayoutChanges="true"
                     android:padding="18dp">
 
-                    <com.todayrecord.todayrecord.util.AutoFocusEditText
+                    <com.todayrecord.todayrecord.util.widget.AutoFocusEditText
                         android:id="@+id/et_write_record"
                         android:layout_width="0dp"
                         android:layout_height="0dp"

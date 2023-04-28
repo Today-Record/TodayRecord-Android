@@ -2,7 +2,7 @@ package com.todayrecord.todayrecord.data.repository.record
 
 import androidx.paging.PagingData
 import com.todayrecord.todayrecord.model.record.Record
-import com.todayrecord.todayrecord.util.Result
+import com.todayrecord.todayrecord.util.type.Result
 import kotlinx.coroutines.flow.Flow
 
 interface RecordRepository {
