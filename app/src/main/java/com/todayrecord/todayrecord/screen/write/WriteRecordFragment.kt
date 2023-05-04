@@ -16,10 +16,11 @@ import com.todayrecord.todayrecord.R
 import com.todayrecord.todayrecord.adapter.write.WriteRecordImageAdapter
 import com.todayrecord.todayrecord.databinding.FragmentWriteRecordBinding
 import com.todayrecord.todayrecord.screen.DataBindingFragment
+import com.todayrecord.todayrecord.util.Const.KEY_IS_RECORD_UPDATE
 import com.todayrecord.todayrecord.util.Const.KEY_SELECTED_MEDIA_PATHS
-import com.todayrecord.todayrecord.util.listener.DebounceEditTextListener
 import com.todayrecord.todayrecord.util.hideKeyboard
 import com.todayrecord.todayrecord.util.launchAndRepeatWithViewLifecycle
+import com.todayrecord.todayrecord.util.listener.DebounceEditTextListener
 import com.todayrecord.todayrecord.util.safeNavigate
 import com.todayrecord.todayrecord.util.showKeyboard
 import dagger.hilt.android.AndroidEntryPoint
@@ -130,8 +131,6 @@ class WriteRecordFragment : DataBindingFragment<FragmentWriteRecordBinding>(R.la
                     }
                 }
             }
-
-            etWriteRecord.addTextChangedListener(debounceEditTextListener)
         }
     }
 
@@ -175,11 +174,14 @@ class WriteRecordFragment : DataBindingFragment<FragmentWriteRecordBinding>(R.la
 
             launch {
                 writeRecordViewModel.navigateToBack.collect {
-                    if (findNavController().currentDestination?.id == R.id.writeRecordExitBottomSheetDialogFragment) {
-                        findNavController().popBackStack()
-                    }
-                    if (!findNavController().navigateUp()) {
-                        requireActivity().finish()
+                    findNavController().run {
+                        val isWriteRecordExit = currentDestination?.id == R.id.writeRecordExitBottomSheetDialogFragment
+                        if (isWriteRecordExit) popBackStack()
+
+                        previousBackStackEntry?.savedStateHandle?.apply {
+                            set(KEY_IS_RECORD_UPDATE, !isWriteRecordExit)
+                            navigateUp()
+                        }
                     }
                 }
             }
@@ -224,11 +226,18 @@ class WriteRecordFragment : DataBindingFragment<FragmentWriteRecordBinding>(R.la
         writeRecordViewModel.deleteRecordImages(image)
     }
 
+    override fun onResume() {
+        super.onResume()
+        dataBinding.etWriteRecord.addTextChangedListener(debounceEditTextListener)
+    }
+
+    override fun onPause() {
+        dataBinding.etWriteRecord.removeTextChangedListener(debounceEditTextListener)
+        super.onPause()
+    }
+
     override fun onDestroyView() {
-        with(dataBinding) {
-            etWriteRecord.removeTextChangedListener(debounceEditTextListener)
-            rvSelectedMedia.adapter = null
-        }
+        dataBinding.rvSelectedMedia.adapter = null
         super.onDestroyView()
     }
 }

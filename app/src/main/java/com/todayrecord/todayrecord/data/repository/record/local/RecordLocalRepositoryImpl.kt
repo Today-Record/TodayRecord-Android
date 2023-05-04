@@ -26,8 +26,12 @@ class RecordLocalRepositoryImpl @Inject constructor(
         recordDatabase.record().setRecordDeleted(recordId, isDeleted)
     }
 
-    override suspend fun setRecord(record: Record) {
+    override suspend fun createRecord(record: Record) {
         recordDatabase.record().insertRecord(record)
+    }
+
+    override suspend fun updateRecord(record: Record) {
+        recordDatabase.record().updateRecord(record)
     }
 
     override suspend fun deleteRecord(recordId: String) {

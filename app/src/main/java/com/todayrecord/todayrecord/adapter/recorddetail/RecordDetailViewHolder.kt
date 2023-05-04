@@ -1,4 +1,4 @@
-package com.todayrecord.todayrecord.adapter.record
+package com.todayrecord.todayrecord.adapter.recorddetail
 
 import androidx.recyclerview.widget.RecyclerView
 import com.todayrecord.todayrecord.databinding.ItemRecordDetailImageBinding

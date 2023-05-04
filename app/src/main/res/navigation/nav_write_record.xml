@@ -11,6 +11,9 @@
         app:argType="com.todayrecord.todayrecord.model.record.Record"
         app:nullable="true" />
 
+    <!-- TODO :: 해당 딥링크 이동이 안 되는 이슈 수정 -->
+    <deepLink app:uri="todayRecord://todayRecord/records/write" />
+
     <fragment
         android:id="@+id/writeRecordFragment"
         android:name="com.todayrecord.todayrecord.screen.write.WriteRecordFragment"

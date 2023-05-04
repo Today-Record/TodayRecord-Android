@@ -3,12 +3,16 @@ package com.todayrecord.todayrecord.screen.recorddetail
 import android.os.Bundle
 import android.view.View
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.todayrecord.todayrecord.NavMainDirections
 import com.todayrecord.todayrecord.R
-import com.todayrecord.todayrecord.adapter.record.RecordDetailAdapter
+import com.todayrecord.todayrecord.adapter.recorddetail.RecordDetailAdapter
 import com.todayrecord.todayrecord.databinding.FragmentRecordDetailBinding
 import com.todayrecord.todayrecord.screen.DataBindingFragment
+import com.todayrecord.todayrecord.util.Const.KEY_IS_RECORD_UPDATE
 import com.todayrecord.todayrecord.util.widget.RecyclerviewItemDecoration
 import com.todayrecord.todayrecord.util.launchAndRepeatWithViewLifecycle
 import com.todayrecord.todayrecord.util.safeNavigate
@@ -33,6 +37,7 @@ class RecordDetailFragment : DataBindingFragment<FragmentRecordDetailBinding>(R.
         initView()
         initListener()
         initObserver()
+        initNavBackstackObserve()
     }
 
     private fun initView() {
@@ -96,8 +101,7 @@ class RecordDetailFragment : DataBindingFragment<FragmentRecordDetailBinding>(R.
                     if (findNavController().currentDestination?.id == R.id.recordDetailEditBottomSheetDialogFragment) {
                         findNavController().popBackStack()
                     }
-
-                    findNavController().safeNavigate(RecordDetailFragmentDirections.actionRecordDetailFragmentToNavWritreRecord(it))
+                    findNavController().safeNavigate(NavMainDirections.actionGlobalNavWriteRecord(it))
                 }
             }
 
@@ -116,6 +120,26 @@ class RecordDetailFragment : DataBindingFragment<FragmentRecordDetailBinding>(R.
                 }
             }
         }
+    }
+
+    private fun initNavBackstackObserve() {
+        val navBackStackEntry = findNavController().getBackStackEntry(R.id.recordDetailFragment)
+        val resultObserver = LifecycleEventObserver { _, event ->
+            if (event == Lifecycle.Event.ON_RESUME) {
+                if (!navBackStackEntry.savedStateHandle.contains(KEY_IS_RECORD_UPDATE)) return@LifecycleEventObserver
+                val isUpdated: Boolean = navBackStackEntry.savedStateHandle[KEY_IS_RECORD_UPDATE] ?: false
+
+                if (isUpdated) recordDetailViewModel.onRefresh()
+                navBackStackEntry.savedStateHandle.remove<Boolean>(KEY_IS_RECORD_UPDATE)
+            }
+        }
+
+        navBackStackEntry.lifecycle.addObserver(resultObserver)
+        viewLifecycleOwner.lifecycle.addObserver(LifecycleEventObserver { _, event ->
+            if (event == Lifecycle.Event.ON_DESTROY) {
+                navBackStackEntry.lifecycle.removeObserver(resultObserver)
+            }
+        })
     }
 
     override fun onDestroyView() {

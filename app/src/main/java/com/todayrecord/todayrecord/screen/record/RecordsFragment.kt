@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.todayrecord.todayrecord.NavMainDirections
 import com.todayrecord.todayrecord.R
 import com.todayrecord.todayrecord.databinding.FragmentRecordsBinding
 import com.todayrecord.todayrecord.screen.DataBindingFragment
@@ -50,7 +51,7 @@ class RecordsFragment : DataBindingFragment<FragmentRecordsBinding>(R.layout.fra
         launchAndRepeatWithViewLifecycle {
             launch {
                 recordsViewModel.navigateToWriteRecord.collect {
-                    findNavController().safeNavigate(RecordsFragmentDirections.actionRecordsFragmentToNavWriteRecord(null))
+                    findNavController().safeNavigate(NavMainDirections.actionGlobalNavWriteRecord(null))
                 }
             }
 

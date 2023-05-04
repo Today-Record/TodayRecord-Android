@@ -17,7 +17,10 @@ import com.todayrecord.todayrecord.databinding.DialogLoadingBinding
 
 abstract class DataBindingFragment<T : ViewDataBinding>(@LayoutRes private val layoutResId: Int) : Fragment() {
 
-    protected lateinit var dataBinding: T
+    private var _dataBinding: T? = null
+
+    protected val dataBinding: T
+        get() = _dataBinding!!
 
     private val loadingDialog: AppCompatDialog by lazy {
         DialogLoadingBinding.inflate(LayoutInflater.from(requireContext()), null, false)
@@ -52,7 +55,13 @@ abstract class DataBindingFragment<T : ViewDataBinding>(@LayoutRes private val l
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        dataBinding = DataBindingUtil.inflate(inflater, layoutResId, container, false)
+        _dataBinding = DataBindingUtil.inflate(inflater, layoutResId, container, false)
         return dataBinding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        hideLoadingDialog()
+        _dataBinding = null
     }
 }

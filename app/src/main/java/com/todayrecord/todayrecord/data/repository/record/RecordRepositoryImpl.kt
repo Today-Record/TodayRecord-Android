@@ -21,7 +21,29 @@ class RecordRepositoryImpl @Inject constructor(
         emit(Result.Success(recordLocalRepository.getRecord(recordId)))
     }
 
-    override fun setRecord(record: Record): Flow<Result<Unit>> = flow {
+    override fun createRecord(record: Record): Flow<Result<Unit>> = flow {
+        emit(Result.Loading)
+
+        val uploadImages = record.images
+            .mapIndexed { index, path -> index to path }
+            .filterNot { it.second.first() == 'h' }
+
+        if (uploadImages.isNotEmpty()) {
+            val uploadImagesPaths = recordRemoteRepository.imageUpload(uploadImages.map { it.second })
+
+            getNewRecordImagesPath(record.images, uploadImages.map { it.first }, uploadImagesPaths).let {
+                if (it.isNotEmpty()) {
+                    emit(Result.Success(recordLocalRepository.createRecord(record.copy(images = it))))
+                } else {
+                    emit(Result.Error(Exception(IMAGE_UPLOAD_FAIL)))
+                }
+            }
+        } else {
+            emit(Result.Success(recordLocalRepository.createRecord(record)))
+        }
+    }
+
+    override fun updateRecord(record: Record): Flow<Result<Unit>> = flow {
         emit(Result.Loading)
         val uploadImages = record.images
             .mapIndexed { index, path -> index to path }
@@ -30,20 +52,27 @@ class RecordRepositoryImpl @Inject constructor(
         if (uploadImages.isNotEmpty()) {
             val uploadImagesPaths = recordRemoteRepository.imageUpload(uploadImages.map { it.second })
 
-            if (uploadImagesPaths.isNotEmpty()) {
-                val newImagePaths = record.images
-                    .toMutableList()
-                    .apply {
-                        uploadImages.mapIndexed { index, existingIndexData ->
-                            this.set(existingIndexData.first, uploadImagesPaths[index])
-                        }
-                    }
-                emit(Result.Success(recordLocalRepository.setRecord(record.copy(images = newImagePaths))))
-            } else {
-                emit(Result.Error(Exception(IMAGE_UPLOAD_FAIL)))
+            getNewRecordImagesPath(record.images, uploadImages.map { it.first }, uploadImagesPaths).let {
+                if (it.isNotEmpty()) {
+                    emit(Result.Success(recordLocalRepository.updateRecord(record.copy(images = it))))
+                } else {
+                    emit(Result.Error(Exception(IMAGE_UPLOAD_FAIL)))
+                }
             }
         } else {
-            emit(Result.Success(recordLocalRepository.setRecord(record)))
+            emit(Result.Success(recordLocalRepository.updateRecord(record)))
+        }
+    }
+
+    private fun getNewRecordImagesPath(recordImages: List<String>, existingIndex: List<Int>, uploadImagesPaths: List<String>): List<String> {
+        return if (uploadImagesPaths.isNotEmpty()) {
+            recordImages.toMutableList().apply {
+                existingIndex.mapIndexed { index, existingIndex ->
+                    set(existingIndex, uploadImagesPaths[index])
+                }
+            }
+        } else {
+            emptyList()
         }
     }
 
