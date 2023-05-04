@@ -12,6 +12,7 @@
     <string name="time_regex_year_month_day">yyyy년 MM월 dd일</string>
     <string name="time_regex_year_month_day_half_time">yyyy년 MM월 dd일 a h시 mm분</string>
     <string name="time_regex_half_time">a h시 mm분</string>
+    <string name="time_regex_half_time_colon">a h:mm</string>
 
     <!-- records -->
     <string name="record_title">기록들</string>
@@ -42,12 +43,9 @@
 
     <!-- media picker -->
     <string name="media_picker_title">이미지 선택</string>
-    <string name="media_picker_camera_not_found">카메라를 사용할 수 없습니다.</string>
     <string name="media_picker_permission_storage">이미지 첨부를 원하시는 경우\n저장 공간 접근 권한이 필요합니다.</string>
-    <string name="media_picker_permission_camera">카메라 사용을 원하시는 경우\n카메라 접근 권한이 필요합니다.</string>
     <string name="media_picker_permission_setting_storage_title">권한 설정</string>
     <string name="media_picker_permission_setting_storage_description">저장공간 접근 권한이 필요합니다. 휴대폰 설정 > 앱 > 저장공간 권한을 허용으로 변경해주세요.</string>
-    <string name="media_picker_permission_setting_camera_description">카메라 접근 권한이 필요합니다. 휴대폰 설정 > 앱 > 카메라 권한을 허용으로 변경해주세요.</string>
 
     <!-- setting -->
     <string name="setting_title">설정</string>
@@ -58,4 +56,16 @@
     <string name="setting_app_version">앱 버전</string>
     <string name="setting_app_version_unit">ver.%s</string>
 
+    <!-- alarm setting -->
+    <string name="alarm_setting_title">알람 설정</string>
+    <string name="alarm_setting_time">시간</string>
+    <string name="alarm_setting_message">문구</string>
+    <string name="alarm_setting_message_hint">오늘 하루를 기록해보세요</string>
+    <string name="alarm_setting_enable">활성화</string>
+    <string name="alarm_setting_enable_off">OFF</string>
+    <string name="alarm_setting_enable_on">ON</string>
+    <string name="alarm_setting_permission_approve">휴대폰 설정에서 알람 권한을 활성화해주세요!\n<u>설정 이동</u></string>
+
+    <!-- alarm notify -->
+    <string name="alarm_notify_title">오늘 기록을 작성할 시간이에요!</string>
 </resources>

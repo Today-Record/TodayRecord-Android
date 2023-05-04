@@ -7,11 +7,13 @@ import com.todayrecord.todayrecord.model.record.Record
 import com.todayrecord.todayrecord.screen.BaseViewModel
 import com.todayrecord.todayrecord.util.type.EventFlow
 import com.todayrecord.todayrecord.util.type.MutableEventFlow
+import com.todayrecord.todayrecord.util.type.Result
 import com.todayrecord.todayrecord.util.type.data
 import com.todayrecord.todayrecord.util.type.succeeded
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
@@ -23,7 +25,13 @@ class RecordDetailViewModel @Inject constructor(
     private val recordRepository: RecordRepository
 ) : BaseViewModel() {
 
-    val record = recordRepository.getRecord(savedStateHandle.get(KEY_RECORD_ID) ?: "")
+    private val recordId = savedStateHandle.get<String>(KEY_RECORD_ID) ?: ""
+
+    private val recordState = loadDataSignal
+        .flatMapLatest { recordRepository.getRecord(recordId) }
+        .stateIn(viewModelScope, SharingStarted.Lazily, Result.Loading)
+
+    val record = recordState
         .map { if (it.succeeded) it.data!! else null }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)
 
@@ -82,7 +90,6 @@ class RecordDetailViewModel @Inject constructor(
             _navigateToBack.emit(Unit)
         }
     }
-
 
     companion object {
         private const val KEY_RECORD_ID = "record_id"

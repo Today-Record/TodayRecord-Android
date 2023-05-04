@@ -9,9 +9,13 @@ import com.todayrecord.todayrecord.util.type.EventFlow
 import com.todayrecord.todayrecord.util.type.MutableEventFlow
 import com.todayrecord.todayrecord.util.type.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import java.time.ZoneId
 import java.time.ZonedDateTime
@@ -29,8 +33,9 @@ class WriteRecordViewModel @Inject constructor(
     val recordDate: StateFlow<String> = savedStateHandle.getStateFlow(KEY_RECORD_DATE, record?.date ?: ZonedDateTime.now().toString())
     val recordImages: StateFlow<List<String>> = savedStateHandle.getStateFlow(KEY_RECORD_IMAGES, record?.images ?: emptyList())
 
-    private val _isRecordSaveEnable = MutableStateFlow<Boolean>(false)
-    val isRecordSaveEnable: StateFlow<Boolean> = _isRecordSaveEnable
+    val isRecordSaveEnable: StateFlow<Boolean> = combine(recordText, recordImages) { text, images ->
+        !(text.isNullOrEmpty() && images.isEmpty())
+    }.stateIn(viewModelScope, SharingStarted.Eagerly, false)
 
     private val _navigateToMediaPicker = MutableEventFlow<Int>()
     val navigateToMediaPicker: EventFlow<Int> = _navigateToMediaPicker
@@ -46,7 +51,6 @@ class WriteRecordViewModel @Inject constructor(
 
     fun existRecordText(text: String) {
         savedStateHandle.set(KEY_RECORD_TEXT, text)
-        _isRecordSaveEnable.value = text.trim().isNotEmpty()
     }
 
     fun updateRecordDate(year: Int, month: Int, day: Int) {
@@ -76,28 +80,44 @@ class WriteRecordViewModel @Inject constructor(
         )
     }
 
-    fun saveRecord() {
+    fun saveRecord() = if (record == null) createRecord() else updateRecord()
+
+    private fun createRecord() {
         viewModelScope.launch {
             val saveDate = ZonedDateTime.now().withZoneSameInstant(ZoneId.systemDefault()).toString()
 
-            recordRepository.setRecord(
-                record?.copy(
+            recordRepository.createRecord(
+                Record(
+                    id = UUID.randomUUID().toString(),
                     date = recordDate.value,
                     content = recordText.value,
                     images = recordImages.value,
+                    isDeleted = false,
+                    createdAt = saveDate,
                     updatedAt = saveDate
-                ) ?: run {
-                    Record(
-                        id = UUID.randomUUID().toString(),
-                        date = recordDate.value,
-                        content = recordText.value,
-                        images = recordImages.value,
-                        isDeleted = false,
-                        createdAt = saveDate,
-                        updatedAt = saveDate
-                    )
+                )
+            ).flowOn(Dispatchers.IO).onEach {
+                setLoading(it is Result.Loading)
+            }.collect {
+                when (it) {
+                    is Result.Loading -> return@collect
+                    is Result.Success -> navigateToBack()
+                    is Result.Error -> setErrorMessage("기록 저장에 실패했습니다\n잠시 후 다시 시도해주세요")
                 }
-            ).onEach {
+            }
+        }
+    }
+
+    private fun updateRecord() {
+        viewModelScope.launch {
+            recordRepository.updateRecord(
+                record!!.copy(
+                    date = recordDate.value,
+                    content = recordText.value,
+                    images = recordImages.value,
+                    updatedAt = ZonedDateTime.now().withZoneSameInstant(ZoneId.systemDefault()).toString()
+                )
+            ).flowOn(Dispatchers.IO).onEach {
                 setLoading(it is Result.Loading)
             }.collect {
                 when (it) {

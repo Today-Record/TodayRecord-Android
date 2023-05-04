@@ -11,7 +11,9 @@ interface RecordRepository {
 
     fun getRecord(recordId: String): Flow<Result<Record?>>
 
-    fun setRecord(record: Record): Flow<Result<Unit>>
+    fun createRecord(record: Record): Flow<Result<Unit>>
+
+    fun updateRecord(record: Record): Flow<Result<Unit>>
 
     suspend fun setRecordDelete(recordId: String, isDeleted: Boolean)
 

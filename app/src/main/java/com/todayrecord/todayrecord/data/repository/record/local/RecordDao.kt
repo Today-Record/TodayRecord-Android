@@ -5,6 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 import com.todayrecord.todayrecord.model.record.Record
 
 @Dao
@@ -18,6 +19,9 @@ interface RecordDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertRecord(record: Record)
+
+    @Update
+    suspend fun updateRecord(record: Record)
 
     @Query("UPDATE RECORD SET isDeleted = :isDeleted WHERE id = :recordId")
     suspend fun setRecordDeleted(recordId: String, isDeleted: Boolean)

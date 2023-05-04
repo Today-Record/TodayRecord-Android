@@ -18,5 +18,11 @@ class TimeUtil {
             val zonedDateTime = dateTime?.let { ZonedDateTime.parse(dateTime) } ?: ZonedDateTime.now()
             return zonedDateTime.withZoneSameInstant(ZoneId.systemDefault())?.format(DateTimeFormatter.ofPattern(pattern)) ?: ""
         }
+
+        @JvmStatic
+        fun getTimeFormatString(time: String?, pattern: String): String {
+            val zonedDateTime = time?.split(":")?.let { ZonedDateTime.now().withHour(it[0].toInt()).withMinute(it[1].toInt()) } ?: ZonedDateTime.now()
+            return zonedDateTime.withZoneSameInstant(ZoneId.systemDefault()).format(DateTimeFormatter.ofPattern(pattern))
+        }
     }
 }

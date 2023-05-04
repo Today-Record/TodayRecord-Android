@@ -48,7 +48,8 @@
                 android:layout_height="wrap_content"
                 android:divider="@drawable/divider_line"
                 android:orientation="vertical"
-                android:showDividers="middle|end">
+                android:showDividers="middle|end"
+                android:splitMotionEvents="false">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/cl_setting_alarm"

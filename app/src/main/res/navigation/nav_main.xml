@@ -2,8 +2,14 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_today_record"
+    android:id="@+id/nav_main"
     app:startDestination="@id/introFragment">
+
+    <argument
+        android:name="notify_uri"
+        android:defaultValue="@null"
+        app:argType="android.net.Uri"
+        app:nullable="true" />
 
     <fragment
         android:id="@+id/introFragment"
@@ -26,19 +32,7 @@
         android:name="com.todayrecord.todayrecord.screen.record.RecordsFragment"
         tools:layout="@layout/fragment_records">
 
-        <action
-            android:id="@+id/action_recordsFragment_to_nav_write_record"
-            app:destination="@id/nav_write_record"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim">
-
-            <argument
-                android:name="record"
-                app:argType="com.todayrecord.todayrecord.model.record.Record"
-                app:nullable="true" />
-        </action>
+        <deepLink app:uri="todayRecord://todayRecord/records" />
 
         <action
             android:id="@+id/action_recordsFragment_to_nav_record_detail"
@@ -62,6 +56,20 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
+
+    <action
+        android:id="@+id/action_global_nav_write_record"
+        app:destination="@id/nav_write_record"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+        app:popExitAnim="@anim/nav_default_pop_exit_anim">
+
+        <argument
+            android:name="record"
+            app:argType="com.todayrecord.todayrecord.model.record.Record"
+            app:nullable="true" />
+    </action>
 
     <include app:graph="@navigation/nav_write_record" />
 

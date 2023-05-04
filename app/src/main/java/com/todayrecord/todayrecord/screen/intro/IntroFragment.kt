@@ -17,6 +17,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.transition.*
 import com.todayrecord.todayrecord.R
@@ -72,6 +73,21 @@ class IntroFragment : DataBindingFragment<FragmentIntroBinding>(R.layout.fragmen
             launch {
                 introViewModel.navigateToRecords.collect {
                     findNavController().safeNavigate(IntroFragmentDirections.actionIntroFragmentToRecordsFragment())
+                }
+            }
+
+            launch {
+                introViewModel.navigateToDeepLink.collect {
+                    findNavController().navigate(
+                        it,
+                        NavOptions.Builder()
+                            .setPopUpTo(R.id.introFragment, inclusive = true, saveState = false)
+                            .setEnterAnim(androidx.navigation.ui.R.anim.nav_default_enter_anim)
+                            .setExitAnim(androidx.navigation.ui.R.anim.nav_default_exit_anim)
+                            .setPopEnterAnim(androidx.navigation.ui.R.anim.nav_default_pop_enter_anim)
+                            .setPopExitAnim(androidx.navigation.ui.R.anim.nav_default_pop_exit_anim)
+                            .build()
+                    )
                 }
             }
         }

@@ -44,4 +44,5 @@ object Versions {
     const val permission = "3.0.0"
     const val compressor = "3.0.1"
     const val lottie ="5.2.0"
+    const val leakcanary ="2.10"
 }

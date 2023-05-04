@@ -1,10 +1,12 @@
 package com.todayrecord.todayrecord.di
 
+import android.app.NotificationManager
 import android.content.Context
 import com.google.firebase.storage.FirebaseStorage
 import com.todayrecord.todayrecord.util.file.CompressorUtil
 import com.todayrecord.todayrecord.util.file.FileUtil
 import com.todayrecord.todayrecord.util.file.FirebaseStorageUtil
+import com.todayrecord.todayrecord.util.manager.TodayRecordNotificationManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -32,4 +34,11 @@ object UtilModule {
     @Provides
     fun provideFirebaseStorageUtil(
     ): FirebaseStorageUtil = FirebaseStorageUtil(FirebaseStorage.getInstance())
+
+    @Singleton
+    @Provides
+    fun provideTodayRecordNotificationManager(
+        @ApplicationContext context: Context,
+        notificationManager: NotificationManager
+    ): TodayRecordNotificationManager = TodayRecordNotificationManager(context, notificationManager)
 }

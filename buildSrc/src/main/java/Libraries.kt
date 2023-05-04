@@ -87,4 +87,5 @@ object Libraries {
     const val compressor = "id.zelory:compressor:${Versions.compressor}"
     const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
     const val lottie = "com.airbnb.android:lottie:${Versions.lottie}"
+    const val leakcanary = "com.squareup.leakcanary:leakcanary-android:${Versions.leakcanary}"
 }

@@ -1,4 +1,4 @@
-package com.todayrecord.todayrecord.adapter.record
+package com.todayrecord.todayrecord.adapter.recorddetail
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

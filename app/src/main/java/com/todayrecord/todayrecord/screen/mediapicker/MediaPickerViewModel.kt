@@ -11,12 +11,14 @@ import com.todayrecord.todayrecord.screen.BaseViewModel
 import com.todayrecord.todayrecord.util.type.EventFlow
 import com.todayrecord.todayrecord.util.type.MutableEventFlow
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -37,6 +39,7 @@ class MediaPickerViewModel @Inject constructor(
 
     val medias = mediaPermission.filterNotNull()
         .flatMapLatest { if (it) mediaRepository.getMedias() else flowOf(PagingData.empty()) }
+        .flowOn(Dispatchers.IO)
         .cachedIn(viewModelScope)
         .combine(selectedMediaPaths) { mediaData: PagingData<Media>, selectedPaths: List<String> ->
             mediaData.map { media ->
