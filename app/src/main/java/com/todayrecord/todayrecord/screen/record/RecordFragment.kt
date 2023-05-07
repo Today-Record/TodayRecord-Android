@@ -16,7 +16,9 @@ import com.todayrecord.todayrecord.util.launchAndRepeatWithViewLifecycle
 import com.todayrecord.todayrecord.util.safeNavigate
 import com.todayrecord.todayrecord.util.widget.RecyclerviewItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.distinctUntilChangedBy
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -67,17 +69,6 @@ class RecordFragment : DataBindingFragment<FragmentRecordsBinding>(R.layout.frag
                     }
                 }
             }
-            recordAdapter.apply {
-                addLoadStateListener { loadState ->
-                    if (loadState.source.refresh is LoadState.NotLoading && loadState.append.endOfPaginationReached && recordAdapter.itemCount < 1) {
-                        dataBinding.rvRecord.isVisible = false
-                        dataBinding.llRecordEmpty.isVisible = true
-                    } else {
-                        dataBinding.rvRecord.isVisible = true
-                        dataBinding.llRecordEmpty.isVisible = false
-                    }
-                }
-            }
         }
     }
 
@@ -87,6 +78,23 @@ class RecordFragment : DataBindingFragment<FragmentRecordsBinding>(R.layout.frag
                 recordViewModel.records.collectLatest {
                     recordAdapter.submitData(it)
                 }
+            }
+
+            launch {
+                recordAdapter.loadStateFlow
+                    .distinctUntilChangedBy { it.refresh }
+                    .collect { loadState ->
+                        with(dataBinding) {
+
+                            if (loadState.source.refresh is LoadState.NotLoading && loadState.append.endOfPaginationReached && recordAdapter.itemCount < 1) {
+                                rvRecord.isVisible = false
+                                llRecordEmpty.isVisible = true
+                            } else {
+                                rvRecord.isVisible = true
+                                llRecordEmpty.isVisible = false
+                            }
+                        }
+                    }
             }
 
             launch {

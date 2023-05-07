@@ -14,17 +14,17 @@ import javax.inject.Inject
 class RecordViewModel @Inject constructor(
     private val recordRepository: RecordRepository
 ) : BaseViewModel() {
+
     val records = recordRepository.getRecords(false)
         .cachedIn(viewModelScope)
 
     private val _navigateToWriteRecord = MutableEventFlow<Unit>()
-
     val navigateToWriteRecord: EventFlow<Unit> = _navigateToWriteRecord
+
     private val _navigateToDetailRecord = MutableEventFlow<String>()
-
     val navigateToDetailRecord: EventFlow<String> = _navigateToDetailRecord
-    private val _navigateToSetting = MutableEventFlow<Unit>()
 
+    private val _navigateToSetting = MutableEventFlow<Unit>()
     val navigateToSetting: EventFlow<Unit> = _navigateToSetting
 
     fun navigateToWriteRecord() {

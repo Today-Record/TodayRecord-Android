@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.tabs.TabLayoutMediator
 import com.todayrecord.todayrecord.R
 import com.todayrecord.todayrecord.databinding.ItemRecordBinding
 import com.todayrecord.todayrecord.model.record.Record
@@ -42,34 +43,29 @@ class RecordAdapter(
         val inflater = LayoutInflater.from(parent.context)
         val recordImageAdapter = RecordImageAdapter()
         val binding = ItemRecordBinding.inflate(inflater, parent, false)
-        binding.vpImage.adapter = recordImageAdapter
 
-        binding.vpImage.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
+        return RecordViewHolder(binding, recordImageAdapter).apply {
+            binding.vpImage.adapter = recordImageAdapter
 
-                setCurrentIndicator(binding, position)
-            }
-        })
+            binding.vpImage.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+                override fun onPageSelected(position: Int) {
+                    super.onPageSelected(position)
 
-
-        return RecordViewHolder(binding, recordImageAdapter)
+                    setCurrentIndicator(binding, position)
+                }
+            })
+        }
     }
 
     override fun onBindViewHolder(holder: RecordViewHolder, position: Int) {
         holder.binding.executeAfter {
             getItem(position)?.apply {
                 record = this@apply
-                tvPreview.text = content
 
                 if (images.isNotEmpty()) {
                     holder.recordImageAdapter.submitList(images)
-                    vpImage.visibility = View.VISIBLE
-
                     if (images.size > 1) {
-                        vpIndicator.visibility = View.VISIBLE
                         initIndicator(this@executeAfter, images.size)
-
                         vpIndicator.getChildAt(0).isSelected = true
                     }
                 }
@@ -81,7 +77,7 @@ class RecordAdapter(
         }
     }
     private fun initIndicator(binding: ItemRecordBinding, count: Int) {
-        val params = LinearLayout.LayoutParams(8.toPx(binding.root.context), 8.toPx(binding.root.context))
+        val params = LinearLayout.LayoutParams(16.toPx(binding.root.context), 16.toPx(binding.root.context))
         val context = binding.root.context
 
         params.setMargins(3.toPx(binding.root.context), 0, 3.toPx(binding.root.context), 0)
@@ -91,6 +87,10 @@ class RecordAdapter(
             indicatorImage.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.selected_image_indicator))
             indicatorImage.layoutParams = params
 
+            indicatorImage.setOnSingleClickListener {
+                setCurrentIndicator(binding, i)
+            }
+
             binding.vpIndicator.addView(indicatorImage)
         }
     }
@@ -99,6 +99,7 @@ class RecordAdapter(
         for (i in 0 until binding.vpIndicator.childCount) {
             binding.vpIndicator.getChildAt(i).isSelected = (i == position)
         }
+        binding.vpImage.setCurrentItem(position)
     }
 
     override fun getItemViewType(position: Int): Int = R.layout.item_record
