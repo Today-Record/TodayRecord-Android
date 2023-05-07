@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.todayrecord.todayrecord.screen.record.RecordViewModel" />
@@ -12,6 +13,7 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
         tools:context=".screen.record.RecordFragment">
 
         <com.google.android.material.appbar.AppBarLayout
@@ -40,34 +42,34 @@
             android:id="@+id/rv_record"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingTop="18dp"
             android:clipToPadding="false"
-            app:contentPaddingBottom="60dp"
+            android:paddingVertical="18dp"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-            tools:listitem="@layout/item_record"/>
+            tools:listitem="@layout/item_record" />
 
         <LinearLayout
             android:id="@+id/ll_record_empty"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/icon_empty"/>
+                android:src="@drawable/icon_empty" />
 
             <TextView
+                style="@style/Widget.TodayRecord.TextView.Body2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                style="@style/Widget.TodayRecord.TextView.Body2"
                 android:gravity="center"
-                android:text="@string/record_list_empty"/>
+                android:text="@string/record_list_empty"
+                android:textColor="@color/color_474a54" />
         </LinearLayout>
-
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"

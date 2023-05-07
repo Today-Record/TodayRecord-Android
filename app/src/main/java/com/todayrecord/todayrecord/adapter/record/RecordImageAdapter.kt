@@ -8,7 +8,7 @@ import com.todayrecord.todayrecord.R
 import com.todayrecord.todayrecord.databinding.ItemRecordImageBinding
 import com.todayrecord.todayrecord.util.executeAfter
 
-class RecordImageAdapter: ListAdapter<String, RecordImageViewHolder>(
+class RecordImageAdapter : ListAdapter<String, RecordImageViewHolder>(
     object : DiffUtil.ItemCallback<String>() {
         override fun areItemsTheSame(oldItem: String, newItem: String): Boolean {
             return oldItem == newItem
@@ -30,4 +30,7 @@ class RecordImageAdapter: ListAdapter<String, RecordImageViewHolder>(
             imageUrl = getItem(position)
         }
     }
+
+    override fun getItemViewType(position: Int) = R.layout.item_record_image
+
 }

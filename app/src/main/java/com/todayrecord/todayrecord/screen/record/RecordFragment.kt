@@ -16,7 +16,6 @@ import com.todayrecord.todayrecord.util.launchAndRepeatWithViewLifecycle
 import com.todayrecord.todayrecord.util.safeNavigate
 import com.todayrecord.todayrecord.util.widget.RecyclerviewItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChangedBy
 import kotlinx.coroutines.launch
@@ -50,7 +49,7 @@ class RecordFragment : DataBindingFragment<FragmentRecordsBinding>(R.layout.frag
         dataBinding.rvRecord.apply {
             adapter = recordAdapter
             layoutManager = LinearLayoutManager(requireContext())
-            addItemDecoration(RecyclerviewItemDecoration(6, 6, 0, 0, R.layout.item_record))
+            addItemDecoration(RecyclerviewItemDecoration(0, 12, 0, 0, R.layout.item_record))
             setHasFixedSize(true)
         }
     }
@@ -85,13 +84,9 @@ class RecordFragment : DataBindingFragment<FragmentRecordsBinding>(R.layout.frag
                     .distinctUntilChangedBy { it.refresh }
                     .collect { loadState ->
                         with(dataBinding) {
-
-                            if (loadState.source.refresh is LoadState.NotLoading && loadState.append.endOfPaginationReached && recordAdapter.itemCount < 1) {
-                                rvRecord.isVisible = false
-                                llRecordEmpty.isVisible = true
-                            } else {
-                                rvRecord.isVisible = true
-                                llRecordEmpty.isVisible = false
+                            (loadState.source.refresh is LoadState.NotLoading).let {
+                                rvRecord.isVisible = it && recordAdapter.itemCount > 0
+                                llRecordEmpty.isVisible = it && recordAdapter.itemCount == 0
                             }
                         }
                     }
