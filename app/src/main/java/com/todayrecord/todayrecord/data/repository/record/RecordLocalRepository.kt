@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface RecordLocalRepository {
 
-    fun getRecords() : Flow<PagingData<Record>>
+    fun getRecords(isDeleted: Boolean) : Flow<PagingData<Record>>
 
     suspend fun getRecord(recordId: String): Record?
 

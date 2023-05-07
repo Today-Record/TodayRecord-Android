@@ -1,7 +1,8 @@
 package com.todayrecord.todayrecord.screen.record
 
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
+import androidx.paging.cachedIn
+import com.todayrecord.todayrecord.data.repository.record.RecordRepository
 import com.todayrecord.todayrecord.screen.BaseViewModel
 import com.todayrecord.todayrecord.util.type.EventFlow
 import com.todayrecord.todayrecord.util.type.MutableEventFlow
@@ -11,9 +12,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RecordsViewModel @Inject constructor(
-    savedStateHandle: SavedStateHandle
+    private val recordRepository: RecordRepository
 ) : BaseViewModel() {
-
     private val _navigateToWriteRecord = MutableEventFlow<Unit>()
     val navigateToWriteRecord: EventFlow<Unit> = _navigateToWriteRecord
 
@@ -22,6 +22,9 @@ class RecordsViewModel @Inject constructor(
 
     private val _navigateToSetting = MutableEventFlow<Unit>()
     val navigateToSetting: EventFlow<Unit> = _navigateToSetting
+
+    val records = recordRepository.getRecords(false)
+        .cachedIn(viewModelScope)
 
     fun navigateToWriteRecord() {
         viewModelScope.launch {

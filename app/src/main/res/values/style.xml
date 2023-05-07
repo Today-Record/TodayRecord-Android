@@ -32,6 +32,12 @@
         <item name="fontFamily">@font/font_regular</item>
         <item name="android:textSize">8dp</item>
     </style>
+    
+    <style name="TextAppearance.TodayRecord.Body5">
+        <item name="android:fontFamily">@font/font_regular</item>
+        <item name="fontFamily">@font/font_regular</item>
+        <item name="android:textSize">6dp</item>
+    </style>
 
     <!-- TextView Widget -->
     <style name="Widget.TodayRecord.TextView.Title" parent="@style/Widget.MaterialComponents.TextView">

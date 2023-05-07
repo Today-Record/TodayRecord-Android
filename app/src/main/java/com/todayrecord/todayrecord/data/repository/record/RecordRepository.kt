@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface RecordRepository {
 
-    fun getRecords(): Flow<PagingData<Record>>
+    fun getRecords(isDeleted: Boolean): Flow<PagingData<Record>>
 
     fun getRecord(recordId: String): Flow<Result<Record?>>
 

@@ -11,8 +11,8 @@ import com.todayrecord.todayrecord.model.record.Record
 @Dao
 interface RecordDao {
 
-    @Query("SELECT * FROM RECORD ORDER BY date desc")
-    fun getRecords(): PagingSource<Int, Record>
+    @Query("SELECT * FROM RECORD WHERE isDeleted = :isDeleted ORDER BY date desc")
+    fun getRecords(isDeleted: Boolean): PagingSource<Int, Record>
 
     @Query("SELECT * FROM RECORD WHERE id is NULL OR id = :recordId")
     suspend fun getRecord(recordId: String): Record?
