@@ -9,33 +9,33 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.todayrecord.todayrecord.NavMainDirections
 import com.todayrecord.todayrecord.R
-import com.todayrecord.todayrecord.adapter.record.RecordsAdapter
+import com.todayrecord.todayrecord.adapter.record.RecordAdapter
 import com.todayrecord.todayrecord.databinding.FragmentRecordsBinding
 import com.todayrecord.todayrecord.screen.DataBindingFragment
 import com.todayrecord.todayrecord.util.launchAndRepeatWithViewLifecycle
 import com.todayrecord.todayrecord.util.safeNavigate
-import com.todayrecord.todayrecord.util.widget.RecordsItemDecoration
+import com.todayrecord.todayrecord.util.widget.RecyclerviewItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class RecordsFragment : DataBindingFragment<FragmentRecordsBinding>(R.layout.fragment_records) {
+class RecordFragment : DataBindingFragment<FragmentRecordsBinding>(R.layout.fragment_records) {
 
-    private val recordsViewModel: RecordsViewModel by viewModels()
+    private val recordViewModel: RecordViewModel by viewModels()
 
     private val recordClickListener = object : RecordClickListener {
         override fun onRecordClick(recordId: String) {
-            recordsViewModel.navigateToDetailRecord(recordId)
+            recordViewModel.navigateToDetailRecord(recordId)
         }
     }
-    private val recordsAdapter by lazy { RecordsAdapter(recordClickListener) }
+    private val recordAdapter by lazy { RecordAdapter(recordClickListener) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         dataBinding.apply {
-            viewModel = recordsViewModel
+            viewModel = recordViewModel
             lifecycleOwner = viewLifecycleOwner
         }
 
@@ -46,18 +46,9 @@ class RecordsFragment : DataBindingFragment<FragmentRecordsBinding>(R.layout.fra
 
     private fun initView() {
         dataBinding.rvRecord.apply {
-            recordsAdapter.addLoadStateListener { loadState ->
-                if (loadState.source.refresh is LoadState.NotLoading && loadState.append.endOfPaginationReached && recordsAdapter.itemCount < 1) {
-                    dataBinding.rvRecord.isVisible = false
-                    dataBinding.containerEmpty.isVisible = true
-                } else {
-                    dataBinding.rvRecord.isVisible = true
-                    dataBinding.containerEmpty.isVisible = false
-                }
-            }
-            adapter = recordsAdapter
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-            addItemDecoration(RecordsItemDecoration(6, 6))
+            adapter = recordAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+            addItemDecoration(RecyclerviewItemDecoration(6, 6, 0, 0, R.layout.item_record))
             setHasFixedSize(true)
         }
     }
@@ -68,11 +59,22 @@ class RecordsFragment : DataBindingFragment<FragmentRecordsBinding>(R.layout.fra
                 setOnMenuItemClickListener {
                     when (it.itemId) {
                         R.id.menu_setting -> {
-                            recordsViewModel.navigateToSetting()
+                            recordViewModel.navigateToSetting()
                             true
                         }
 
                         else -> false
+                    }
+                }
+            }
+            recordAdapter.apply {
+                addLoadStateListener { loadState ->
+                    if (loadState.source.refresh is LoadState.NotLoading && loadState.append.endOfPaginationReached && recordAdapter.itemCount < 1) {
+                        dataBinding.rvRecord.isVisible = false
+                        dataBinding.llRecordEmpty.isVisible = true
+                    } else {
+                        dataBinding.rvRecord.isVisible = true
+                        dataBinding.llRecordEmpty.isVisible = false
                     }
                 }
             }
@@ -82,28 +84,33 @@ class RecordsFragment : DataBindingFragment<FragmentRecordsBinding>(R.layout.fra
     private fun initObserver() {
         launchAndRepeatWithViewLifecycle {
             launch {
-                recordsViewModel.records.collectLatest {
-                    recordsAdapter.submitData(it)
+                recordViewModel.records.collectLatest {
+                    recordAdapter.submitData(it)
                 }
             }
 
             launch {
-                recordsViewModel.navigateToWriteRecord.collect {
+                recordViewModel.navigateToWriteRecord.collect {
                     findNavController().safeNavigate(NavMainDirections.actionGlobalNavWriteRecord(null))
                 }
             }
 
             launch {
-                recordsViewModel.navigateToDetailRecord.collect {
-                    findNavController().safeNavigate(RecordsFragmentDirections.actionRecordsFragmentToNavRecordDetail(it))
+                recordViewModel.navigateToDetailRecord.collect {
+                    findNavController().safeNavigate(RecordFragmentDirections.actionRecordFragmentToNavRecordDetail(it))
                 }
             }
 
             launch {
-                recordsViewModel.navigateToSetting.collect {
-                    findNavController().safeNavigate(RecordsFragmentDirections.actionRecordsFragmentToNavSetting())
+                recordViewModel.navigateToSetting.collect {
+                    findNavController().safeNavigate(RecordFragmentDirections.actionRecordFragmentToNavSetting())
                 }
             }
         }
+    }
+
+    override fun onDestroyView() {
+        dataBinding.rvRecord.adapter = null
+        super.onDestroyView()
     }
 }

@@ -8,22 +8,27 @@
             name="imageUrl"
             type="String" />
     </data>
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/iv_slider"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:scaleType="centerCrop"
-            app:imageUrl="@{imageUrl}"
-            app:layout_constraintDimensionRatio="3:2"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:shapeAppearance="@style/ShapeAppearance.TodayRecord.SmallComponent.Tint"
-            tools:context="screen.adapter.record.RecordDetailAdapter"
-            tools:src="@tools:sample/backgrounds/scenic" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="match_parent"
+        app:cardCornerRadius="2dp"
+        app:cardElevation="0dp">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_slider"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scaleType="centerCrop"
+                app:imageUrl="@{imageUrl}"
+                app:layout_constraintDimensionRatio="3:2"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:context="screen.adapter.record.RecordDetailAdapter"
+                tools:src="@tools:sample/backgrounds/scenic" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
 </layout>

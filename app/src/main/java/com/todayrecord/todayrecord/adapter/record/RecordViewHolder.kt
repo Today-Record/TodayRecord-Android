@@ -3,7 +3,7 @@ package com.todayrecord.todayrecord.adapter.record
 import androidx.recyclerview.widget.RecyclerView
 import com.todayrecord.todayrecord.databinding.ItemRecordBinding
 
-
-class RecordsViewHolder(
-    val binding: ItemRecordBinding
+class RecordViewHolder(
+    val binding: ItemRecordBinding,
+    val recordImageAdapter: RecordImageAdapter
 ): RecyclerView.ViewHolder(binding.root)

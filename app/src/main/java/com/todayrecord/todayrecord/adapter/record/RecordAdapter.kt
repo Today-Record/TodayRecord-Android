@@ -25,9 +25,9 @@ import java.time.format.DateTimeFormatter
  *  @Author JK Lee
  *  on 2023/04/26
  */
-class RecordsAdapter(
+class RecordAdapter(
     private val recordClickListener: RecordClickListener
-): PagingDataAdapter<Record, RecordsViewHolder>(
+): PagingDataAdapter<Record, RecordViewHolder>(
     object : DiffUtil.ItemCallback<Record>() {
         override fun areItemsTheSame(oldItem: Record, newItem: Record): Boolean {
             return oldItem.id == newItem.id
@@ -38,38 +38,33 @@ class RecordsAdapter(
         }
     }
 ) {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecordsViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecordViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        return RecordsViewHolder(ItemRecordBinding.inflate(inflater, parent, false))
+        val recordImageAdapter = RecordImageAdapter()
+        val binding = ItemRecordBinding.inflate(inflater, parent, false)
+        binding.vpImage.adapter = recordImageAdapter
+
+        binding.vpImage.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+
+                setCurrentIndicator(binding, position)
+            }
+        })
+
+
+        return RecordViewHolder(binding, recordImageAdapter)
     }
 
-    override fun onBindViewHolder(holder: RecordsViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RecordViewHolder, position: Int) {
         holder.binding.executeAfter {
             getItem(position)?.apply {
+                record = this@apply
                 tvPreview.text = content
 
-                val dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd\na hh:mm")
-                val parsedTime = ZonedDateTime.parse(createdAt, DateTimeFormatter.ISO_DATE_TIME)
-
-                tvDatetime.text = parsedTime.format(dateFormatter)
-
                 if (images.isNotEmpty()) {
+                    holder.recordImageAdapter.submitList(images)
                     vpImage.visibility = View.VISIBLE
-
-
-
-                    val sliderAdapter = SliderAdapter()
-                    sliderAdapter.submitList(images)
-
-                    vpImage.adapter = sliderAdapter
-
-                    vpImage.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-                        override fun onPageSelected(position: Int) {
-                            super.onPageSelected(position)
-
-                            setCurrentIndicator(this@executeAfter, position)
-                        }
-                    })
 
                     if (images.size > 1) {
                         vpIndicator.visibility = View.VISIBLE
@@ -105,4 +100,6 @@ class RecordsAdapter(
             binding.vpIndicator.getChildAt(i).isSelected = (i == position)
         }
     }
+
+    override fun getItemViewType(position: Int): Int = R.layout.item_record
 }

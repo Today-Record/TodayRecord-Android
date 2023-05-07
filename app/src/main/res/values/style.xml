@@ -78,14 +78,18 @@
     <style name="Widget.TodayRecord.TextView.Body4" parent="@style/Widget.MaterialComponents.TextView">
         <item name="android:textAppearance">@style/TextAppearance.TodayRecord.Body4</item>
         <item name="android:letterSpacing">-0.04</item>
-        <item name="lineHeight">24dp</item>
         <item name="android:includeFontPadding">false</item>
     </style>
 
     <style name="Widget.TodayRecord.TextView.BodyLong4" parent="@style/Widget.MaterialComponents.TextView">
         <item name="android:textAppearance">@style/TextAppearance.TodayRecord.Body4</item>
         <item name="android:letterSpacing">-0.04</item>
-        <item name="lineHeight">28dp</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="Widget.TodayRecord.TextView.Body5" parent="@style/Widget.MaterialComponents.TextView">
+        <item name="android:textAppearance">@style/TextAppearance.TodayRecord.Body5</item>
+        <item name="android:letterSpacing">-0.04</item>
         <item name="android:includeFontPadding">false</item>
     </style>
 

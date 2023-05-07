@@ -72,7 +72,7 @@ class IntroFragment : DataBindingFragment<FragmentIntroBinding>(R.layout.fragmen
         launchAndRepeatWithViewLifecycle {
             launch {
                 introViewModel.navigateToRecords.collect {
-                    findNavController().safeNavigate(IntroFragmentDirections.actionIntroFragmentToRecordsFragment())
+                    findNavController().safeNavigate(IntroFragmentDirections.actionIntroFragmentToRecordFragment())
                 }
             }
 

@@ -2,11 +2,21 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="com.todayrecord.todayrecord.util.TimeUtil" />
+
+        <variable
+            name="record"
+            type="com.todayrecord.todayrecord.model.record.Record" />
+    </data>
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
+        app:contentPaddingBottom="8dp"
+        app:contentPaddingLeft="16dp"
+        app:contentPaddingRight="16dp"
         app:shapeAppearance="@style/ShapeAppearance.TodayRecord.SmallComponent"
         app:strokeWidth="1dp"
         app:strokeColor="@color/color_e0e0e0"
@@ -14,10 +24,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/item_container"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="8dp"
-            android:paddingStart="14dp"
-            android:paddingEnd="16dp">
+            android:layout_height="wrap_content">
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/vp_image"
@@ -40,21 +47,24 @@
                 tools:visibility="visible" />
             <TextView
                 android:id="@+id/tv_preview"
-                style="@style/TextAppearance.TodayRecord.Body4"
-                android:layout_width="match_parent"
+                style="@style/Widget.TodayRecord.TextView.Body4"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:maxLines="5"
                 android:ellipsize="end"
                 app:layout_constraintTop_toBottomOf="@id/vp_indicator"
-                tools:text="contents"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="contents\ncontents"/>
 
             <TextView
                 android:id="@+id/tv_datetime"
-                style="@style/TextAppearance.TodayRecord.Body5"
+                style="@style/Widget.TodayRecord.TextView.Body5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
+                android:text="@{TimeUtil.getDateTimeFormatString(record.date, @string/time_regex_year_month_day_dot_half_time_newline)}"
                 android:textColor="@color/color_9f9090"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_preview"
