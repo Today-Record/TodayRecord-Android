@@ -29,11 +29,17 @@ import kotlinx.coroutines.launch
 import java.time.Instant
 
 @AndroidEntryPoint
-class WriteRecordFragment : DataBindingFragment<FragmentWriteRecordBinding>(R.layout.fragment_write_record), WriteRecordClickListener {
+class WriteRecordFragment : DataBindingFragment<FragmentWriteRecordBinding>(R.layout.fragment_write_record) {
 
     private val writeRecordViewModel: WriteRecordViewModel by hiltNavGraphViewModels(R.id.nav_write_record)
 
-    private val writeRecordImageAdapter by lazy { WriteRecordImageAdapter(this) }
+    private val writeRecordClickListener = object : WriteRecordClickListener {
+        override fun onRecordImageDeletedListener(image: String) {
+            writeRecordViewModel.deleteRecordImages(image)
+        }
+    }
+
+    private val writeRecordImageAdapter by lazy { WriteRecordImageAdapter(writeRecordClickListener) }
 
     private val onBackPressedCallback: OnBackPressedCallback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
@@ -220,10 +226,6 @@ class WriteRecordFragment : DataBindingFragment<FragmentWriteRecordBinding>(R.la
                 navBackStackEntry.lifecycle.removeObserver(resultObserver)
             }
         })
-    }
-
-    override fun onRecordImageDeletedListener(image: String) {
-        writeRecordViewModel.deleteRecordImages(image)
     }
 
     override fun onResume() {

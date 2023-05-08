@@ -1,5 +1,7 @@
 package com.todayrecord.todayrecord.screen.record
 
+import android.net.Uri
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
 import com.todayrecord.todayrecord.data.repository.record.RecordRepository
@@ -11,9 +13,12 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class RecordViewModel @Inject constructor(
-    private val recordRepository: RecordRepository
+class RecordsViewModel @Inject constructor(
+    savedStateHandle: SavedStateHandle,
+    recordRepository: RecordRepository
 ) : BaseViewModel() {
+
+    private val notifyUrl = savedStateHandle.get<Uri?>(KEY_NOTIFY_URI)
 
     val records = recordRepository.getRecords(false)
         .cachedIn(viewModelScope)
@@ -26,6 +31,13 @@ class RecordViewModel @Inject constructor(
 
     private val _navigateToSetting = MutableEventFlow<Unit>()
     val navigateToSetting: EventFlow<Unit> = _navigateToSetting
+
+    init {
+        if (notifyUrl != null) {
+            navigateToDeepLink(notifyUrl)
+            savedStateHandle.remove<Uri?>(KEY_NOTIFY_URI)
+        }
+    }
 
     fun navigateToWriteRecord() {
         viewModelScope.launch {
@@ -43,5 +55,9 @@ class RecordViewModel @Inject constructor(
         viewModelScope.launch {
             _navigateToSetting.emit(Unit)
         }
+    }
+
+    companion object {
+        private const val KEY_NOTIFY_URI = "notify_uri"
     }
 }

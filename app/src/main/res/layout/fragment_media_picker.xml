@@ -72,7 +72,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/fl_selected_media"
-                app:spanCount="3"
+                tools:spanCount="3"
                 tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 tools:listitem="@layout/item_media" />
         </androidx.constraintlayout.widget.ConstraintLayout>

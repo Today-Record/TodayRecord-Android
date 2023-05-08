@@ -17,8 +17,8 @@
         tools:layout="@layout/fragment_intro">
 
         <action
-            android:id="@+id/action_introFragment_to_recordFragment"
-            app:destination="@id/recordFragment"
+            android:id="@+id/action_introFragment_to_recordsFragment"
+            app:destination="@id/recordsFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
@@ -28,14 +28,20 @@
     </fragment>
 
     <fragment
-        android:id="@+id/recordFragment"
-        android:name="com.todayrecord.todayrecord.screen.record.RecordFragment"
+        android:id="@+id/recordsFragment"
+        android:name="com.todayrecord.todayrecord.screen.record.RecordsFragment"
         tools:layout="@layout/fragment_records">
 
         <deepLink app:uri="todayRecord://todayRecord/records" />
 
+        <argument
+            android:name="notify_uri"
+            android:defaultValue="@null"
+            app:argType="android.net.Uri"
+            app:nullable="true" />
+
         <action
-            android:id="@+id/action_recordFragment_to_nav_record_detail"
+            android:id="@+id/action_recordsFragment_to_nav_record_detail"
             app:destination="@id/nav_record_detail"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
@@ -49,7 +55,7 @@
         </action>
 
         <action
-            android:id="@+id/action_recordFragment_to_nav_setting"
+            android:id="@+id/action_recordsFragment_to_nav_setting"
             app:destination="@id/nav_setting"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"

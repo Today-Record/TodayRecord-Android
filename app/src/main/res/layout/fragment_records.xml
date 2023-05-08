@@ -7,14 +7,14 @@
 
         <variable
             name="viewModel"
-            type="com.todayrecord.todayrecord.screen.record.RecordViewModel" />
+            type="com.todayrecord.todayrecord.screen.record.RecordsViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:animateLayoutChanges="true"
-        tools:context=".screen.record.RecordFragment">
+        tools:context=".screen.record.RecordsFragment">
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
