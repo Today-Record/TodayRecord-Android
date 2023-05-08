@@ -50,11 +50,11 @@ class RecordAdapter(
         holder.binding.executeAfter {
             record = getItem(position)
             vpImage.adapter = RecordImageAdapter().apply {
-                submitList(getItem(position)?.images)
+                submitList(record?.images)
             }
 
             root.setOnSingleClickListener {
-                getItem(position)?.let { recordClickListener.onRecordClick(it.id) }
+                record?.let { recordClickListener.onRecordClick(it.id) }
             }
 
             setViewPagerTouchEvent(this)

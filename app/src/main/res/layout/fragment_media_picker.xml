@@ -41,14 +41,12 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:animateLayoutChanges="true"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
             <FrameLayout
                 android:id="@+id/fl_selected_media"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:isGone="@{viewMdoel.selectedMediaPaths.size() == 0}"
+                android:layout_height="@dimen/selected_media_image_min_height"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -72,9 +70,9 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/fl_selected_media"
-                tools:spanCount="3"
                 tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                tools:listitem="@layout/item_media" />
+                tools:listitem="@layout/item_media"
+                tools:spanCount="3" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
