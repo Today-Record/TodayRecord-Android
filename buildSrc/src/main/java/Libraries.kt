@@ -82,6 +82,10 @@ object Libraries {
         const val crashReport = "com.google.firebase:firebase-crashlytics-ktx"
     }
 
+    object PlayServices {
+        const val inAppUpdate = "com.google.android.play:app-update-ktx:${Versions.InAppUpdate.inAppUpdate}"
+    }
+
     const val desugar = "com.android.tools:desugar_jdk_libs:${Versions.desugar}" // coreLibraryDesugaring
     const val permission = "pub.devrel:easypermissions:${Versions.permission}"
     const val compressor = "id.zelory:compressor:${Versions.compressor}"

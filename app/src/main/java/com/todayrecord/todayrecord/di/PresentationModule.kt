@@ -3,6 +3,8 @@ package com.todayrecord.todayrecord.di
 import android.app.AlarmManager
 import android.app.NotificationManager
 import android.content.Context
+import com.google.android.play.core.appupdate.AppUpdateManager
+import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import com.todayrecord.todayrecord.data.repository.alarm.AlarmRepository
 import com.todayrecord.todayrecord.screen.setting.alarm.TodayRecordAlarmManager
 import com.todayrecord.todayrecord.util.manager.TodayRecordNotificationManager
@@ -19,6 +21,12 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 @Module
 object PresentationModule {
+
+    @Singleton
+    @Provides
+    internal fun provideAppUpdateManager(
+        @ApplicationContext context: Context
+    ): AppUpdateManager = AppUpdateManagerFactory.create(context)
 
     @Singleton
     @Provides

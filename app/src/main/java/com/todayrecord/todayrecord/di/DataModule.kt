@@ -2,6 +2,8 @@ package com.todayrecord.todayrecord.di
 
 import com.todayrecord.todayrecord.data.repository.alarm.AlarmRepository
 import com.todayrecord.todayrecord.data.repository.alarm.AlarmRepositoryImpl
+import com.todayrecord.todayrecord.data.repository.appinfo.AppInfoRepository
+import com.todayrecord.todayrecord.data.repository.appinfo.AppInfoRepositoryImpl
 import com.todayrecord.todayrecord.data.repository.media.MediaRepository
 import com.todayrecord.todayrecord.data.repository.media.MediaRepositoryImpl
 import com.todayrecord.todayrecord.data.repository.record.RecordLocalRepository
@@ -39,4 +41,8 @@ abstract class DataModule {
     @Singleton
     @Binds
     abstract fun bindAlarmRepository(alarmRepositoryImpl: AlarmRepositoryImpl): AlarmRepository
+
+    @Singleton
+    @Binds
+    abstract fun bindAppInfoRepository(appInfoRepositoryImpl: AppInfoRepositoryImpl): AppInfoRepository
 }

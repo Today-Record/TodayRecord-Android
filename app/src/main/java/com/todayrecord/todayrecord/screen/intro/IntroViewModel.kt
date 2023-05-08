@@ -1,5 +1,6 @@
 package com.todayrecord.todayrecord.screen.intro
 
+import android.net.Uri
 import androidx.core.net.toUri
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
@@ -15,18 +16,14 @@ class IntroViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
 ) : BaseViewModel() {
 
-    private val notifyUri = savedStateHandle.get<String>(KEY_NOTIFY_URI)
+    private val notifyUri = savedStateHandle.get<String?>(KEY_NOTIFY_URI)
 
-    private val _navigateToRecords = MutableEventFlow<Unit>()
-    val navigateToRecords: EventFlow<Unit> = _navigateToRecords
+    private val _navigateToRecords = MutableEventFlow<Uri?>()
+    val navigateToRecords: EventFlow<Uri?> = _navigateToRecords
 
     fun navigateToRecords() {
         viewModelScope.launch {
-            if (notifyUri.isNullOrEmpty()) {
-                _navigateToRecords.emit(Unit)
-            } else {
-                navigateToDeepLink(notifyUri.toUri())
-            }
+            _navigateToRecords.emit(notifyUri?.toUri())
         }
     }
 

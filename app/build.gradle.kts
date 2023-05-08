@@ -89,6 +89,9 @@ dependencies {
     implementation(Libraries.Firebase.storage)
     implementation(Libraries.Firebase.crashReport)
 
+    // In-App-Update
+    implementation(Libraries.PlayServices.inAppUpdate)
+
     /** etc */
     // CoreLibrary Desugar
     coreLibraryDesugaring(Libraries.desugar)

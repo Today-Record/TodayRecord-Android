@@ -2,8 +2,9 @@ package com.todayrecord.todayrecord.util
 
 object Const {
 
-    // permission code
+    // request code
     const val REQUEST_CODE_STORAGE_PERMISSION = 121
+    const val REQUEST_CODE_IN_APP_UPDATE = 101
 
     // ui data shared
     const val KEY_SELECTED_MEDIA_PATHS = "selected_media_paths"

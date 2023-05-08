@@ -35,15 +35,20 @@ import pub.devrel.easypermissions.PermissionRequest
 @AndroidEntryPoint
 class MediaPickerFragment :
     DataBindingFragment<FragmentMediaPickerBinding>(R.layout.fragment_media_picker),
-    EasyPermissions.PermissionCallbacks,
-    MediaPickerClickListener {
+    EasyPermissions.PermissionCallbacks {
 
     private lateinit var requestPermissionLauncher: ActivityResultLauncher<String>
 
     private val mediaPickerViewModel: MediaPickerViewModel by viewModels()
 
-    private val mediaPickerAdapter by lazy { MediaPickerAdapter(this) }
-    private val selectedMediaAdapter by lazy { SelectedMediaPathAdapter(this) }
+    private val mediaClickListener = object : MediaPickerClickListener {
+        override fun setSelectedMedia(mediaPath: String) {
+            mediaPickerViewModel.setSelectedMedias(mediaPath)
+        }
+    }
+
+    private val mediaPickerAdapter by lazy { MediaPickerAdapter(mediaClickListener) }
+    private val selectedMediaAdapter by lazy { SelectedMediaPathAdapter(mediaClickListener) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -156,10 +161,6 @@ class MediaPickerFragment :
                     .collect { dataBinding.rvMedia.scrollToPosition(0) }
             }
         }
-    }
-
-    override fun setSelectedMedia(mediaPath: String) {
-        mediaPickerViewModel.setSelectedMedias(mediaPath)
     }
 
     @AfterPermissionGranted(REQUEST_CODE_STORAGE_PERMISSION)

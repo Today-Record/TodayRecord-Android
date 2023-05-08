@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,22 +22,23 @@ import kotlinx.coroutines.flow.distinctUntilChangedBy
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class RecordFragment : DataBindingFragment<FragmentRecordsBinding>(R.layout.fragment_records) {
+class RecordsFragment : DataBindingFragment<FragmentRecordsBinding>(R.layout.fragment_records) {
 
-    private val recordViewModel: RecordViewModel by viewModels()
+    private val recordsViewModel: RecordsViewModel by viewModels()
 
     private val recordClickListener = object : RecordClickListener {
         override fun onRecordClick(recordId: String) {
-            recordViewModel.navigateToDetailRecord(recordId)
+            recordsViewModel.navigateToDetailRecord(recordId)
         }
     }
+
     private val recordAdapter by lazy { RecordAdapter(recordClickListener) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         dataBinding.apply {
-            viewModel = recordViewModel
+            viewModel = recordsViewModel
             lifecycleOwner = viewLifecycleOwner
         }
 
@@ -60,7 +62,7 @@ class RecordFragment : DataBindingFragment<FragmentRecordsBinding>(R.layout.frag
                 setOnMenuItemClickListener {
                     when (it.itemId) {
                         R.id.menu_setting -> {
-                            recordViewModel.navigateToSetting()
+                            recordsViewModel.navigateToSetting()
                             true
                         }
 
@@ -74,7 +76,7 @@ class RecordFragment : DataBindingFragment<FragmentRecordsBinding>(R.layout.frag
     private fun initObserver() {
         launchAndRepeatWithViewLifecycle {
             launch {
-                recordViewModel.records.collectLatest {
+                recordsViewModel.records.collectLatest {
                     recordAdapter.submitData(it)
                 }
             }
@@ -93,20 +95,34 @@ class RecordFragment : DataBindingFragment<FragmentRecordsBinding>(R.layout.frag
             }
 
             launch {
-                recordViewModel.navigateToWriteRecord.collect {
+                recordsViewModel.navigateToWriteRecord.collect {
                     findNavController().safeNavigate(NavMainDirections.actionGlobalNavWriteRecord(null))
                 }
             }
 
             launch {
-                recordViewModel.navigateToDetailRecord.collect {
-                    findNavController().safeNavigate(RecordFragmentDirections.actionRecordFragmentToNavRecordDetail(it))
+                recordsViewModel.navigateToDetailRecord.collect {
+                    findNavController().safeNavigate(RecordsFragmentDirections.actionRecordsFragmentToNavRecordDetail(it))
                 }
             }
 
             launch {
-                recordViewModel.navigateToSetting.collect {
-                    findNavController().safeNavigate(RecordFragmentDirections.actionRecordFragmentToNavSetting())
+                recordsViewModel.navigateToSetting.collect {
+                    findNavController().safeNavigate(RecordsFragmentDirections.actionRecordsFragmentToNavSetting())
+                }
+            }
+
+            launch {
+                recordsViewModel.navigateToDeepLink.collect {
+                    findNavController().navigate(
+                        it,
+                        NavOptions.Builder()
+                            .setEnterAnim(androidx.navigation.ui.R.anim.nav_default_enter_anim)
+                            .setExitAnim(androidx.navigation.ui.R.anim.nav_default_exit_anim)
+                            .setPopEnterAnim(androidx.navigation.ui.R.anim.nav_default_pop_enter_anim)
+                            .setPopExitAnim(androidx.navigation.ui.R.anim.nav_default_pop_exit_anim)
+                            .build()
+                    )
                 }
             }
         }

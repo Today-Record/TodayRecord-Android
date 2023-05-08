@@ -63,7 +63,7 @@ class TodayRecordNotificationManager @Inject constructor(
     }
 
     fun getNotificationContentIntent(requestCode: Int): PendingIntent {
-        val contentIntent = Intent(Intent.ACTION_VIEW, Uri.parse("todayRecord://todayRecord/records"))
+        val contentIntent = Intent(Intent.ACTION_VIEW, Uri.parse("todayRecord://todayRecord/records/write"))
         return PendingIntent.getActivity(context, requestCode, contentIntent, if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) PendingIntent.FLAG_MUTABLE else PendingIntent.FLAG_UPDATE_CURRENT)
     }
 

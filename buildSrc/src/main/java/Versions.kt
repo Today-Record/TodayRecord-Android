@@ -36,6 +36,9 @@ object Versions {
         const val crashReportGradle = "2.9.4"
     }
 
+    object InAppUpdate {
+        const val inAppUpdate = "2.0.1"
+    }
     const val googleService = "4.3.15"
     const val moshi = "1.14.0"
     const val glide = "4.14.2"
