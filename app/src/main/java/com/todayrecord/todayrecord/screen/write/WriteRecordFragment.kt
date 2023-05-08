@@ -22,7 +22,6 @@ import com.todayrecord.todayrecord.util.hideKeyboard
 import com.todayrecord.todayrecord.util.launchAndRepeatWithViewLifecycle
 import com.todayrecord.todayrecord.util.listener.DebounceEditTextListener
 import com.todayrecord.todayrecord.util.safeNavigate
-import com.todayrecord.todayrecord.util.showKeyboard
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -213,7 +212,6 @@ class WriteRecordFragment : DataBindingFragment<FragmentWriteRecordBinding>(R.la
                 if (!navBackStackEntry.savedStateHandle.contains(KEY_SELECTED_MEDIA_PATHS)) return@LifecycleEventObserver
                 val selectedImages: List<String> = navBackStackEntry.savedStateHandle[KEY_SELECTED_MEDIA_PATHS] ?: emptyList()
                 writeRecordViewModel.setRecordImages(selectedImages)
-                dataBinding.etWriteRecord.showKeyboard(true)
 
                 navBackStackEntry.savedStateHandle.remove<List<String>?>(KEY_SELECTED_MEDIA_PATHS)
             }

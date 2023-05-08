@@ -3,7 +3,7 @@ package com.todayrecord.todayrecord.adapter.write
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
 import com.todayrecord.todayrecord.R
 import com.todayrecord.todayrecord.databinding.ItemSelectedImageBinding
 import com.todayrecord.todayrecord.screen.write.WriteRecordClickListener
@@ -11,18 +11,19 @@ import com.todayrecord.todayrecord.util.executeAfter
 import com.todayrecord.todayrecord.util.listener.setOnSingleClickListener
 
 class WriteRecordImageAdapter(
-    private val writeRecordClickListener: WriteRecordClickListener
-) : ListAdapter<String, WriteRecordImageViewHolder>(
-    object : DiffUtil.ItemCallback<String>() {
-        override fun areItemsTheSame(oldItem: String, newItem: String): Boolean {
-            return oldItem == newItem
-        }
+    private val writeRecordClickListener: WriteRecordClickListener,
+    private val selectedImagePaths: MutableList<String> = mutableListOf()
+) : RecyclerView.Adapter<WriteRecordImageViewHolder>() {
 
-        override fun areContentsTheSame(oldItem: String, newItem: String): Boolean {
-            return oldItem == newItem
-        }
+    private val diffCallback = WriteRecordImageDiffCallback(selectedImagePaths, emptyList())
+
+    fun submitList(updatedList: List<String>) {
+        diffCallback.newList = updatedList
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
+        selectedImagePaths.clear()
+        selectedImagePaths.addAll(updatedList)
+        diffResult.dispatchUpdatesTo(this)
     }
-) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WriteRecordImageViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -31,12 +32,36 @@ class WriteRecordImageAdapter(
 
     override fun onBindViewHolder(holder: WriteRecordImageViewHolder, position: Int) {
         holder.binding.executeAfter {
-            imageUrl = getItem(position)
+            imageUrl = selectedImagePaths[position]
             clSelectedImage.setOnSingleClickListener {
                 writeRecordClickListener.onRecordImageDeletedListener(imageUrl.toString())
             }
         }
     }
 
+    override fun getItemCount(): Int = selectedImagePaths.size
+
     override fun getItemViewType(position: Int) = R.layout.item_selected_image
+
+    inner class WriteRecordImageDiffCallback(
+        private val oldList: List<String>,
+        var newList: List<String>
+    ): DiffUtil.Callback() {
+
+        override fun getOldListSize(): Int = oldList.size
+
+        override fun getNewListSize(): Int = newList.size
+
+        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            val oldItem = oldList[oldItemPosition]
+            val newItem = newList[newItemPosition]
+            return oldItem == newItem
+        }
+
+        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            val oldItem = oldList[oldItemPosition]
+            val newItem = newList[newItemPosition]
+            return oldItem == newItem
+        }
+    }
 }
