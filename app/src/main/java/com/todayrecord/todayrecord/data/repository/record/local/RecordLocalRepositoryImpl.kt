@@ -12,10 +12,9 @@ import javax.inject.Inject
 class RecordLocalRepositoryImpl @Inject constructor(
     private val recordDatabase: RecordDatabase
 ): RecordLocalRepository {
-
-    override fun getRecords(): Flow<PagingData<Record>> = Pager(
+    override fun getRecords(isDeleted: Boolean): Flow<PagingData<Record>> = Pager(
         config = PagingConfig(pageSize = KEEP_LOAD_SIZE, enablePlaceholders = false),
-        pagingSourceFactory = { recordDatabase.record().getRecords() }
+        pagingSourceFactory = { recordDatabase.record().getRecords(isDeleted) }
     ).flow
 
     override suspend fun getRecord(recordId: String): Record? {

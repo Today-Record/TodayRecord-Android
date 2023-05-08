@@ -12,8 +12,8 @@ class RecordRepositoryImpl @Inject constructor(
     private val recordRemoteRepository: RecordRemoteRepository
 ) : RecordRepository {
 
-    override fun getRecords(): Flow<PagingData<Record>> {
-        return recordLocalRepository.getRecords()
+    override fun getRecords(isDeleted: Boolean): Flow<PagingData<Record>> {
+        return recordLocalRepository.getRecords(isDeleted)
     }
 
     override fun getRecord(recordId: String): Flow<Result<Record?>> = flow {
