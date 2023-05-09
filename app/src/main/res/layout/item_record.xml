@@ -73,6 +73,7 @@
                 android:maxLines="5"
                 android:text="@{record.content}"
                 android:textColor="@color/color_474a54"
+                app:isGone="@{record.content == null}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/ll_record_image"

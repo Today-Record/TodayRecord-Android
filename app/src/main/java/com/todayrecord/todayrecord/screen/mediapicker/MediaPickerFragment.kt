@@ -1,11 +1,14 @@
 package com.todayrecord.todayrecord.screen.mediapicker
 
 import android.Manifest
+import android.animation.AnimatorSet
+import android.animation.ValueAnimator
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
@@ -87,7 +90,6 @@ class MediaPickerFragment :
             rvSelectedMedia.apply {
                 adapter = selectedMediaAdapter
                 layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-                setHasFixedSize(true)
             }
         }
     }
@@ -120,6 +122,7 @@ class MediaPickerFragment :
             launch {
                 mediaPickerViewModel.selectedMediaPaths.collect {
                     selectedMediaAdapter.submitList(it)
+                    updateSelectedMediaImagesRecyclerView(it)
                 }
             }
 
@@ -161,6 +164,35 @@ class MediaPickerFragment :
                     .collect { dataBinding.rvMedia.scrollToPosition(0) }
             }
         }
+    }
+    private fun updateSelectedMediaImagesRecyclerView(selectMedias: List<String>?) {
+        dataBinding.flSelectedMedia.let {
+            it.post {
+                if (selectMedias.isNullOrEmpty()) {
+                    slideView(it, it.layoutParams.height, resources.getDimensionPixelSize(R.dimen.selected_media_image_min_height))
+                } else {
+                    slideView(it, it.layoutParams.height, resources.getDimensionPixelSize(R.dimen.selected_media_image_max_height))
+                }
+            }
+        }
+    }
+
+    private fun slideView(view: View, currentHeight: Int, newHeight: Int) {
+        ValueAnimator.ofInt(currentHeight, newHeight)
+            .apply {
+                addUpdateListener {
+                    view.layoutParams.height = it.animatedValue as Int
+                    view.requestLayout()
+                }
+            }
+            .let {
+                AnimatorSet()
+                    .apply {
+                        interpolator = AccelerateDecelerateInterpolator()
+                        play(it)
+                    }
+                    .start()
+            }
     }
 
     @AfterPermissionGranted(REQUEST_CODE_STORAGE_PERMISSION)

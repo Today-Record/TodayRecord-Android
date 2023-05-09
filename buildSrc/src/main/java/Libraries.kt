@@ -88,6 +88,7 @@ object Libraries {
 
     const val desugar = "com.android.tools:desugar_jdk_libs:${Versions.desugar}" // coreLibraryDesugaring
     const val permission = "pub.devrel:easypermissions:${Versions.permission}"
+    const val splashScreen = "androidx.core:core-splashscreen:${Versions.splashScreen}"
     const val compressor = "id.zelory:compressor:${Versions.compressor}"
     const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
     const val lottie = "com.airbnb.android:lottie:${Versions.lottie}"

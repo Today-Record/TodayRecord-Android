@@ -2,12 +2,16 @@ package com.todayrecord.todayrecord.screen.record
 
 import android.os.Bundle
 import android.view.View
+import android.view.animation.DecelerateInterpolator
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.transition.Fade
+import androidx.transition.TransitionManager
+import androidx.transition.TransitionSet
 import com.todayrecord.todayrecord.NavMainDirections
 import com.todayrecord.todayrecord.R
 import com.todayrecord.todayrecord.adapter.record.RecordAdapter
@@ -19,6 +23,7 @@ import com.todayrecord.todayrecord.util.widget.RecyclerviewItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChangedBy
+import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -84,12 +89,20 @@ class RecordsFragment : DataBindingFragment<FragmentRecordsBinding>(R.layout.fra
             launch {
                 recordAdapter.loadStateFlow
                     .distinctUntilChangedBy { it.refresh }
-                    .collect { loadState ->
+                    .filter { it.source.refresh is LoadState.NotLoading }
+                    .collect {
                         with(dataBinding) {
-                            (loadState.source.refresh is LoadState.NotLoading).let {
-                                rvRecord.isVisible = it && recordAdapter.itemCount > 0
-                                llRecordEmpty.isVisible = it && recordAdapter.itemCount == 0
+                            if (!rvRecord.isVisible && !llRecordEmpty.isVisible) {
+                                TransitionManager.beginDelayedTransition(flRecord, TransitionSet().apply {
+                                    ordering = TransitionSet.ORDERING_TOGETHER
+                                    addTransition(Fade().setStartDelay(300))
+                                    duration = 400
+                                    interpolator = DecelerateInterpolator()
+                                    addTarget(if (recordAdapter.itemCount == 0) llRecordEmpty else rvRecord)
+                                })
                             }
+                            rvRecord.isVisible = recordAdapter.itemCount > 0
+                            llRecordEmpty.isVisible = recordAdapter.itemCount == 0
                         }
                     }
             }

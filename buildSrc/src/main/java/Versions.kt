@@ -44,6 +44,7 @@ object Versions {
     const val glide = "4.14.2"
     const val timber = "5.0.1"
     const val desugar = "1.1.5"
+    const val splashScreen = "1.0.0"
     const val permission = "3.0.0"
     const val compressor = "3.0.1"
     const val lottie ="5.2.0"

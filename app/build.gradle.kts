@@ -92,6 +92,9 @@ dependencies {
     // In-App-Update
     implementation(Libraries.PlayServices.inAppUpdate)
 
+    // Splash Screen
+    implementation(Libraries.splashScreen)
+
     /** etc */
     // CoreLibrary Desugar
     coreLibraryDesugaring(Libraries.desugar)

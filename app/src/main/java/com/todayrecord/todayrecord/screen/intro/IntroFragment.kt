@@ -18,7 +18,12 @@ import androidx.core.view.WindowInsetsControllerCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.transition.*
+import androidx.transition.Fade
+import androidx.transition.Slide
+import androidx.transition.Transition
+import androidx.transition.TransitionListenerAdapter
+import androidx.transition.TransitionManager
+import androidx.transition.TransitionSet
 import com.todayrecord.todayrecord.R
 import com.todayrecord.todayrecord.databinding.FragmentIntroBinding
 import com.todayrecord.todayrecord.screen.DataBindingFragment
