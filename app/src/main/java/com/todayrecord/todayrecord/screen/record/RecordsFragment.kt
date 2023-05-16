@@ -61,16 +61,14 @@ class RecordsFragment : DataBindingFragment<FragmentRecordsBinding>(R.layout.fra
     }
 
     private fun initListener() {
-        dataBinding.tlRecord.apply {
-            setOnMenuItemClickListener {
-                when (it.itemId) {
-                    R.id.menu_setting -> {
-                        recordsViewModel.navigateToSetting()
-                        true
-                    }
-
-                    else -> false
+        dataBinding.tlRecord.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.menu_setting -> {
+                    recordsViewModel.navigateToSetting()
+                    true
                 }
+
+                else -> false
             }
         }
     }

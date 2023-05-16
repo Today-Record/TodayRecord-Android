@@ -19,7 +19,7 @@
             app:destination="@id/binRecordDetailEditBottomSheetDialogFragment" />
 
         <action
-            android:id="@+id/action_recordDetailFragment__to_nav_write_record"
+            android:id="@+id/action_recordDetailFragment_to_nav_write_record"
             app:destination="@id/nav_write_record"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
