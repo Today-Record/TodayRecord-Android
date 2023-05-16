@@ -29,6 +29,9 @@ interface RecordDao {
     @Query("DELETE FROM RECORD WHERE id is NULL OR id = :recordId")
     suspend fun deleteRecord(recordId: String)
 
+    @Query("DELETE FROM RECORD WHERE isDeleted")
+    suspend fun clearBinRecords()
+
     @Query("DELETE FROM RECORD")
-    suspend fun clearRecords()
+    suspend fun clearAllRecords()
 }

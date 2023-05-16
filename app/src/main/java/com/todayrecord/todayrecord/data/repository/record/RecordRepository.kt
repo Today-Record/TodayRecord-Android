@@ -20,4 +20,6 @@ interface RecordRepository {
     suspend fun deleteRecord(recordId: String)
 
     suspend fun clearRecords()
+
+    suspend fun clearBinRecords()
 }

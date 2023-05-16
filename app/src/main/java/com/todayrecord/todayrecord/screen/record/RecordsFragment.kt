@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.transition.Fade
 import androidx.transition.TransitionManager
 import androidx.transition.TransitionSet
-import com.todayrecord.todayrecord.NavMainDirections
 import com.todayrecord.todayrecord.R
 import com.todayrecord.todayrecord.adapter.record.RecordAdapter
 import com.todayrecord.todayrecord.databinding.FragmentRecordsBinding
@@ -62,17 +61,15 @@ class RecordsFragment : DataBindingFragment<FragmentRecordsBinding>(R.layout.fra
     }
 
     private fun initListener() {
-        with(dataBinding) {
-            tlRecord.apply {
-                setOnMenuItemClickListener {
-                    when (it.itemId) {
-                        R.id.menu_setting -> {
-                            recordsViewModel.navigateToSetting()
-                            true
-                        }
-
-                        else -> false
+        dataBinding.tlRecord.apply {
+            setOnMenuItemClickListener {
+                when (it.itemId) {
+                    R.id.menu_setting -> {
+                        recordsViewModel.navigateToSetting()
+                        true
                     }
+
+                    else -> false
                 }
             }
         }
@@ -109,7 +106,7 @@ class RecordsFragment : DataBindingFragment<FragmentRecordsBinding>(R.layout.fra
 
             launch {
                 recordsViewModel.navigateToWriteRecord.collect {
-                    findNavController().safeNavigate(NavMainDirections.actionGlobalNavWriteRecord(null))
+                    findNavController().safeNavigate(RecordsFragmentDirections.actionRecordsFragmentToNavWriteRecord(null))
                 }
             }
 

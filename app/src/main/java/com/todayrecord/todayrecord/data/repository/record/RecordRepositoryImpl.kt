@@ -88,6 +88,10 @@ class RecordRepositoryImpl @Inject constructor(
         recordLocalRepository.clearRecords()
     }
 
+    override suspend fun clearBinRecords() {
+        recordLocalRepository.clearBinRecords()
+    }
+
     companion object {
         private const val IMAGE_UPLOAD_FAIL = "image upload fail exception!"
     }

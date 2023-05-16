@@ -7,15 +7,14 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.todayrecord.todayrecord.NavMainDirections
 import com.todayrecord.todayrecord.R
 import com.todayrecord.todayrecord.adapter.recorddetail.RecordDetailAdapter
 import com.todayrecord.todayrecord.databinding.FragmentRecordDetailBinding
 import com.todayrecord.todayrecord.screen.DataBindingFragment
 import com.todayrecord.todayrecord.util.Const.KEY_IS_RECORD_UPDATE
-import com.todayrecord.todayrecord.util.widget.RecyclerviewItemDecoration
 import com.todayrecord.todayrecord.util.launchAndRepeatWithViewLifecycle
 import com.todayrecord.todayrecord.util.safeNavigate
+import com.todayrecord.todayrecord.util.widget.RecyclerviewItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -101,7 +100,8 @@ class RecordDetailFragment : DataBindingFragment<FragmentRecordDetailBinding>(R.
                     if (findNavController().currentDestination?.id == R.id.recordDetailEditBottomSheetDialogFragment) {
                         findNavController().popBackStack()
                     }
-                    findNavController().safeNavigate(NavMainDirections.actionGlobalNavWriteRecord(it))
+
+                    findNavController().safeNavigate(RecordDetailFragmentDirections.actionRecordDetailFragmentToNavWriteRecord(it))
                 }
             }
 
