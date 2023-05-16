@@ -4,6 +4,7 @@ import androidx.paging.PagingData
 import com.todayrecord.todayrecord.model.record.Record
 import com.todayrecord.todayrecord.util.type.Result
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
@@ -29,19 +30,16 @@ class RecordRepositoryImpl @Inject constructor(
             .filterNot { it.second.first() == 'h' }
 
         if (uploadImages.isNotEmpty()) {
-            val uploadImagesPaths = recordRemoteRepository.imageUpload(uploadImages.map { it.second })
-
-            getNewRecordImagesPath(record.images, uploadImages.map { it.first }, uploadImagesPaths).let {
-                if (it.isNotEmpty()) {
-                    emit(Result.Success(recordLocalRepository.createRecord(record.copy(images = it))))
-                } else {
-                    emit(Result.Error(Exception(IMAGE_UPLOAD_FAIL)))
-                }
-            }
+            val newImagesPaths = getNewRecordImagesPath(
+                record.images,
+                uploadImages.map { it.first },
+                recordRemoteRepository.imageUpload(uploadImages.map { it.second })
+            )
+            emit(Result.Success(recordLocalRepository.createRecord(record.copy(images = newImagesPaths))))
         } else {
             emit(Result.Success(recordLocalRepository.createRecord(record)))
         }
-    }
+    }.catch { e -> emit(Result.Error(e as? Exception ?: Exception(e))) }
 
     override fun updateRecord(record: Record): Flow<Result<Unit>> = flow {
         emit(Result.Loading)
@@ -50,19 +48,17 @@ class RecordRepositoryImpl @Inject constructor(
             .filterNot { it.second.first() == 'h' }
 
         if (uploadImages.isNotEmpty()) {
-            val uploadImagesPaths = recordRemoteRepository.imageUpload(uploadImages.map { it.second })
+            val newImagesPaths = getNewRecordImagesPath(
+                record.images,
+                uploadImages.map { it.first },
+                recordRemoteRepository.imageUpload(uploadImages.map { it.second })
+            )
 
-            getNewRecordImagesPath(record.images, uploadImages.map { it.first }, uploadImagesPaths).let {
-                if (it.isNotEmpty()) {
-                    emit(Result.Success(recordLocalRepository.updateRecord(record.copy(images = it))))
-                } else {
-                    emit(Result.Error(Exception(IMAGE_UPLOAD_FAIL)))
-                }
-            }
+            emit(Result.Success(recordLocalRepository.updateRecord(record.copy(images = newImagesPaths))))
         } else {
             emit(Result.Success(recordLocalRepository.updateRecord(record)))
         }
-    }
+    }.catch { e -> emit(Result.Error(e as? Exception ?: Exception(e))) }
 
     private fun getNewRecordImagesPath(recordImages: List<String>, existingIndex: List<Int>, uploadImagesPaths: List<String>): List<String> {
         return if (uploadImagesPaths.isNotEmpty()) {
@@ -90,9 +86,5 @@ class RecordRepositoryImpl @Inject constructor(
 
     override suspend fun clearBinRecords() {
         recordLocalRepository.clearBinRecords()
-    }
-
-    companion object {
-        private const val IMAGE_UPLOAD_FAIL = "image upload fail exception!"
     }
 }

@@ -1,13 +1,13 @@
 package com.todayrecord.todayrecord.adapter.recorddetail
 
-import androidx.recyclerview.widget.RecyclerView
+import com.todayrecord.todayrecord.adapter.DataBindingViewHolder
 import com.todayrecord.todayrecord.databinding.ItemRecordDetailImageBinding
 import com.todayrecord.todayrecord.databinding.ItemRecordDetailTextBinding
 
 class RecordDetailImageViewHolder(
     val binding: ItemRecordDetailImageBinding
-) : RecyclerView.ViewHolder(binding.root)
+) : DataBindingViewHolder<ItemRecordDetailImageBinding>(binding)
 
 class RecordDetailTextViewHolder(
     val binding: ItemRecordDetailTextBinding
-) : RecyclerView.ViewHolder(binding.root)
+) : DataBindingViewHolder<ItemRecordDetailTextBinding>(binding)
