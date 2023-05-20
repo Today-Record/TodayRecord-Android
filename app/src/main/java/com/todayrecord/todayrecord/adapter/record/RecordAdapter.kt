@@ -26,6 +26,14 @@ class RecordAdapter(
         override fun areContentsTheSame(oldItem: Record, newItem: Record): Boolean {
             return oldItem == newItem
         }
+
+        override fun getChangePayload(oldItem: Record, newItem: Record): Any? {
+            return if (oldItem != newItem) {
+                PAYLOAD_RECORD_UPDATE
+            } else {
+                super.getChangePayload(oldItem, newItem)
+            }
+        }
     }
 ) {
 
@@ -62,6 +70,26 @@ class RecordAdapter(
         }
     }
 
+    override fun onBindViewHolder(holder: RecordViewHolder, position: Int, payloads: MutableList<Any>) {
+        if (payloads.isNotEmpty() && payloads.contains(PAYLOAD_RECORD_UPDATE)) {
+            holder.binding.executeAfter {
+                record = getItem(position)
+                vpImage.adapter = RecordImageAdapter().apply {
+                    submitList(record?.images)
+                }
+
+                root.setOnSingleClickListener {
+                    record?.let { recordClickListener.onRecordClick(it.id) }
+                }
+
+                setViewPagerTouchEvent(this)
+                calculateTabIndicator(this, getItem(position)?.images?.size ?: 0)
+            }
+        } else {
+            super.onBindViewHolder(holder, position, payloads)
+        }
+    }
+
     private fun calculateTabIndicator(binding: ItemRecordBinding, indicatorSize: Int) {
         binding.tbRecordImage.let {
             it.removeAllTabs()
@@ -92,4 +120,8 @@ class RecordAdapter(
     }
 
     override fun getItemViewType(position: Int): Int = R.layout.item_record
+
+    companion object {
+        private const val PAYLOAD_RECORD_UPDATE = "PAYLOAD_RECORD_UPDATE"
+    }
 }

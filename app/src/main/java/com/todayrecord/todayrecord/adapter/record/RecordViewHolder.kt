@@ -1,8 +1,8 @@
 package com.todayrecord.todayrecord.adapter.record
 
-import androidx.recyclerview.widget.RecyclerView
+import com.todayrecord.todayrecord.adapter.DataBindingViewHolder
 import com.todayrecord.todayrecord.databinding.ItemRecordBinding
 
 class RecordViewHolder(
     val binding: ItemRecordBinding
-): RecyclerView.ViewHolder(binding.root)
+): DataBindingViewHolder<ItemRecordBinding>(binding)

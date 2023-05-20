@@ -25,7 +25,7 @@ class RecordRemoteRepositoryImpl @Inject constructor(
                 }
             }
         } catch (exception: Exception) {
-            emptyList()
+            throw Exception("image upload fail exception!")
         }
     }
 }

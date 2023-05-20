@@ -33,6 +33,12 @@
     <string name="record_detail_bin_edit_restore">복원</string>
     <string name="record_detail_bin_deleted">영구 삭제</string>
 
+    <!-- bin records -->
+    <string name="bin_record_title">휴지통</string>
+    <string name="bin_record_list_empty">휴지통이 깨끗해요 :D</string>
+    <string name="bin_record_clear_popup_title">휴지통 비우기</string>
+    <string name="bin_record_clear_popup_description">휴지통의 모든 기록을 영구삭제합니다.</string>
+
     <!-- write -->
     <string name="write_record_create_title">기록 작성</string>
     <string name="write_record_update_title">기록 수정</string>

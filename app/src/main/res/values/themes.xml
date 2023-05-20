@@ -10,7 +10,7 @@
         <item name="colorSecondaryVariant">@color/color_474a54</item>
         <item name="colorOnSecondary">@color/color_000000</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
         <!-- Shape -->
         <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.TodayRecord.SmallComponent</item>
         <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.TodayRecord.MediumComponent</item>

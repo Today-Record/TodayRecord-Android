@@ -38,7 +38,6 @@ class RecyclerviewItemDecoration(
                 when {
                     isFirstItem && isLastItem -> return@let
                     isFirstItem -> outRect.bottom = this.bottom.toPx(context)
-                    isLastItem -> outRect.top = this.top.toPx(context)
                     else -> {
                         outRect.top = this.top.toPx(context)
                         outRect.bottom = this.bottom.toPx(context)

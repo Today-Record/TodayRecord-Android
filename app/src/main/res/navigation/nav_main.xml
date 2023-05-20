@@ -61,21 +61,21 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+        <action
+            android:id="@+id/action_recordsFragment_to_nav_write_record"
+            app:destination="@id/nav_write_record"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim">
+
+            <argument
+                android:name="record"
+                app:argType="com.todayrecord.todayrecord.model.record.Record"
+                app:nullable="true" />
+        </action>
     </fragment>
-
-    <action
-        android:id="@+id/action_global_nav_write_record"
-        app:destination="@id/nav_write_record"
-        app:enterAnim="@anim/nav_default_enter_anim"
-        app:exitAnim="@anim/nav_default_exit_anim"
-        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-        app:popExitAnim="@anim/nav_default_pop_exit_anim">
-
-        <argument
-            android:name="record"
-            app:argType="com.todayrecord.todayrecord.model.record.Record"
-            app:nullable="true" />
-    </action>
 
     <include app:graph="@navigation/nav_write_record" />
 

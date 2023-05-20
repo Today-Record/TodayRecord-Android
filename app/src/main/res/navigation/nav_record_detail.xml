@@ -17,6 +17,20 @@
         <action
             android:id="@+id/action_recordDetailFragment_to_binRecordDetailEditBottomSheetDialogFragment"
             app:destination="@id/binRecordDetailEditBottomSheetDialogFragment" />
+
+        <action
+            android:id="@+id/action_recordDetailFragment_to_nav_write_record"
+            app:destination="@id/nav_write_record"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim">
+
+            <argument
+                android:name="record"
+                app:argType="com.todayrecord.todayrecord.model.record.Record"
+                app:nullable="true" />
+        </action>
     </fragment>
 
     <dialog
