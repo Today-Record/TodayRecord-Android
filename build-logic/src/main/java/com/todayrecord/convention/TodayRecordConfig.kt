@@ -1,6 +1,10 @@
+package com.todayrecord.convention
+
+
 import org.gradle.api.JavaVersion
 
-object Config {
+@Suppress("unused")
+object TodayRecordConfig {
     const val applicationId = "com.todayrecord.todayrecord"
 
     const val minSdk = 24

@@ -69,9 +69,5 @@
                 <action android:name="android.app.action.SCHEDULE_EXACT_ALARM_PERMISSION_STATE_CHANGED" />
             </intent-filter>
         </receiver>
-
-        <meta-data
-            android:name="firebase_crashlytics_collection_enabled"
-            android:value="${crashlyticsCollectionEnabled}" />
     </application>
 </manifest>
