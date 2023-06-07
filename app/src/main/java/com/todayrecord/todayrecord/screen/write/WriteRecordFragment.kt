@@ -217,11 +217,11 @@ class WriteRecordFragment : DataBindingFragment<FragmentWriteRecordBinding>(R.la
             }
         }
 
-        navBackStackEntry.lifecycle.addObserver(resultObserver)
+        navBackStackEntry.getLifecycle().addObserver(resultObserver)
 
         viewLifecycleOwner.lifecycle.addObserver(LifecycleEventObserver { _, event ->
             if (event == Lifecycle.Event.ON_DESTROY) {
-                navBackStackEntry.lifecycle.removeObserver(resultObserver)
+                navBackStackEntry.getLifecycle().removeObserver(resultObserver)
             }
         })
     }

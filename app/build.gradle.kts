@@ -2,7 +2,7 @@ plugins {
     id("com.android.application")
     id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
-    id("com.google.devtools.ksp") version "1.8.0-1.0.9"
+    id("com.google.devtools.ksp")
     kotlin("android")
     kotlin("kapt")
     id("kotlin-parcelize")
@@ -49,77 +49,63 @@ android {
 }
 
 dependencies {
-
     // AndroidX
-    implementation(Libraries.AndroidX.core)
-    implementation(Libraries.AndroidX.appcompat)
-    implementation(Libraries.AndroidX.design)
-    implementation(Libraries.AndroidX.constraint)
-    implementation(Libraries.AndroidX.activity)
-    implementation(Libraries.AndroidX.fragment)
-    implementation(Libraries.AndroidX.startUp)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.core.splashScreen)
+    implementation(libs.androidx.constraint)
+    implementation(libs.androidx.startup)
     // AndroidX Paging
-    implementation(Libraries.AndroidX.Paging.runtime)
+    implementation(libs.androidx.paging.runtime)
+    // AndroidX Lifecycle
+    implementation(libs.bundles.androidx.lifecycle)
     // AndroidX Navigation
-    implementation(Libraries.AndroidX.Navigation.ui)
-    implementation(Libraries.AndroidX.Navigation.fragment)
+    implementation(libs.bundles.androidx.navigation)
     // AndroidX Room
-    implementation(Libraries.AndroidX.Room.runtime)
-    implementation(Libraries.AndroidX.Room.coroutine)
-    implementation(Libraries.AndroidX.Room.paging)
-    ksp(Libraries.AndroidX.Room.compiler)
+    implementation(libs.bundles.androidx.room)
+    kapt(libs.androidx.room.compiler)
     // AndroidX DataStore
-    implementation(Libraries.AndroidX.dataStore)
+    implementation(libs.androidx.dataStore)
+
+    // Android
+    implementation(libs.android.material)
+    coreLibraryDesugaring(libs.android.desugarJdkLibs)
 
     // Kotlin
-    implementation(Libraries.Kotlin.kotlin)
-    implementation(Libraries.Kotlin.coroutine)
+    implementation(libs.kotlin.stdlib)
+    implementation(libs.kotlinx.coroutines)
 
     // Dagger2 ( DI )
-    implementation(Libraries.Dagger.androidHilt)
-    kapt(Libraries.Dagger.androidHiltCompiler)
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
     // Dagger2 ( DI ) Android Support
-    implementation(Libraries.AndroidX.Hilt.common)
-    implementation(Libraries.AndroidX.Hilt.navigation)
-    kapt(Libraries.AndroidX.Hilt.compiler)
+    implementation(libs.androidx.hilt.common)
+    implementation(libs.androidx.hilt.navigation)
+    kapt(libs.androidx.hilt.compiler)
 
     // Firebase
-    implementation(platform(Libraries.Firebase.bom))
-    implementation(Libraries.Firebase.analytics)
-    implementation(Libraries.Firebase.storage)
-    implementation(Libraries.Firebase.crashReport)
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.storage)
+    implementation(libs.firebase.crashlytics)
 
     // In-App-Update
-    implementation(Libraries.PlayServices.inAppUpdate)
-
-    // Splash Screen
-    implementation(Libraries.splashScreen)
+    implementation(libs.playServices.inAppUpdate)
 
     /** etc */
-    // CoreLibrary Desugar
-    coreLibraryDesugaring(Libraries.desugar)
-
     // Image loading library
-    implementation(Libraries.Glide.core)
-    ksp(Libraries.Glide.compiler)
-
+    implementation(libs.glide)
+    ksp(libs.glide.compiler)
     // Easy Permission
-    implementation(Libraries.permission)
-
+    implementation(libs.easyPermission)
     // Moshi
-    implementation(Libraries.Moshi.core)
-    ksp(Libraries.Moshi.codegen)
-
+    implementation(libs.moshi.core)
+    ksp(libs.moshi.codegen)
     // log tracker
-    api(Libraries.timber)
+    api(libs.timber)
     // image compressor
-    api(Libraries.compressor)
+    api(libs.compressor)
     // lottie
-    api(Libraries.lottie)
+    api(libs.lottie)
 
-    // debugImplementation(Libraries.leakcanary)
-
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.3")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
+    // debugImplementation(libs.leakCanary)
 }
