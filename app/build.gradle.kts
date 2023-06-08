@@ -1,48 +1,31 @@
+import com.todayrecord.convention.TodayRecordConfig
+
 plugins {
-    id("com.android.application")
-    id("com.google.gms.google-services")
-    id("com.google.firebase.crashlytics")
-    id("com.google.devtools.ksp")
-    kotlin("android")
-    kotlin("kapt")
+    id("todayrecord.android.application")
+    id("todayrecord.android.firebase")
+    id("todayrecord.android.hilt")
     id("kotlin-parcelize")
-    id("dagger.hilt.android.plugin")
     id("androidx.navigation.safeargs.kotlin")
+    id("com.google.devtools.ksp")
 }
+
 android {
 
     defaultConfig {
-        namespace = Config.applicationId
-        applicationId = Config.applicationId
-        minSdk = Config.minSdk
-        targetSdk = Config.targetSdk
-        compileSdk = Config.compileSdk
-        versionCode = Config.versionCode
-        versionName = Config.versionName
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        namespace = TodayRecordConfig.applicationId
+        applicationId = TodayRecordConfig.applicationId
+        versionCode = TodayRecordConfig.versionCode
+        versionName = TodayRecordConfig.versionName
     }
 
     buildTypes {
-        debug {
-            manifestPlaceholders["crashlyticsCollectionEnabled"] = false
-        }
-
         release {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"))
             proguardFile("proguard-rules.pro")
-            manifestPlaceholders["crashlyticsCollectionEnabled"] = true
         }
     }
-    compileOptions {
-        isCoreLibraryDesugaringEnabled = true
-        sourceCompatibility = Config.javaCompileTarget
-        targetCompatibility = Config.javaCompileTarget
-    }
-    kotlinOptions {
-        jvmTarget = Config.javaCompileTarget.toString()
-    }
+
     buildFeatures {
         dataBinding = true
     }
@@ -68,25 +51,18 @@ dependencies {
 
     // Android
     implementation(libs.android.material)
-    coreLibraryDesugaring(libs.android.desugarJdkLibs)
 
     // Kotlin
     implementation(libs.kotlin.stdlib)
     implementation(libs.kotlinx.coroutines)
 
-    // Dagger2 ( DI )
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
     // Dagger2 ( DI ) Android Support
     implementation(libs.androidx.hilt.common)
     implementation(libs.androidx.hilt.navigation)
-    kapt(libs.androidx.hilt.compiler)
 
     // Firebase
-    implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.storage)
-    implementation(libs.firebase.crashlytics)
 
     // In-App-Update
     implementation(libs.playServices.inAppUpdate)
