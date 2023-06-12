@@ -34,7 +34,7 @@ internal class AndroidFirebaseConventionPlugin : Plugin<Project> {
                         }
                         getByName("release") {
                             manifestPlaceholders["crashlyticsEnabled"] = true
-                            the<CrashlyticsExtension>().mappingFileUploadEnabled = true
+                            the<CrashlyticsExtension>().mappingFileUploadEnabled = false
                         }
                     }
                 }
