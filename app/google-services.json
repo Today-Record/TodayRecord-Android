@@ -22,6 +22,14 @@
           }
         },
         {
+          "client_id": "503551816357-f9vktu2qkvj4j09780q4f4crh9ev5dne.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.todayrecord.todayrecord",
+            "certificate_hash": "c16a0acf6df311faf6200ce8d238e8b1b2f42621"
+          }
+        },
+        {
           "client_id": "503551816357-a3ou8tvgkihomt9jngakco06fsl3bmlf.apps.googleusercontent.com",
           "client_type": 3
         }
