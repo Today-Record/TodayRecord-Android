@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/tv_record_detail"
+        style="@style/Widget.TodayRecord.TextView.BodyLong2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/color_474a54"
+        tools:text="안녕하세요. 오늘의 기록입니다." />
+</layout>

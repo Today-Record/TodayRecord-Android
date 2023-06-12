@@ -1,4 +1,5 @@
 pluginManagement {
+    includeBuild("build-logic")
     repositories {
         gradlePluginPortal()
         google()
@@ -18,3 +19,6 @@ dependencyResolutionManagement {
 }
 rootProject.name = "TodayRecord"
 include(":app")
+include(":data")
+include(":domain")
+include(":presentation")

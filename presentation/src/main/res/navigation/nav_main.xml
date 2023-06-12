@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/introFragment">
+
+    <argument
+        android:name="notify_uri"
+        android:defaultValue="@null"
+        app:argType="android.net.Uri"
+        app:nullable="true" />
+
+    <fragment
+        android:id="@+id/introFragment"
+        android:name="com.todayrecord.presentation.screen.intro.IntroFragment"
+        tools:layout="@layout/fragment_intro">
+
+        <action
+            android:id="@+id/action_introFragment_to_recordsFragment"
+            app:destination="@id/recordsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/introFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/recordsFragment"
+        android:name="com.todayrecord.presentation.screen.record.RecordsFragment"
+        tools:layout="@layout/fragment_records">
+
+        <deepLink app:uri="todayRecord://todayRecord/records" />
+
+        <argument
+            android:name="notify_uri"
+            android:defaultValue="@null"
+            app:argType="android.net.Uri"
+            app:nullable="true" />
+
+        <action
+            android:id="@+id/action_recordsFragment_to_nav_record_detail"
+            app:destination="@id/nav_record_detail"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim">
+
+            <argument
+                android:name="record_id"
+                app:argType="string"
+                app:nullable="false" />
+        </action>
+
+        <action
+            android:id="@+id/action_recordsFragment_to_nav_setting"
+            app:destination="@id/nav_setting"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+        <action
+            android:id="@+id/action_recordsFragment_to_nav_write_record"
+            app:destination="@id/nav_write_record"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim">
+
+            <argument
+                android:name="record"
+                app:argType="com.todayrecord.presentation.model.record.Record"
+                app:nullable="true" />
+        </action>
+    </fragment>
+
+    <include app:graph="@navigation/nav_write_record" />
+
+    <include app:graph="@navigation/nav_record_detail" />
+
+    <include app:graph="@navigation/nav_setting" />
+</navigation>

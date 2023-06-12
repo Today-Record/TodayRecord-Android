@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.todayrecord.presentation.screen.recorddetail.RecordDetailViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".screen.recorddetail.BinRecordDetailEditBottomSheetFragment">
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/Widget.TodayRecord.TextView.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:text="@string/record_detail_bin_edit_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_description"
+            style="@style/Widget.TodayRecord.TextView.Body1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:gravity="center"
+            android:text="@string/record_detail_bin_edit_description"
+            android:textColor="@color/color_474a54"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_restore"
+            style="@style/Widget.TodayRecord.Button"
+            android:layout_width="0dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="42dp"
+            android:backgroundTint="@color/color_474a54"
+            android:text="@string/record_detail_bin_edit_restore"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_description"
+            app:onSingleClick="@{()-> viewModel.navigateToRestoreAndBack()}" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_deleted"
+            style="@style/Widget.TodayRecord.Button"
+            android:layout_width="0dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="32dp"
+            android:backgroundTint="@color/color_c14d4d"
+            android:text="@string/record_detail_bin_deleted"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_restore"
+            app:onSingleClick="@{()-> viewModel.navigateToDeletedAndBack()}" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
