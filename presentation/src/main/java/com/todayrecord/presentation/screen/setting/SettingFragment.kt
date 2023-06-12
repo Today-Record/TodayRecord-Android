@@ -55,6 +55,12 @@ class SettingFragment : DataBindingFragment<FragmentSettingBinding>(R.layout.fra
             }
 
             launch {
+                settingViewModel.navigateToRecordPrivacyPolicy.collect {
+                    findNavController().safeNavigate(SettingFragmentDirections.actionSettingFragmentToPrivacyPolicyFragment())
+                }
+            }
+
+            launch {
                 settingViewModel.navigateToRecordsClearPopup.collect {
                     MaterialAlertDialogBuilder(requireContext())
                         .setTitle(resources.getString(R.string.setting_record_clear))

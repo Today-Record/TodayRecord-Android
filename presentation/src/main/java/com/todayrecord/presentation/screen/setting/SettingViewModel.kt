@@ -26,6 +26,9 @@ class SettingViewModel @Inject constructor(
     private val _navigateToRecordsClearPopup = MutableEventFlow<Unit>()
     val navigateToRecordsClearPopup: EventFlow<Unit> = _navigateToRecordsClearPopup
 
+    private val _navigateToRecordPrivacyPolicy = MutableEventFlow<Unit>()
+    val navigateToRecordPrivacyPolicy: EventFlow<Unit> = _navigateToRecordPrivacyPolicy
+
     fun clearRecords() {
         viewModelScope.launch {
             clearRecordsUseCase(Unit)
@@ -47,6 +50,12 @@ class SettingViewModel @Inject constructor(
     fun navigateToRecordsClearPopup() {
         viewModelScope.launch {
             _navigateToRecordsClearPopup.emit(Unit)
+        }
+    }
+
+    fun navigateToRecordPrivacyPolicy() {
+        viewModelScope.launch {
+            _navigateToRecordPrivacyPolicy.emit(Unit)
         }
     }
 }

@@ -14,7 +14,7 @@ object TodayRecordConfig {
 
     private const val versionMajor = 1
     private const val versionMinor = 0
-    private const val versionPatch = 0
+    private const val versionPatch = 1
 
     const val versionName = "$versionMajor.$versionMinor.$versionPatch"
     const val versionCode = versionMajor.times(1000000) + versionMinor.times(1000) + versionPatch
