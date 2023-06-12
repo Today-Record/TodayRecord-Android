@@ -91,7 +91,6 @@ firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics
 firebase-storage = { group = "com.google.firebase", name = "firebase-storage-ktx" }
 firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics-ktx" }
 firebase-crashlytics-gradle = { group = "com.google.firebase", name = "firebase-crashlytics-gradle", version.ref = "firebaseCrashlyticsGradlePlugin" }
-firebase-appcheck-playintergrity = { group = "com.google.firebase", name ="firebase-appcheck-playintegrity"}
 
 # Hilt
 hilt-core = { group = "com.google.dagger", name = "hilt-core", version.ref = "hilt" }
