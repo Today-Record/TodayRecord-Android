@@ -23,7 +23,6 @@ internal class AndroidFirebaseConventionPlugin : Plugin<Project> {
                 val bom = libs.findLibrary("firebase.bom").get()
                 add("implementation", platform(bom))
                 "implementation"(libs.findLibrary("firebase.crashlytics").get())
-                "implementation"(libs.findLibrary("firebase.appcheck.playintergrity").get())
             }
 
             extensions.configure<ApplicationAndroidComponentsExtension> {

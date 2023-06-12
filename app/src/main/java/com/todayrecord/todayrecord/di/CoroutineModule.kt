@@ -1,5 +1,8 @@
 package com.todayrecord.todayrecord.di
 
+import com.todayrecord.domain.di.DefaultDispatcher
+import com.todayrecord.domain.di.IoDispatcher
+import com.todayrecord.domain.di.MainDispatcher
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
