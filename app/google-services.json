@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "503551816357",
+    "project_id": "todayrecord-68ab1",
+    "storage_bucket": "todayrecord-68ab1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:503551816357:android:d5f51cf53d319babf4934c",
+        "android_client_info": {
+          "package_name": "com.todayrecord.todayrecord"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "503551816357-2kugnb4bsk3esk0stqn202hcord8dl2k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.todayrecord.todayrecord",
+            "certificate_hash": "6f5342113ca1a9afe5c758a6b0b17bc0ec460103"
+          }
+        },
+        {
+          "client_id": "503551816357-f9vktu2qkvj4j09780q4f4crh9ev5dne.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.todayrecord.todayrecord",
+            "certificate_hash": "c16a0acf6df311faf6200ce8d238e8b1b2f42621"
+          }
+        },
+        {
+          "client_id": "503551816357-a3ou8tvgkihomt9jngakco06fsl3bmlf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqtlse4r0VBgEx1OTNAFJTgbLHYZ__owQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "503551816357-a3ou8tvgkihomt9jngakco06fsl3bmlf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

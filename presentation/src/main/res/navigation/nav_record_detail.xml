@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_record_detail"
+    app:startDestination="@id/recordDetailFragment">
+
+    <fragment
+        android:id="@+id/recordDetailFragment"
+        android:name="com.todayrecord.presentation.screen.recorddetail.RecordDetailFragment"
+        tools:layout="@layout/fragment_record_detail">
+
+        <action
+            android:id="@+id/action_recordDetailFragment_to_recordDetailEditBottomSheetDialogFragment"
+            app:destination="@id/recordDetailEditBottomSheetDialogFragment" />
+
+        <action
+            android:id="@+id/action_recordDetailFragment_to_binRecordDetailEditBottomSheetDialogFragment"
+            app:destination="@id/binRecordDetailEditBottomSheetDialogFragment" />
+
+        <action
+            android:id="@+id/action_recordDetailFragment_to_nav_write_record"
+            app:destination="@id/nav_write_record"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim">
+
+            <argument
+                android:name="record"
+                app:argType="com.todayrecord.presentation.model.record.Record"
+                app:nullable="true" />
+        </action>
+    </fragment>
+
+    <dialog
+        android:id="@+id/recordDetailEditBottomSheetDialogFragment"
+        android:name="com.todayrecord.presentation.screen.recorddetail.RecordDetailEditBottomSheetFragment"
+        tools:layout="@layout/dialog_record_detail_edit" />
+
+    <dialog
+        android:id="@+id/binRecordDetailEditBottomSheetDialogFragment"
+        android:name="com.todayrecord.presentation.screen.recorddetail.BinRecordDetailEditBottomSheetFragment"
+        tools:layout="@layout/dialog_bin_record_detail_edit" />
+</navigation>

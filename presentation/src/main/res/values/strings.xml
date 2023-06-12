@@ -1,0 +1,82 @@
+<resources>
+    <string name="app_name">오늘의 기록</string>
+
+    <string name="all_confirm">확인</string>
+    <string name="all_cancel">취소</string>
+    <string name="all_edit">편집</string>
+    <string name="all_save">저장</string>
+    <string name="all_delete">삭제</string>
+    <string name="all_setting">설정</string>
+
+    <!-- in-app update -->
+    <string name="in_app_update_completed">업데이트 버전이 다운로드되었습니다.</string>
+    <string name="in_app_update_install_and_restart">설치/재시작</string>
+
+    <!-- date regex pattern -->
+    <string name="time_regex_year_month_day">yyyy년 MM월 dd일</string>
+    <string name="time_regex_year_month_day_half_time">yyyy년 MM월 dd일 a h시 mm분</string>
+    <string name="time_regex_year_month_day_dot_half_time_newline">yyyy.MM.dd\na hh:mm</string>
+    <string name="time_regex_half_time">a h시 mm분</string>
+    <string name="time_regex_half_time_colon">a h:mm</string>
+
+    <!-- records -->
+    <string name="record_title">기록들</string>
+    <string name="record_list_empty">아직 기록이 없어요!\n첫 기록을 작성해보세요</string>
+
+    <!-- record detail edit -->
+    <string name="record_detail_edit_title">기록 편집</string>
+    <string name="record_detail_edit_description">편집을 통해 날짜/내용을 수정할 수 있어요\n기록을 삭제하시면 <font color="#c14d4d">휴지통</font>으로 이동해요</string>
+
+    <!-- record detail bin edit -->
+    <string name="record_detail_bin_edit_title">기록 삭제</string>
+    <string name="record_detail_bin_edit_description">복원을 누르면 기록 목록으로 이동해요\n영구 삭제 시 <font color="#c14d4d">기록이 완전히 지워집니다</font></string>
+    <string name="record_detail_bin_edit_restore">복원</string>
+    <string name="record_detail_bin_deleted">영구 삭제</string>
+
+    <!-- bin records -->
+    <string name="bin_record_title">휴지통</string>
+    <string name="bin_record_list_empty">휴지통이 깨끗해요 :D</string>
+    <string name="bin_record_clear_popup_title">휴지통 비우기</string>
+    <string name="bin_record_clear_popup_description">휴지통의 모든 기록을 영구삭제합니다.</string>
+
+    <!-- write -->
+    <string name="write_record_create_title">기록 작성</string>
+    <string name="write_record_update_title">기록 수정</string>
+    <string name="write_record_hint">오늘 하루를 기록해보세요</string>
+    <string name="write_record_text_length_error">한 글자 이상 기록을 입력해주세요</string>
+    <string name="write_record_image_count">(%d/3)</string>
+    <string name="write_record_image_count_error">첨부 이미지는 최대 3장까지만 선택할 수 있습니다.</string>
+
+    <!-- write exit -->
+    <string name="write_record_exit_title"><b>작성 중단</b></string>
+    <string name="write_record_exit_description">현재 화면을 벗어나면\n<font color="#c14d4d">작성 중이신 기록이 모두 사라집니다</font></string>
+    <string name="write_record_exit">나가기</string>
+
+    <!-- media picker -->
+    <string name="media_picker_title">이미지 선택</string>
+    <string name="media_picker_permission_storage">이미지 첨부를 원하시는 경우\n저장 공간 접근 권한이 필요합니다.</string>
+    <string name="media_picker_permission_setting_storage_title">권한 설정</string>
+    <string name="media_picker_permission_setting_storage_description">저장공간 접근 권한이 필요합니다. 휴대폰 설정 > 앱 > 저장공간 권한을 허용으로 변경해주세요.</string>
+
+    <!-- setting -->
+    <string name="setting_title">설정</string>
+    <string name="setting_alarm">알람 설정</string>
+    <string name="setting_bin">휴지통</string>
+    <string name="setting_record_clear">모든 기록 지우기</string>
+    <string name="setting_record_clear_warning_description">확인을 누르시면\n모든 기록이 영구적으로 삭제됩니다.</string>
+    <string name="setting_app_version">앱 버전</string>
+    <string name="setting_app_version_unit">ver.%s</string>
+
+    <!-- alarm setting -->
+    <string name="alarm_setting_title">알람 설정</string>
+    <string name="alarm_setting_time">시간</string>
+    <string name="alarm_setting_message">문구</string>
+    <string name="alarm_setting_message_hint">오늘 하루를 기록해보세요</string>
+    <string name="alarm_setting_enable">활성화</string>
+    <string name="alarm_setting_enable_off">OFF</string>
+    <string name="alarm_setting_enable_on">ON</string>
+    <string name="alarm_setting_permission_approve">휴대폰 설정에서 알람 권한을 활성화해주세요!\n<u>설정 이동</u></string>
+
+    <!-- alarm notify -->
+    <string name="alarm_notify_title">오늘 기록을 작성할 시간이에요!</string>
+</resources>

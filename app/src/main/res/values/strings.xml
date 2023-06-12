@@ -1,9 +1,0 @@
-<resources>
-    <string name="app_name">오늘의 기록</string>
-
-    <string name="all_confirm">확인</string>
-    <string name="all_cancel">취소</string>
-    <string name="all_edit">편집</string>
-    <string name="all_save">저장</string>
-
-</resources>
