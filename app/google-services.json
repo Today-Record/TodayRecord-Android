@@ -49,6 +49,43 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:503551816357:android:c3c5893c6919228ef4934c",
+        "android_client_info": {
+          "package_name": "com.todayrecord.todayrecord.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "503551816357-h70vvaf3tnpf6uo656p28uokri04fqlb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.todayrecord.todayrecord.dev",
+            "certificate_hash": "6f5342113ca1a9afe5c758a6b0b17bc0ec460103"
+          }
+        },
+        {
+          "client_id": "503551816357-a3ou8tvgkihomt9jngakco06fsl3bmlf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqtlse4r0VBgEx1OTNAFJTgbLHYZ__owQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "503551816357-a3ou8tvgkihomt9jngakco06fsl3bmlf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"

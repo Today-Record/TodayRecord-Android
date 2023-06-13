@@ -16,8 +16,18 @@ android {
     }
 
     buildTypes {
-        release {
+        getByName("debug") {
             isMinifyEnabled = false
+            manifestPlaceholders["icon_app_launcher"] = "@mipmap/ic_launcher_dev"
+            manifestPlaceholders["icon_app_launcher_round"] = "@mipmap/ic_launcher_dev_round"
+            applicationIdSuffix = ".dev"
+            versionNameSuffix = "-dev"
+        }
+
+        getByName("release") {
+            isMinifyEnabled = false
+            manifestPlaceholders["icon_app_launcher"] = "@mipmap/ic_launcher"
+            manifestPlaceholders["icon_app_launcher_round"] = "@mipmap/ic_launcher_round"
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"))
             proguardFile("proguard-rules.pro")
         }
