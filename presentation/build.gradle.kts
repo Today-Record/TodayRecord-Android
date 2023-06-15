@@ -16,12 +16,12 @@ android {
     }
 
     buildTypes {
-        debug {
+        getByName("debug") {
             buildConfigField("int", "VERSION_CODE", "${TodayRecordConfig.versionCode}")
             buildConfigField("String","VERSION_NAME","\"${TodayRecordConfig.versionName}\"")
         }
 
-        release {
+        getByName("release") {
             isMinifyEnabled = false
             buildConfigField("int", "VERSION_CODE", "${TodayRecordConfig.versionCode}")
             buildConfigField("String","VERSION_NAME","\"${TodayRecordConfig.versionName}\"")
