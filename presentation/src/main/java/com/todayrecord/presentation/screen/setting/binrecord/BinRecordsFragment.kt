@@ -8,6 +8,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.transition.Fade
 import androidx.transition.TransitionManager
 import androidx.transition.TransitionSet
@@ -55,7 +56,11 @@ class BinRecordsFragment : DataBindingFragment<FragmentBinRecordsBinding>(R.layo
     private fun initView() {
         dataBinding.rvBinRecord.apply {
             adapter = binRecordAdapter
-            layoutManager = LinearLayoutManager(requireContext())
+            layoutManager = if (resources.getBoolean(R.bool.isTablet)) {
+                StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+            } else {
+                LinearLayoutManager(requireContext())
+            }
             addItemDecoration(RecyclerviewItemDecoration(0, 12, 0, 0, R.layout.item_record))
             setHasFixedSize(true)
         }
