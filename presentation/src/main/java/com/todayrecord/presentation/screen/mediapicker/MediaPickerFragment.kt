@@ -83,7 +83,10 @@ class MediaPickerFragment :
         with(dataBinding) {
             rvMedia.apply {
                 adapter = mediaPickerAdapter
-                layoutManager = GridLayoutManager(requireContext(), 3)
+                layoutManager = GridLayoutManager(
+                    requireContext(),
+                    if (resources.getBoolean(R.bool.isTablet)) 5 else 3
+                )
                 itemAnimator = null
                 setHasFixedSize(true)
             }
