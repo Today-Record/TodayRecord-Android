@@ -6,6 +6,7 @@ dependencies {
     compileOnly(libs.android.gradlePlugin)
     compileOnly(libs.kotlin.gradlePlugin)
     compileOnly(libs.firebase.crashlytics.gradle)
+    compileOnly(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
 }
 
 java {

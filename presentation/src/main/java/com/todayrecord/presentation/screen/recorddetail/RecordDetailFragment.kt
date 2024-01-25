@@ -136,10 +136,10 @@ class RecordDetailFragment : DataBindingFragment<FragmentRecordDetailBinding>(R.
             }
         }
 
-        navBackStackEntry.getLifecycle().addObserver(resultObserver)
+        navBackStackEntry.lifecycle.addObserver(resultObserver)
         viewLifecycleOwner.lifecycle.addObserver(LifecycleEventObserver { _, event ->
             if (event == Lifecycle.Event.ON_DESTROY) {
-                navBackStackEntry.getLifecycle().removeObserver(resultObserver)
+                navBackStackEntry.lifecycle.removeObserver(resultObserver)
             }
         })
     }

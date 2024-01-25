@@ -25,6 +25,10 @@
 
         <!-- Alert Dialog -->
         <item name="materialAlertDialogTheme">@style/TodayRecordAlertDialogTheme</item>
+
+        <!-- Menu Style -->
+        <item name="toolbarStyle">@style/Widget.TodayRecord.Toolbar</item>
+        <item name="appBarLayoutStyle">@style/Widget.TodayRecord.AppBarLayout</item>
     </style>
 
     <!-- Splash Screen -->
@@ -55,5 +59,17 @@
         <item name="buttonBarNegativeButtonStyle">@style/Widget.TodayRecord.Dialog.Alert.Button.TextButton.Negative</item>
         <item name="android:buttonBarNegativeButtonStyle">@style/Widget.TodayRecord.Dialog.Alert.Button.TextButton.Negative</item>
         <item name="dialogCornerRadius">12dp</item>
+    </style>
+
+    <!-- Toolbar -->
+    <style name="Widget.TodayRecord.Toolbar" parent="@style/Widget.MaterialComponents.Toolbar">
+        <item name="titleTextColor">?colorOnPrimary</item>
+        <item name="titleTextAppearance">@style/TextAppearance.TodayRecord.Body2</item>
+        <item name="android:background">@drawable/bg_appbar</item>
+    </style>
+
+    <style name="Widget.TodayRecord.AppBarLayout" parent="Widget.Design.AppBarLayout">
+        <item name="elevation">0dp</item>
+        <item name="android:elevation">0dp</item>
     </style>
 </resources>

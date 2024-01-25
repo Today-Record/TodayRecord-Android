@@ -59,7 +59,6 @@ class TodayRecordNotificationManager @Inject constructor(
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setColor(ContextCompat.getColor(context, R.color.color_474a54))
             .setSmallIcon(R.drawable.icon_quill)
-            .setLargeIcon(null)
     }
 
     fun getNotificationContentIntent(requestCode: Int): PendingIntent {

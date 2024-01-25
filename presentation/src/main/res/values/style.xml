@@ -12,25 +12,25 @@
     <style name="TextAppearance.TodayRecord.Body1">
         <item name="android:fontFamily">@font/font_regular</item>
         <item name="fontFamily">@font/font_regular</item>
-        <item name="android:textSize">16dp</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
     <style name="TextAppearance.TodayRecord.Body2">
         <item name="android:fontFamily">@font/font_regular</item>
         <item name="fontFamily">@font/font_regular</item>
-        <item name="android:textSize">14dp</item>
+        <item name="android:textSize">16sp</item>
     </style>
 
     <style name="TextAppearance.TodayRecord.Body3">
         <item name="android:fontFamily">@font/font_regular</item>
         <item name="fontFamily">@font/font_regular</item>
-        <item name="android:textSize">12dp</item>
+        <item name="android:textSize">14sp</item>
     </style>
 
     <style name="TextAppearance.TodayRecord.Body4">
         <item name="android:fontFamily">@font/font_regular</item>
         <item name="fontFamily">@font/font_regular</item>
-        <item name="android:textSize">8dp</item>
+        <item name="android:textSize">12sp</item>
     </style>
 
     <!-- TextView Widget -->

@@ -1,3 +1,4 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 import com.todayrecord.convention.TodayRecordConfig
 
 plugins {
@@ -7,12 +8,22 @@ plugins {
 }
 
 android {
+    val localProperties = gradleLocalProperties(rootDir)
 
     defaultConfig {
         namespace = TodayRecordConfig.applicationId
         applicationId = TodayRecordConfig.applicationId
         versionCode = TodayRecordConfig.versionCode
         versionName = TodayRecordConfig.versionName
+    }
+
+    signingConfigs {
+        create("release") {
+            storeFile = file("todayrecord.keystore")
+            storePassword = localProperties["STORE_PASSWORD"].toString()
+            keyAlias = localProperties["KEY_ALIAS"].toString()
+            keyPassword = localProperties["KEY_PASSWORD"].toString()
+        }
     }
 
     buildTypes {
@@ -28,6 +39,7 @@ android {
             isMinifyEnabled = false
             manifestPlaceholders["icon_app_launcher"] = "@mipmap/ic_launcher"
             manifestPlaceholders["icon_app_launcher_round"] = "@mipmap/ic_launcher_round"
+            signingConfig = signingConfigs.getByName("release")
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"))
             proguardFile("proguard-rules.pro")
         }

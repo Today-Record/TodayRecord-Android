@@ -13,18 +13,13 @@ android {
     defaultConfig {
         namespace = "com.todayrecord.presentation"
         consumerProguardFiles("consumer-rules.pro")
+        buildConfigField("int", "VERSION_CODE", "${TodayRecordConfig.versionCode}")
+        buildConfigField("String","VERSION_NAME","\"${TodayRecordConfig.versionName}\"")
     }
 
     buildTypes {
-        getByName("debug") {
-            buildConfigField("int", "VERSION_CODE", "${TodayRecordConfig.versionCode}")
-            buildConfigField("String","VERSION_NAME","\"${TodayRecordConfig.versionName}\"")
-        }
-
-        getByName("release") {
+        release {
             isMinifyEnabled = false
-            buildConfigField("int", "VERSION_CODE", "${TodayRecordConfig.versionCode}")
-            buildConfigField("String","VERSION_NAME","\"${TodayRecordConfig.versionName}\"")
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
