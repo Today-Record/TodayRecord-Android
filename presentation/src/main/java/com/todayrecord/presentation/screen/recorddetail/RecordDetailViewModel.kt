@@ -10,7 +10,7 @@ import com.todayrecord.domain.util.data
 import com.todayrecord.domain.util.succeeded
 import com.todayrecord.presentation.model.record.Record
 import com.todayrecord.presentation.model.record.mapToItem
-import com.todayrecord.presentation.screen.BaseViewModel
+import com.todayrecord.presentation.screen.base.BaseViewModel
 import com.todayrecord.presentation.util.EventFlow
 import com.todayrecord.presentation.util.MutableEventFlow
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -47,6 +47,7 @@ class RecordDetailViewModel @Inject constructor(
                 .map { RecordDetailItemUiModel.RecordDetailImageItem(it) }
                 .plus(RecordDetailItemUiModel.RecordDetailTextItem(record.content))
         }
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
 
     private val _navigateToEditDialog = MutableEventFlow<Unit>()
     val navigateToEditDialog: EventFlow<Unit> = _navigateToEditDialog

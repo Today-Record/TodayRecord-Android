@@ -1,23 +1,18 @@
 package com.todayrecord.presentation.util
 
-import android.app.Activity
-import android.content.Context
 import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
-import com.bumptech.glide.Glide
+import coil.load
 import com.todayrecord.presentation.R
 
 @BindingAdapter("imageUrl")
-fun loadImage(view: ImageView, imageUrl: String?) {
-    if (!imageUrl.isNullOrEmpty()) {
-        if (!isValidContextForGlide(view.context)) return
+fun loadImage(imageView: ImageView, imageUrl: String?) {
+    if (imageUrl.isNullOrEmpty()) return
 
-        Glide.with(view.context)
-            .load(imageUrl)
-            .placeholder(R.color.color_d9d9d9)
-            .error(R.color.color_474a54)
-            .into(view)
+    imageView.load(imageUrl) {
+        placeholder(R.color.color_d9d9d9)
+        error(R.color.color_474a54)
     }
 }
 
@@ -28,11 +23,4 @@ fun bindIsGone(view: View, isGone: Boolean?) {
     } else {
         view.visibility = View.VISIBLE
     }
-}
-
-private fun isValidContextForGlide(context: Context): Boolean {
-    if (context is Activity) {
-        return !context.isFinishing
-    }
-    return true
 }

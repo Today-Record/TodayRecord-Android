@@ -2,12 +2,14 @@ package com.todayrecord.presentation.screen.setting.binrecord
 
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
+import androidx.paging.insertSeparators
 import androidx.paging.map
 import com.todayrecord.domain.usecase.record.ClearBinRecordsUseCase
 import com.todayrecord.domain.usecase.record.GetRecordsUseCase
 import com.todayrecord.domain.util.data
+import com.todayrecord.presentation.model.record.Record
 import com.todayrecord.presentation.model.record.mapToItem
-import com.todayrecord.presentation.screen.BaseViewModel
+import com.todayrecord.presentation.screen.base.BaseViewModel
 import com.todayrecord.presentation.util.EventFlow
 import com.todayrecord.presentation.util.MutableEventFlow
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,7 +24,15 @@ class BinRecordsViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     val binRecords = getRecordsUseCase(true)
-        .map { result -> result.data!!.map { it.mapToItem() } }
+        .map { result -> result.data!!.map { BinRecordsUiModel.BinRecordItem(it.mapToItem()) } }
+        .map { pagingData ->
+            pagingData.insertSeparators { before: BinRecordsUiModel?, after: BinRecordsUiModel? ->
+                if (before == null && after == null) {
+                    return@insertSeparators BinRecordsUiModel.EmptyItem
+                }
+                null
+            }
+        }
         .cachedIn(viewModelScope)
 
     private val _navigateToDetailRecord = MutableEventFlow<String>()
@@ -48,4 +58,9 @@ class BinRecordsViewModel @Inject constructor(
             clearBinRecordsUseCase(Unit)
         }
     }
+}
+
+sealed class BinRecordsUiModel {
+    data class BinRecordItem(val record: Record) : BinRecordsUiModel()
+    data object EmptyItem : BinRecordsUiModel()
 }

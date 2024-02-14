@@ -4,11 +4,13 @@ import android.net.Uri
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
+import androidx.paging.insertSeparators
 import androidx.paging.map
 import com.todayrecord.domain.usecase.record.GetRecordsUseCase
 import com.todayrecord.domain.util.data
+import com.todayrecord.presentation.model.record.Record
 import com.todayrecord.presentation.model.record.mapToItem
-import com.todayrecord.presentation.screen.BaseViewModel
+import com.todayrecord.presentation.screen.base.BaseViewModel
 import com.todayrecord.presentation.util.EventFlow
 import com.todayrecord.presentation.util.MutableEventFlow
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -25,7 +27,15 @@ class RecordsViewModel @Inject constructor(
     private val notifyUrl = savedStateHandle.get<Uri?>(KEY_NOTIFY_URI)
 
     val records = getRecordsUseCase(false)
-        .map { result -> result.data!!.map { it.mapToItem() } }
+        .map { result -> result.data!!.map { RecordsUiModel.RecordItem(it.mapToItem()) } }
+        .map { pagingData ->
+            pagingData.insertSeparators { before: RecordsUiModel?, after: RecordsUiModel? ->
+                if (before == null && after == null) {
+                    return@insertSeparators RecordsUiModel.EmptyItem
+                }
+                null
+            }
+        }
         .cachedIn(viewModelScope)
 
     private val _navigateToWriteRecord = MutableEventFlow<Unit>()
@@ -65,4 +75,9 @@ class RecordsViewModel @Inject constructor(
     companion object {
         private const val KEY_NOTIFY_URI = "notify_uri"
     }
+}
+
+sealed class RecordsUiModel {
+    data class RecordItem(val record: Record) : RecordsUiModel()
+    data object EmptyItem : RecordsUiModel()
 }

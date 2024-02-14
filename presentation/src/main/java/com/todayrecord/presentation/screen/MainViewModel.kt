@@ -9,6 +9,7 @@ import com.todayrecord.domain.usecase.appinfo.SetInAppUpdateEnableUseCase
 import com.todayrecord.domain.util.data
 import com.todayrecord.presentation.model.alarm.Alarm
 import com.todayrecord.presentation.model.alarm.mapToItem
+import com.todayrecord.presentation.screen.base.BaseViewModel
 import com.todayrecord.presentation.screen.setting.alarm.TodayRecordAlarmManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted

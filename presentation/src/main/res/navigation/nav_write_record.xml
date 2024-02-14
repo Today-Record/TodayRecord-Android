@@ -33,8 +33,7 @@
 
     <dialog
         android:id="@+id/writeRecordExitBottomSheetDialogFragment"
-        android:name="com.todayrecord.presentation.screen.write.WriteRecordExitBottomSheetFragment"
-        tools:layout="@layout/dialog_write_record_exit" />
+        android:name="com.todayrecord.presentation.screen.write.WriteRecordExitBottomSheetFragment" />
 
     <fragment
         android:id="@+id/mediaPickerFragment"

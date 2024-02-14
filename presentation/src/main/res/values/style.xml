@@ -37,35 +37,28 @@
     <style name="Widget.TodayRecord.TextView.Title" parent="@style/Widget.MaterialComponents.TextView">
         <item name="android:textAppearance">@style/TextAppearance.TodayRecord.Title</item>
         <item name="android:letterSpacing">-0.02</item>
-        <item name="lineHeight">28dp</item>
+        <item name="lineHeight">20dp</item>
         <item name="android:includeFontPadding">false</item>
     </style>
 
     <style name="Widget.TodayRecord.TextView.Body1" parent="@style/Widget.MaterialComponents.TextView">
         <item name="android:textAppearance">@style/TextAppearance.TodayRecord.Body1</item>
         <item name="android:letterSpacing">-0.04</item>
-        <item name="lineHeight">24dp</item>
+        <item name="lineHeight">20dp</item>
         <item name="android:includeFontPadding">false</item>
     </style>
 
     <style name="Widget.TodayRecord.TextView.Body2" parent="@style/Widget.MaterialComponents.TextView">
         <item name="android:textAppearance">@style/TextAppearance.TodayRecord.Body2</item>
         <item name="android:letterSpacing">-0.04</item>
-        <item name="lineHeight">24dp</item>
-        <item name="android:includeFontPadding">false</item>
-    </style>
-
-    <style name="Widget.TodayRecord.TextView.BodyLong2" parent="@style/Widget.MaterialComponents.TextView">
-        <item name="android:textAppearance">@style/TextAppearance.TodayRecord.Body2</item>
-        <item name="android:letterSpacing">-0.04</item>
-        <item name="lineHeight">28dp</item>
+        <item name="lineHeight">20dp</item>
         <item name="android:includeFontPadding">false</item>
     </style>
 
     <style name="Widget.TodayRecord.TextView.Body3" parent="@style/Widget.MaterialComponents.TextView">
         <item name="android:textAppearance">@style/TextAppearance.TodayRecord.Body3</item>
         <item name="android:letterSpacing">-0.04</item>
-        <item name="lineHeight">24dp</item>
+        <item name="lineHeight">20dp</item>
         <item name="android:includeFontPadding">false</item>
     </style>
 

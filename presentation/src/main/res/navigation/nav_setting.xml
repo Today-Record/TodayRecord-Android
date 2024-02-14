@@ -7,8 +7,7 @@
 
     <fragment
         android:id="@+id/settingFragment"
-        android:name="com.todayrecord.presentation.screen.setting.SettingFragment"
-        tools:layout="@layout/fragment_setting">
+        android:name="com.todayrecord.presentation.screen.setting.SettingFragment">
 
         <action
             android:id="@+id/action_settingFragment_to_alarmFragment"
@@ -42,8 +41,7 @@
 
     <fragment
         android:id="@+id/binRecordsFragment"
-        android:name="com.todayrecord.presentation.screen.setting.binrecord.BinRecordsFragment"
-        tools:layout="@layout/fragment_bin_records">
+        android:name="com.todayrecord.presentation.screen.setting.binrecord.BinRecordsFragment">
 
         <action
             android:id="@+id/action_binRecordsFragment_to_nav_record_detail"

@@ -8,7 +8,7 @@ import com.todayrecord.domain.usecase.alarm.entity.AlarmEntity
 import com.todayrecord.domain.util.Result
 import com.todayrecord.domain.util.data
 import com.todayrecord.presentation.model.alarm.mapToItem
-import com.todayrecord.presentation.screen.BaseViewModel
+import com.todayrecord.presentation.screen.base.BaseViewModel
 import com.todayrecord.presentation.util.EventFlow
 import com.todayrecord.presentation.util.MutableEventFlow
 import dagger.hilt.android.lifecycle.HiltViewModel

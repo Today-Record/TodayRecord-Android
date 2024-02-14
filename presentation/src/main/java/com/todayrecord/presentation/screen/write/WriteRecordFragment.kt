@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.todayrecord.presentation.R
 import com.todayrecord.presentation.adapter.write.WriteRecordImageAdapter
 import com.todayrecord.presentation.databinding.FragmentWriteRecordBinding
-import com.todayrecord.presentation.screen.DataBindingFragment
+import com.todayrecord.presentation.screen.base.DataBindingFragment
 import com.todayrecord.presentation.util.Const.KEY_IS_RECORD_UPDATE
 import com.todayrecord.presentation.util.Const.KEY_SELECTED_MEDIA_PATHS
 import com.todayrecord.presentation.util.hideKeyboard

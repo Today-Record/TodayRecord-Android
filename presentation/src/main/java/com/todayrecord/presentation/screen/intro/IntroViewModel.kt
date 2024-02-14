@@ -4,7 +4,7 @@ import android.net.Uri
 import androidx.core.net.toUri
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
-import com.todayrecord.presentation.screen.BaseViewModel
+import com.todayrecord.presentation.screen.base.BaseViewModel
 import com.todayrecord.presentation.util.EventFlow
 import com.todayrecord.presentation.util.MutableEventFlow
 import dagger.hilt.android.lifecycle.HiltViewModel

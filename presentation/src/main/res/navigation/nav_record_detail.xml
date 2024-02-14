@@ -7,8 +7,7 @@
 
     <fragment
         android:id="@+id/recordDetailFragment"
-        android:name="com.todayrecord.presentation.screen.recorddetail.RecordDetailFragment"
-        tools:layout="@layout/fragment_record_detail">
+        android:name="com.todayrecord.presentation.screen.recorddetail.RecordDetailFragment">
 
         <action
             android:id="@+id/action_recordDetailFragment_to_recordDetailEditBottomSheetDialogFragment"
@@ -35,11 +34,9 @@
 
     <dialog
         android:id="@+id/recordDetailEditBottomSheetDialogFragment"
-        android:name="com.todayrecord.presentation.screen.recorddetail.RecordDetailEditBottomSheetFragment"
-        tools:layout="@layout/dialog_record_detail_edit" />
+        android:name="com.todayrecord.presentation.screen.recorddetail.RecordDetailEditBottomSheetFragment" />
 
     <dialog
         android:id="@+id/binRecordDetailEditBottomSheetDialogFragment"
-        android:name="com.todayrecord.presentation.screen.recorddetail.BinRecordDetailEditBottomSheetFragment"
-        tools:layout="@layout/dialog_bin_record_detail_edit" />
+        android:name="com.todayrecord.presentation.screen.recorddetail.BinRecordDetailEditBottomSheetFragment" />
 </navigation>

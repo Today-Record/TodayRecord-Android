@@ -20,7 +20,7 @@ import com.todayrecord.presentation.R
 import com.todayrecord.presentation.adapter.media.MediaPickerAdapter
 import com.todayrecord.presentation.adapter.media.SelectedMediaPathAdapter
 import com.todayrecord.presentation.databinding.FragmentMediaPickerBinding
-import com.todayrecord.presentation.screen.DataBindingFragment
+import com.todayrecord.presentation.screen.base.DataBindingFragment
 import com.todayrecord.presentation.util.Const.KEY_SELECTED_MEDIA_PATHS
 import com.todayrecord.presentation.util.Const.REQUEST_CODE_STORAGE_PERMISSION
 import com.todayrecord.presentation.util.launchAndRepeatWithViewLifecycle

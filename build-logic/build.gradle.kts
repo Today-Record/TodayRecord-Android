@@ -9,11 +9,6 @@ dependencies {
     compileOnly(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
 }
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
-}
-
 gradlePlugin {
     plugins {
         register("androidApplication") {
@@ -21,9 +16,19 @@ gradlePlugin {
             implementationClass = "AndroidApplicationConventionPlugin"
         }
 
+        register("androidApplicationCompose") {
+            id = "todayrecord.android.application.compose"
+            implementationClass = "AndroidApplicationComposeConventionPlugin"
+        }
+
         register("androidLibrary") {
             id = "todayrecord.android.library"
             implementationClass = "AndroidLibraryConventionPlugin"
+        }
+
+        register("androidLibraryCompose") {
+            id = "todayrecord.android.library.compose"
+            implementationClass = "AndroidLibraryComposeConventionPlugin"
         }
 
         register("androidHilt") {

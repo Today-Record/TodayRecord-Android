@@ -8,9 +8,8 @@
             android:name=".screen.MainActivity"
             android:configChanges="screenSize|orientation|keyboardHidden"
             android:exported="true"
-            android:theme="@style/Theme.TodayRecord.Splash"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait">
+            android:theme="@style/Theme.TodayRecord.Splash">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

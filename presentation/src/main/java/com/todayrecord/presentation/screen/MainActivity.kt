@@ -16,6 +16,7 @@ import com.google.android.play.core.ktx.AppUpdateResult
 import com.google.android.play.core.ktx.requestUpdateFlow
 import com.todayrecord.presentation.R
 import com.todayrecord.presentation.databinding.ActivityMainBinding
+import com.todayrecord.presentation.screen.base.DataBindingActivity
 import com.todayrecord.presentation.util.Const.KEY_NOTIFY_URI
 import com.todayrecord.presentation.util.Const.REQUEST_CODE_IN_APP_UPDATE
 import dagger.hilt.android.AndroidEntryPoint

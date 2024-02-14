@@ -26,13 +26,14 @@ import androidx.transition.TransitionManager
 import androidx.transition.TransitionSet
 import com.todayrecord.presentation.R
 import com.todayrecord.presentation.databinding.FragmentIntroBinding
+import com.todayrecord.presentation.screen.base.DataBindingFragment
 import com.todayrecord.presentation.util.launchAndRepeatWithViewLifecycle
 import com.todayrecord.presentation.util.safeNavigate
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class IntroFragment : com.todayrecord.presentation.screen.DataBindingFragment<FragmentIntroBinding>(R.layout.fragment_intro) {
+class IntroFragment : DataBindingFragment<FragmentIntroBinding>(R.layout.fragment_intro) {
 
     private val introViewModel: IntroViewModel by viewModels()
 

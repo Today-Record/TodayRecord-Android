@@ -29,8 +29,7 @@
 
     <fragment
         android:id="@+id/recordsFragment"
-        android:name="com.todayrecord.presentation.screen.record.RecordsFragment"
-        tools:layout="@layout/fragment_records">
+        android:name="com.todayrecord.presentation.screen.record.RecordsFragment">
 
         <deepLink app:uri="todayRecord://todayRecord/records" />
 

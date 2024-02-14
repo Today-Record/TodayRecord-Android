@@ -6,7 +6,7 @@ import android.webkit.WebSettings
 import androidx.navigation.fragment.findNavController
 import com.todayrecord.presentation.R
 import com.todayrecord.presentation.databinding.FragmentPrivacyPolicyBinding
-import com.todayrecord.presentation.screen.DataBindingFragment
+import com.todayrecord.presentation.screen.base.DataBindingFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

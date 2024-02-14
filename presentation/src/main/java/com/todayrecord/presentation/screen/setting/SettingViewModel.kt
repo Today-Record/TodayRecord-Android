@@ -2,8 +2,7 @@ package com.todayrecord.presentation.screen.setting
 
 import androidx.lifecycle.viewModelScope
 import com.todayrecord.domain.usecase.record.ClearRecordsUseCase
-import com.todayrecord.presentation.BuildConfig
-import com.todayrecord.presentation.screen.BaseViewModel
+import com.todayrecord.presentation.screen.base.BaseViewModel
 import com.todayrecord.presentation.util.EventFlow
 import com.todayrecord.presentation.util.MutableEventFlow
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,8 +13,6 @@ import javax.inject.Inject
 class SettingViewModel @Inject constructor(
     private val clearRecordsUseCase: ClearRecordsUseCase
 ) : BaseViewModel() {
-
-    val appVersion: String = BuildConfig.VERSION_NAME
 
     private val _navigateToAlarmSetting = MutableEventFlow<Unit>()
     val navigateToAlarmSetting: EventFlow<Unit> = _navigateToAlarmSetting

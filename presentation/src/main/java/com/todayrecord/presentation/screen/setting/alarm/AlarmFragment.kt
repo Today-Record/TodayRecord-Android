@@ -14,7 +14,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import com.todayrecord.presentation.R
 import com.todayrecord.presentation.databinding.FragmentAlarmBinding
-import com.todayrecord.presentation.screen.DataBindingFragment
+import com.todayrecord.presentation.screen.base.DataBindingFragment
 import com.todayrecord.presentation.util.Const.ALARM_NOTIFICATION_CHANNEL_ID
 import com.todayrecord.presentation.util.Const.ALARM_NOTIFICATION_GROUP_ID
 import com.todayrecord.presentation.util.launchAndRepeatWithViewLifecycle

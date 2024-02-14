@@ -9,7 +9,7 @@ import com.todayrecord.domain.usecase.media.GetMediaUseCase
 import com.todayrecord.domain.util.data
 import com.todayrecord.presentation.model.media.Media
 import com.todayrecord.presentation.model.media.mapToItem
-import com.todayrecord.presentation.screen.BaseViewModel
+import com.todayrecord.presentation.screen.base.BaseViewModel
 import com.todayrecord.presentation.util.EventFlow
 import com.todayrecord.presentation.util.MutableEventFlow
 import dagger.hilt.android.lifecycle.HiltViewModel

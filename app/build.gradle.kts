@@ -3,6 +3,7 @@ import com.todayrecord.convention.TodayRecordConfig
 
 plugins {
     id("todayrecord.android.application")
+    id("todayrecord.android.application.compose")
     id("todayrecord.android.firebase")
     id("todayrecord.android.hilt")
 }
@@ -57,6 +58,8 @@ dependencies {
 
     // AndroidX
     implementation(libs.androidx.startup)
+    // AndroidX Compose
+    implementation(libs.androidx.compose.runtime)
 
     // Kotlin
     implementation(libs.kotlin.stdlib)
@@ -64,6 +67,9 @@ dependencies {
 
     // Firebase
     implementation(libs.firebase.analytics)
+
+    // Coil
+    implementation(libs.coil.core)
 
     // log tracker
     api(libs.timber)

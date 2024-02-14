@@ -8,7 +8,7 @@ import com.todayrecord.domain.usecase.record.entity.RecordEntity
 import com.todayrecord.domain.util.Result
 import com.todayrecord.presentation.model.record.Record
 import com.todayrecord.presentation.model.record.mapToEntity
-import com.todayrecord.presentation.screen.BaseViewModel
+import com.todayrecord.presentation.screen.base.BaseViewModel
 import com.todayrecord.presentation.util.EventFlow
 import com.todayrecord.presentation.util.MutableEventFlow
 import dagger.hilt.android.lifecycle.HiltViewModel

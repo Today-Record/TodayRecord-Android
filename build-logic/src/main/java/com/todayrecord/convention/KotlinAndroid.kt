@@ -19,6 +19,10 @@ internal fun Project.configureKotlinAndroid(
             minSdk = TodayRecordConfig.minSdk
         }
 
+        buildFeatures {
+            buildConfig = true
+        }
+
         compileOptions {
             sourceCompatibility = TodayRecordConfig.javaCompileTarget
             targetCompatibility = TodayRecordConfig.javaCompileTarget
